@@ -26,11 +26,6 @@ export default ${helperName};
       fs.writeFile(`${srcPath}/.generated/${helperName}/index.js`, fileContent, (err) => {
         if (err) { throw err; }
       });
-
-      const append = `export { default as ${helperName} } from './${helperName}';
-`;
-
-      fs.appendFile(`${srcPath}/index.js`, append, (err) => { if (err) { throw err; } });
     });
   }
 }
