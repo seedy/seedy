@@ -23,7 +23,7 @@ const SOCIAL = 'social';
 const TAB_ROUTES = pick([PRO, ABOUT, SOCIAL], routes);
 
 // COMPONENTS
-const TabsRoutes = () => {
+const TabsRoutes = (props) => {
   const { pathname } = useLocation();
   const { push } = useHistory();
 
@@ -53,6 +53,7 @@ const TabsRoutes = () => {
       indicatorColor="secondary"
       textColor="secondary"
       aria-label="tabs"
+      {...props}
     >
       <Tab icon={<WorkIcon />} label={PRO} value={PRO} />
       <Tab icon={<FaceIcon />} label={SOCIAL} value={SOCIAL} />
