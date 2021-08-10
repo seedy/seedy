@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import useIsXs from 'hooks/useIsXs';
@@ -16,7 +16,7 @@ export const useDrawerShrinkableContext = () => useContext(DrawerShrinkableConte
 const DrawerShrinkableContextProvider = ({ children, ...props }) => {
   const isXs = useIsXs();
 
-  const [shrink, setShrink] = useState(isXs);
+  const [shrink, setShrink] = useState(false);
 
   const onShrinkToggle = useCallback(
     () => {
@@ -31,6 +31,15 @@ const DrawerShrinkableContextProvider = ({ children, ...props }) => {
       onShrinkToggle,
     }),
     [shrink, onShrinkToggle],
+  );
+
+  useEffect(
+    () => {
+      if (isXs) {
+        setShrink(true);
+      }
+    },
+    [isXs, setShrink],
   );
 
   return (
