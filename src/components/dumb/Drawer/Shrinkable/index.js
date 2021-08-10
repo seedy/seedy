@@ -38,7 +38,6 @@ const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
 
   return (
     <Drawer
-      {...props}
       open
       variant="permanent"
       classes={{
@@ -51,6 +50,7 @@ const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
           [classes.drawerShrink]: shrink,
         }),
       }}
+      {...props}
     >
       {children}
     </Drawer>
