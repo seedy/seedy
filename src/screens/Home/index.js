@@ -5,10 +5,12 @@ import AppBarOverDrawer from 'components/dumb/AppBar/OverDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import ButtonHome from 'components/smart/Button/Home';
 import TabsRoutes from 'components/smart/Tabs/Routes';
-import DrawerShrinkableWithContext from 'components/dumb/Drawer/Shrinkable/Context/with/Drawer';
+import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
 import Box from '@material-ui/core/Box';
 import DrawerShrinkableContextProvider from 'components/dumb/Drawer/Shrinkable/Context';
 import IconButtonWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/IconButton';
+import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
+import BoxFlexFill from 'components/dumb/Box/FlexFill';
 
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -36,6 +38,8 @@ const Home = () => {
               <MenuIcon />
             </IconButtonWithDrawerShrinkableContext>
             <ButtonHome />
+            <BoxFlexFill />
+            <IconButtonDarkModeWithContext />
           </Toolbar>
         </AppBarOverDrawer>
         <DrawerShrinkableWithContext>
