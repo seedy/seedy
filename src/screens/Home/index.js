@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import AppBarStatic from 'components/dumb/AppBar/Static';
@@ -7,6 +9,7 @@ import ButtonHome from 'components/smart/Button/Home';
 import TabsRoutes from 'components/smart/Tabs/Routes';
 import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
 import Box from '@material-ui/core/Box';
+import BoxWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/Box';
 import DrawerShrinkableContextProvider from 'components/dumb/Drawer/Shrinkable/Context';
 import IconButtonWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/IconButton';
 import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
@@ -26,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENTS
-const Home = () => {
+const Home = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -48,9 +51,20 @@ const Home = () => {
           </AppBarStatic>
           <TabsRoutes orientation="vertical" />
         </DrawerShrinkableWithContext>
+        <BoxWithDrawerShrinkableContext>
+          {children}
+        </BoxWithDrawerShrinkableContext>
       </DrawerShrinkableContextProvider>
     </Box>
   );
+};
+
+Home.propTypes = {
+  children: PropTypes.node,
+};
+
+Home.defaultProps = {
+  children: null,
 };
 
 export default Home;
