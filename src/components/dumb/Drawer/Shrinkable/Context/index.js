@@ -1,11 +1,14 @@
 import { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { DRAWER_WIDTH } from 'constants/drawers/sizing';
+
 import useIsXs from 'hooks/useIsXs';
 
 // CONSTANTS
 export const DrawerShrinkableContext = createContext({
   shrink: false,
+  width: DRAWER_WIDTH,
   onShrinkToggle: null,
 });
 
@@ -13,7 +16,7 @@ export const DrawerShrinkableContext = createContext({
 export const useDrawerShrinkableContext = () => useContext(DrawerShrinkableContext);
 
 // COMPONENTS
-const DrawerShrinkableContextProvider = ({ children, ...props }) => {
+const DrawerShrinkableContextProvider = ({ children, width, ...props }) => {
   const isXs = useIsXs();
 
   const [shrink, setShrink] = useState(false);
@@ -28,9 +31,10 @@ const DrawerShrinkableContextProvider = ({ children, ...props }) => {
   const value = useMemo(
     () => ({
       shrink,
+      width,
       onShrinkToggle,
     }),
-    [shrink, onShrinkToggle],
+    [shrink, width, onShrinkToggle],
   );
 
   useEffect(
@@ -50,10 +54,12 @@ const DrawerShrinkableContextProvider = ({ children, ...props }) => {
 };
 
 DrawerShrinkableContextProvider.propTypes = {
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   children: PropTypes.node,
 };
 
 DrawerShrinkableContextProvider.defaultProps = {
+  width: DRAWER_WIDTH,
   children: null,
 };
 
