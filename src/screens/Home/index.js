@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(1.5),
   },
+  fixedOffset: theme.mixins.toolbar,
 }));
 
 // COMPONENTS
@@ -35,7 +36,7 @@ const Home = ({ children }) => {
   return (
     <Box display="flex" flexDirection="column">
       <DrawerShrinkableContextProvider>
-        <AppBarOverDrawer>
+        <AppBarOverDrawer position="fixed">
           <Toolbar>
             <IconButtonWithDrawerShrinkableContext classes={{ root: classes.buttonCentered }}>
               <MenuIcon />
@@ -45,6 +46,7 @@ const Home = ({ children }) => {
             <IconButtonDarkModeWithContext />
           </Toolbar>
         </AppBarOverDrawer>
+        <Box className={classes.fixedOffset} />
         <DrawerShrinkableWithContext>
           <AppBarStatic elevation={0}>
             <Toolbar />

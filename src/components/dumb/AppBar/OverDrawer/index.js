@@ -1,6 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import AppBarStatic from 'components/dumb/AppBar/Static';
+import AppBar from '@material-ui/core/AppBar';
 
 // HOOKS
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +14,7 @@ const AppBarOverDrawer = (props) => {
   const classes = useStyles();
 
   return (
-    <AppBarStatic classes={{ root: classes.root }} {...props} />
+    <AppBar classes={{ root: classes.root }} {...props} />
   );
 };
 
