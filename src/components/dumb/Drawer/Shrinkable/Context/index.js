@@ -6,6 +6,7 @@ import { DRAWER_WIDTH } from 'constants/drawers/sizing';
 import useIsXs from 'hooks/useIsXs';
 
 // CONSTANTS
+// CONTEXT
 export const DrawerShrinkableContext = createContext({
   shrink: false,
   width: DRAWER_WIDTH,
