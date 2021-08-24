@@ -13,9 +13,12 @@ import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 
 // HOOKS
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxHeight: 'none',
+  },
+  typographyPadded: {
+    margin: theme.spacing(0, 1),
   },
 }));
 
@@ -35,7 +38,11 @@ const PdfViewerToolbar = forwardRef((props, ref) => {
       <IconButton onClick={onZoomIn} edge="start">
         <ZoomInIcon />
       </IconButton>
-      <Typography variant="caption" align="center">
+      <Typography
+        classes={{ root: classes.typographyPadded }}
+        variant="caption"
+        align="center"
+      >
         {`${displayedScale}%`}
       </Typography>
       <IconButton onClick={onZoomOut} edge="end">
