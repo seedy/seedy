@@ -15,7 +15,7 @@ import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 // HOOKS
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxHeight: 'none',
+    minHeight: 'auto',
   },
   typographyPadded: {
     margin: theme.spacing(0, 1),
