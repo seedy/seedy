@@ -10,6 +10,10 @@ import Box from '@material-ui/core/Box';
 const useStyles = makeStyles((theme) => ({
   content: ({ width }) => ({
     marginLeft: width,
+    // XS : drawer floats over content rather than pushing it
+    [theme.breakpoints.only('xs')]: {
+      marginLeft: theme.spacing(9) + 1,
+    },
   }),
   contentShrink: {
     marginLeft: theme.spacing(9) + 1,

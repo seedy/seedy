@@ -6,6 +6,7 @@ import AppBarStatic from 'components/dumb/AppBar/Static';
 import AppBarOverDrawer from 'components/dumb/AppBar/OverDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import ButtonHome from 'components/smart/Button/Home';
+import ButtonHomeLink from 'components/smart/Button/Home/Link';
 import TabsRoutes from 'components/smart/Tabs/Routes';
 import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
 import Box from '@material-ui/core/Box';
@@ -16,6 +17,7 @@ import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
 
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 // HOOKS
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +43,7 @@ const Home = ({ children }) => {
             <IconButtonWithDrawerShrinkableContext classes={{ root: classes.buttonCentered }}>
               <MenuIcon />
             </IconButtonWithDrawerShrinkableContext>
-            <ButtonHome />
+            <ButtonHomeLink />
             <BoxFlexFill />
             <IconButtonDarkModeWithContext />
           </Toolbar>
@@ -49,7 +51,13 @@ const Home = ({ children }) => {
         <Box className={classes.fixedOffset} />
         <DrawerShrinkableWithContext>
           <AppBarStatic elevation={0}>
-            <Toolbar />
+            <Toolbar>
+              <ButtonHome disabled />
+              <BoxFlexFill />
+              <IconButtonWithDrawerShrinkableContext edge="end">
+                <ArrowBackIosIcon />
+              </IconButtonWithDrawerShrinkableContext>
+            </Toolbar>
           </AppBarStatic>
           <TabsRoutes orientation="vertical" />
         </DrawerShrinkableWithContext>

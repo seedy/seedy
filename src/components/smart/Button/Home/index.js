@@ -1,19 +1,14 @@
 import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import routes from 'routes';
-
-import { generatePath, Link } from 'react-router-dom';
-
 import useIsXs from 'hooks/useIsXs';
 
 import AvatarMe from 'components/dumb/Avatar/Me';
-import LogoNavLink from 'components/smart/Logo/NavLink';
+import Logo from 'components/dumb/Logo';
 import Button from '@material-ui/core/Button';
 
-const ButtonHome = forwardRef(({ avatarProps, logoProps, ...props }, ref) => {
-  const homeTo = generatePath(routes._);
-
+// COMPONENTS
+const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {
   const isXs = useIsXs();
 
   const size = useMemo(
@@ -25,25 +20,23 @@ const ButtonHome = forwardRef(({ avatarProps, logoProps, ...props }, ref) => {
     <Button
       ref={ref}
       variant="outlined"
-      component={Link}
-      to={homeTo}
       startIcon={<AvatarMe {...avatarProps} />}
       size={size}
       {...props}
     >
-      <LogoNavLink to={homeTo} exact {...logoProps} />
+      {logo}
     </Button>
   );
 });
 
 ButtonHome.propTypes = {
   avatarProps: PropTypes.object,
-  logoProps: PropTypes.object,
+  logo: PropTypes.node,
 };
 
 ButtonHome.defaultProps = {
   avatarProps: {},
-  logoProps: {},
+  logo: <Logo />,
 };
 
 export default ButtonHome;
