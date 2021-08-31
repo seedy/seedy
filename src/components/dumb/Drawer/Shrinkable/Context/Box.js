@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
   }),
   contentShrink: {
     marginLeft: theme.spacing(9) + 1,
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(9) + 1,
-    },
   },
 }));
 
@@ -27,7 +24,10 @@ const BoxWithDrawerShrinkableContext = forwardRef((props, ref) => {
 
   return (
     <Box
-      className={clsx(classes.content, { [classes.contentShrink]: shrink })}
+      className={clsx({
+        [classes.content]: !shrink,
+        [classes.contentShrink]: shrink,
+      })}
       ref={ref}
       {...props}
     />
