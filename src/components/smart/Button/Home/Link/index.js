@@ -5,7 +5,7 @@ import routes from 'routes';
 
 import { generatePath, Link } from 'react-router-dom';
 
-import useIsXs from 'hooks/useIsXs';
+import useIsDownSm from 'hooks/useIsDownSm';
 
 import AvatarMe from 'components/dumb/Avatar/Me';
 import LogoNavLink from 'components/smart/Logo/NavLink';
@@ -15,7 +15,7 @@ import ButtonHome from 'components/smart/Button/Home';
 const ButtonHomeLink = forwardRef(({ avatarProps, ...props }, ref) => {
   const homeTo = generatePath(routes._);
 
-  const isXs = useIsXs();
+  const isXs = useIsDownSm();
 
   const size = useMemo(
     () => (isXs ? 'small' : 'medium'),

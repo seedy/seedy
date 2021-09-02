@@ -20,6 +20,21 @@ export const getTheme = (type) => createTheme({
         },
       },
     },
+    MuiAccordionSummary: {
+      root: {
+        padding: '0px 8px',
+      },
+    },
+    MuiAccordionDetails: {
+      root: {
+        padding: '16px 8px',
+      },
+    },
+    MuiImageListItemBar: {
+      title: {
+        whiteSpace: 'normal',
+      },
+    },
   },
 });
 
