@@ -7,11 +7,6 @@ import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
 import PdfViewer from 'components/dumb/PdfViewer';
 import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
@@ -19,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import ButtonDownload from 'components/dumb/Button/Download';
+import CardHeadline from 'components/dumb/Card/Headline';
 
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -77,25 +73,7 @@ const Pro = () => {
         flexDirection="column"
         alignItems="center"
       >
-        <Card>
-          <CardActionArea onClick={onOpen}>
-            <CardMedia
-              component="img"
-              alt="Cédric DUPUIS CV"
-              image="CV_Headline.png"
-              title="Cédric DUPUIS CV"
-            />
-          </CardActionArea>
-          <CardActions>
-            <Button
-              onClick={onOpen}
-              size="small"
-            >
-              En savoir plus
-
-            </Button>
-          </CardActions>
-        </Card>
+        <CardHeadline onMore={onOpen} onMedia={onOpen} />
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
             <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
