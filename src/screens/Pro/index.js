@@ -1,5 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import useIsXs from 'hooks/useIsXs';
+import useIsDownSm from 'hooks/useIsDownSm';
 
 import Box from '@material-ui/core/Box';
 // import LinkedinBadgeProfile from 'components/dumb/Badge/Profile/Linkedin';
@@ -15,6 +17,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import ButtonDownload from 'components/dumb/Button/Download';
 import CardHeadline from 'components/dumb/Card/Headline';
+import Grid from '@material-ui/core/Grid';
+import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
+import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
+// import CardInterestsJob from 'components/dumb/Card/Interests/Job';
+import ImageListInterests from 'components/dumb/ImageList/Interests';
 
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -49,6 +56,21 @@ const useStyles = makeStyles((theme) => ({
 // COMPONENTS
 const Pro = () => {
   const classes = useStyles();
+  const isXs = useIsXs();
+  const isDownSm = useIsDownSm();
+
+  const listCols = useMemo(
+    () => {
+      if (isXs) {
+        return 1;
+      }
+      if (isDownSm) {
+        return 2;
+      }
+      return 3;
+    },
+    [isXs, isDownSm],
+  );
 
   const [open, setOpen] = useState(false);
 
@@ -72,8 +94,22 @@ const Pro = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        mt={1}
       >
-        <CardHeadline onMore={onOpen} onMedia={onOpen} />
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <CardHeadline onMore={onOpen} onMedia={onOpen} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsTech />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsSoft />
+          </Grid>
+          <Grid item xs={12}>
+            <ImageListInterests cols={listCols} />
+          </Grid>
+        </Grid>
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
             <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
