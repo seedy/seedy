@@ -1,5 +1,2 @@
 // generated with 'scripts/generate-helpers.js'
-import isString from 'lodash/isString';
-
-export default isString;
-
+export * as default from 'lodash/isString';

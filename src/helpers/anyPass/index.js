@@ -1,5 +1,3 @@
-// generated with 'scripts/generate-helpers.js' 
-import anyPass from 'ramda/src/anyPass';
+// generated with 'scripts/generate-helpers.js'
+export * as default from 'ramda/src/anyPass';
 
-export default anyPass;
-  

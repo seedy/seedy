@@ -1,5 +1,3 @@
-// generated with 'scripts/generate-helpers.js' 
-import equals from 'ramda/src/equals';
+// generated with 'scripts/generate-helpers.js'
+export * as default from 'ramda/src/equals';
 
-export default equals;
-  
