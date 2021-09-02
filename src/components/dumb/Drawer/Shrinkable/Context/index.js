@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { DRAWER_WIDTH } from 'constants/drawers/sizing';
 
-import useIsXs from 'hooks/useIsXs';
+import useIsDownSm from 'hooks/useIsDownSm';
 
 // CONSTANTS
 // CONTEXT
@@ -18,7 +18,7 @@ export const useDrawerShrinkableContext = () => useContext(DrawerShrinkableConte
 
 // COMPONENTS
 const DrawerShrinkableContextProvider = ({ children, width, ...props }) => {
-  const isXs = useIsXs();
+  const isXs = useIsDownSm();
 
   const [shrink, setShrink] = useState(false);
 

@@ -10,8 +10,8 @@ import Box from '@material-ui/core/Box';
 const useStyles = makeStyles((theme) => ({
   content: ({ width }) => ({
     marginLeft: width,
-    // XS : drawer floats over content rather than pushing it
-    [theme.breakpoints.only('xs')]: {
+    // DOWN SM : drawer floats over content rather than pushing it
+    [theme.breakpoints.down('sm')]: {
       marginLeft: theme.spacing(9) + 1,
     },
   }),

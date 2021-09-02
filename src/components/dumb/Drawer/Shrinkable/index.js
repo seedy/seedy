@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { DRAWER_WIDTH } from 'constants/drawers/sizing';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import useIsXs from 'hooks/useIsXs';
+import useIsDownSm from 'hooks/useIsDownSm';
 
 import Drawer from '@material-ui/core/Drawer';
 import { useCallback, useMemo } from 'react';
@@ -35,7 +35,7 @@ const useStyles = makeStyles(
 // COMPONENTS
 const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
   const classes = useStyles({ width });
-  const isXs = useIsXs();
+  const isXs = useIsDownSm();
 
   const { onShrinkToggle } = useDrawerShrinkableContext();
 
