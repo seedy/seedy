@@ -1,16 +1,19 @@
+import matchMediaHover from 'helpers/matchMediaHover';
+
 import { useCallback, useMemo, useState } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import useIsXs from 'hooks/useIsXs';
 import useIsDownSm from 'hooks/useIsDownSm';
 
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Fade from '@material-ui/core/Fade';
 // import LinkedinBadgeProfile from 'components/dumb/Badge/Profile/Linkedin';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
 import PdfViewer from 'components/dumb/PdfViewer';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -22,6 +25,7 @@ import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
 import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
 // import CardInterestsJob from 'components/dumb/Card/Interests/Job';
 import ImageListInterests from 'components/dumb/ImageList/Interests';
+import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -31,6 +35,9 @@ import file from './cv/Cedric-Dupuis-cv-fr.pdf';
 const TOOLBAR_HEIGHT = 48;
 const ACTIONS_FOOTER_HEIGHT = 52;
 const CONTENT_PADDING = 32;
+
+const FIRST_DELAY = '2.8s';
+const SECOND_DELAY = '4.8s';
 
 // HOOKS
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +65,11 @@ const Home = () => {
   const classes = useStyles();
   const isXs = useIsXs();
   const isDownSm = useIsDownSm();
+
+  const subtitleAction = useMemo(
+    () => (matchMediaHover() ? 'Survole' : 'Clique sur'),
+    [],
+  );
 
   const listCols = useMemo(
     () => {
@@ -96,20 +108,39 @@ const Home = () => {
         alignItems="center"
         mt={1}
       >
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <CardHeadline onMore={onOpen} onMedia={onOpen} />
+        <Box>
+          <HeroTypewriter color="textPrimary" variant="h3">Salut, moi c&apos;est :</HeroTypewriter>
+        </Box>
+        <Fade in style={{ transitionDelay: FIRST_DELAY }}>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <CardHeadline onMore={onOpen} onMedia={onOpen} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CardSkillsTech />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CardSkillsSoft />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <CardSkillsTech />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <CardSkillsSoft />
-          </Grid>
-          <Grid item xs={12}>
-            <ImageListInterests cols={listCols} />
-          </Grid>
-        </Grid>
+        </Fade>
+        <Box pt={3}>
+          <Fade in style={{ transitionDelay: SECOND_DELAY }}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <Typography color="textPrimary" variant="h3">Je suis un passionné</Typography>
+                <Typography color="textSecondary" variant="subtitle1">
+                  {subtitleAction}
+                  {' '}
+                  les images pour en savoir plus
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <ImageListInterests cols={listCols} />
+              </Grid>
+            </Grid>
+          </Fade>
+        </Box>
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
             <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
