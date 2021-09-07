@@ -35,13 +35,18 @@ const useStyles = makeStyles(
 // COMPONENTS
 const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
   const classes = useStyles({ width });
-  const isXs = useIsDownSm();
+  const isDownSm = useIsDownSm();
 
   const { onShrinkToggle } = useDrawerShrinkableContext();
 
   const variant = useMemo(
-    () => ((isXs && !shrink) ? 'temporary' : 'permanent'),
-    [isXs, shrink],
+    () => ((isDownSm) ? 'temporary' : 'permanent'),
+    [isDownSm],
+  );
+
+  const open = useMemo(
+    () => (isDownSm ? !shrink : true),
+    [isDownSm, shrink],
   );
 
   const onClose = useCallback(
@@ -53,7 +58,7 @@ const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
 
   return (
     <Drawer
-      open
+      open={open}
       variant={variant}
       classes={{
         root: clsx({

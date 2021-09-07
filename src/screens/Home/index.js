@@ -1,80 +1,146 @@
-import PropTypes from 'prop-types';
-
+import { useCallback, useMemo, useState } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import useIsXs from 'hooks/useIsXs';
+import useIsDownSm from 'hooks/useIsDownSm';
 
-import AppBarStatic from 'components/dumb/AppBar/Static';
-import AppBarOverDrawer from 'components/dumb/AppBar/OverDrawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import ButtonHome from 'components/smart/Button/Home';
-import ButtonHomeLink from 'components/smart/Button/Home/Link';
-import TabsRoutes from 'components/smart/Tabs/Routes';
-import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
 import Box from '@material-ui/core/Box';
-import BoxWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/Box';
-import DrawerShrinkableContextProvider from 'components/dumb/Drawer/Shrinkable/Context';
-import IconButtonWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/IconButton';
-import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
-import BoxFlexFill from 'components/dumb/Box/FlexFill';
+// import LinkedinBadgeProfile from 'components/dumb/Badge/Profile/Linkedin';
+import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
+import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
+import PdfViewer from 'components/dumb/PdfViewer';
+import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import ButtonDownload from 'components/dumb/Button/Download';
+import CardHeadline from 'components/dumb/Card/Headline';
+import Grid from '@material-ui/core/Grid';
+import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
+import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
+// import CardInterestsJob from 'components/dumb/Card/Interests/Job';
+import ImageListInterests from 'components/dumb/ImageList/Interests';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import CloseIcon from '@material-ui/icons/Close';
+
+import file from './cv/Cedric-Dupuis-cv-fr.pdf';
+
+// CONSTANTS
+const TOOLBAR_HEIGHT = 48;
+const ACTIONS_FOOTER_HEIGHT = 52;
+const CONTENT_PADDING = 32;
 
 // HOOKS
 const useStyles = makeStyles((theme) => ({
-  buttonCentered: {
-    marginLeft: theme.spacing(-0.5),
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(-1.5),
-    },
-    marginRight: theme.spacing(1.5),
+  viewer: {
+    maxWidth: '100%',
+    maxHeight: `calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`,
   },
-  fixedOffset: theme.mixins.toolbar,
+  dialogTitleRoot: {
+    padding: theme.spacing(0, 3),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  iconRightAligned: {
+    position: 'absolute',
+    right: 0,
+  },
+  toolbarCentered: {
+    margin: 'auto',
+  },
 }));
 
 // COMPONENTS
-const Home = ({ children }) => {
+const Home = () => {
   const classes = useStyles();
+  const isXs = useIsXs();
+  const isDownSm = useIsDownSm();
+
+  const listCols = useMemo(
+    () => {
+      if (isXs) {
+        return 1;
+      }
+      if (isDownSm) {
+        return 2;
+      }
+      return 3;
+    },
+    [isXs, isDownSm],
+  );
+
+  const [open, setOpen] = useState(false);
+
+  const onOpen = useCallback(
+    () => {
+      setOpen(true);
+    },
+    [setOpen],
+  );
+
+  const onClose = useCallback(
+    () => {
+      setOpen(false);
+    },
+    [setOpen],
+  );
 
   return (
-    <Box display="flex" flexDirection="column">
-      <DrawerShrinkableContextProvider>
-        <AppBarOverDrawer position="fixed">
-          <Toolbar>
-            <IconButtonWithDrawerShrinkableContext classes={{ root: classes.buttonCentered }}>
-              <MenuIcon />
-            </IconButtonWithDrawerShrinkableContext>
-            <ButtonHomeLink />
-            <BoxFlexFill />
-            <IconButtonDarkModeWithContext />
-          </Toolbar>
-        </AppBarOverDrawer>
-        <Box className={classes.fixedOffset} />
-        <DrawerShrinkableWithContext>
-          <AppBarStatic elevation={0}>
-            <Toolbar>
-              <ButtonHome disabled />
-              <BoxFlexFill />
-              <IconButtonWithDrawerShrinkableContext edge="end">
-                <ArrowBackIosIcon />
-              </IconButtonWithDrawerShrinkableContext>
-            </Toolbar>
-          </AppBarStatic>
-          <TabsRoutes orientation="vertical" />
-        </DrawerShrinkableWithContext>
-        <BoxWithDrawerShrinkableContext>
-          {children}
-        </BoxWithDrawerShrinkableContext>
-      </DrawerShrinkableContextProvider>
-    </Box>
+    <Container maxWidth="md">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        mt={1}
+      >
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <CardHeadline onMore={onOpen} onMedia={onOpen} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsTech />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsSoft />
+          </Grid>
+          <Grid item xs={12}>
+            <ImageListInterests cols={listCols} />
+          </Grid>
+        </Grid>
+        <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
+          <PdfViewerContextProvider>
+            <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
+              <Box
+                minHeight={48}
+                width="100%"
+                display="flex"
+                alignItems="center"
+                position="relative"
+              >
+                <Typography variant="h6">CV</Typography>
+                <PdfViewerToolbar className={classes.toolbarCentered} />
+                <IconButton classes={{ root: classes.iconRightAligned }} onClick={onClose}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+            </DialogTitle>
+            <DialogContent dividers>
+              <PdfViewer
+                file={file}
+                className={classes.viewer}
+              />
+            </DialogContent>
+            <DialogActions>
+              <ButtonDownload href={file} download="Cedric-Dupuis-cv-fr.pdf">Télécharger</ButtonDownload>
+            </DialogActions>
+          </PdfViewerContextProvider>
+        </Dialog>
+        {/* <LinkedinBadgeProfile /> */}
+      </Box>
+    </Container>
   );
 };
-
-Home.propTypes = {
-  children: PropTypes.node,
-};
-
-Home.defaultProps = {
-  children: null,
-};
-
 export default Home;
