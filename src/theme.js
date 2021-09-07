@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core';
+import { createTheme, responsiveFontSizes } from '@material-ui/core';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import orange from '@material-ui/core/colors/orange';
 
@@ -6,7 +6,7 @@ import orange from '@material-ui/core/colors/orange';
 const DEFAULT_THEME = 'dark';
 
 // HELPERS
-export const getTheme = (type) => createTheme({
+export const getTheme = (type) => responsiveFontSizes(createTheme({
   palette: {
     primary: deepPurple,
     secondary: orange,
@@ -36,6 +36,6 @@ export const getTheme = (type) => createTheme({
       },
     },
   },
-});
+}));
 
 export default getTheme(DEFAULT_THEME);
