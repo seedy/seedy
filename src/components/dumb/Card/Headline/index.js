@@ -14,7 +14,11 @@ const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => (
       <CardMedia
         component="img"
         alt="Cédric DUPUIS CV"
-        image="CV_Headline.png"
+        srcSet="CV_Headline-1583w.png 1583w,
+        CV_Headline-408w.png 408w"
+        sizes="(max-width:600px) 408px,
+        1583px"
+        src="CV_Headline-1583w.png"
         title="Cédric DUPUIS CV"
       />
     </CardActionArea>
