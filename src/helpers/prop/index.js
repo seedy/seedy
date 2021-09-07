@@ -1,5 +1,2 @@
 // generated with 'scripts/generate-helpers.js'
-import prop from 'ramda/src/prop';
-
-export default prop;
-
+export * as default from 'ramda/src/prop';

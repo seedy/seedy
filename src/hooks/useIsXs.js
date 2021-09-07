@@ -3,6 +3,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default () => {
   const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.down('sm'));
+  const isXs = useMediaQuery(theme.breakpoints.only('xs'));
   return isXs;
 };

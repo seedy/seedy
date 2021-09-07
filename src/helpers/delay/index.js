@@ -1,5 +1,3 @@
-// generated with 'scripts/generate-helpers.js' 
-import delay from 'lodash/delay';
+// generated with 'scripts/generate-helpers.js'
+export * as default from 'lodash/delay';
 
-export default delay;
-  

@@ -1,5 +1,2 @@
-// generated with 'scripts/generate-helpers.js' 
-import difference from 'ramda/src/difference';
-
-export default difference;
-  
+// generated with 'scripts/generate-helpers.js'
+export * as default from 'ramda/src/difference';

@@ -4,8 +4,11 @@ import clsx from 'clsx';
 import { DRAWER_WIDTH } from 'constants/drawers/sizing';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import useIsDownSm from 'hooks/useIsDownSm';
 
 import Drawer from '@material-ui/core/Drawer';
+import { useCallback, useMemo } from 'react';
+import { useDrawerShrinkableContext } from 'components/dumb/Drawer/Shrinkable/Context';
 
 
 // HOOKS
@@ -25,9 +28,6 @@ const useStyles = makeStyles(
       }),
       overflowX: 'hidden',
       width: theme.spacing(9) + 1,
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1,
-      },
     },
   }),
 );
@@ -35,11 +35,26 @@ const useStyles = makeStyles(
 // COMPONENTS
 const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
   const classes = useStyles({ width });
+  const isXs = useIsDownSm();
+
+  const { onShrinkToggle } = useDrawerShrinkableContext();
+
+  const variant = useMemo(
+    () => ((isXs && !shrink) ? 'temporary' : 'permanent'),
+    [isXs, shrink],
+  );
+
+  const onClose = useCallback(
+    () => {
+      onShrinkToggle();
+    },
+    [onShrinkToggle],
+  );
 
   return (
     <Drawer
       open
-      variant="permanent"
+      variant={variant}
       classes={{
         root: clsx({
           [classes.drawerOpen]: !shrink,
@@ -50,6 +65,7 @@ const DrawerShrinkable = ({ shrink, width, children, ...props }) => {
           [classes.drawerShrink]: shrink,
         }),
       }}
+      onClose={onClose}
       {...props}
     >
       {children}
