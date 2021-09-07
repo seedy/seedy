@@ -8,7 +8,7 @@ import isNil from 'helpers/isNil';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import PersonPinIcon from '@material-ui/icons/PersonPin';
+import InfoIcon from '@material-ui/icons/Info';
 
 // CONSTANTS
 const ABOUT = 'About';
@@ -35,7 +35,7 @@ const IconButtonAbout = forwardRef((props, ref) => {
   return (
     <Tooltip title={ABOUT}>
       <IconButton ref={ref} component={Link} to={routes.about} color={activeColor} {...props}>
-        <PersonPinIcon />
+        <InfoIcon />
       </IconButton>
     </Tooltip>
   );
