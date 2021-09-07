@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
   },
+  content: {
+    padding: theme.spacing(1),
+  },
   contentReverted: {
     display: 'flex',
     height: '100%',
@@ -99,7 +102,7 @@ const ImageListItemFlippable = forwardRef(({
           }),
         }}
       >
-        <Box className={clsx({
+        <Box className={clsx(internalClasses.content, {
           [internalClasses.contentReverted]: flip,
           [classes.back]: flip,
           [classes.front]: !flip,
@@ -130,11 +133,11 @@ ImageListItemFlippable.propTypes = {
 ImageListItemFlippable.defaultProps = {
   onClick: null,
   classes: {
-    root: null,
-    item: null,
-    image: null,
-    front: null,
-    back: null,
+    root: '',
+    item: '',
+    image: '',
+    front: '',
+    back: '',
   },
   front: null,
   back: null,
