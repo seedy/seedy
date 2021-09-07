@@ -12,11 +12,15 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: width,
     // DOWN SM : drawer floats over content rather than pushing it
     [theme.breakpoints.down('sm')]: {
-      marginLeft: theme.spacing(9) + 1,
+      marginLeft: theme.spacing(0),
     },
   }),
   contentShrink: {
     marginLeft: theme.spacing(9) + 1,
+    // DOWN SM : drawer floats over content rather than pushing it
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(0),
+    },
   },
 }));
 

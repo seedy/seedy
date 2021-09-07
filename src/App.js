@@ -1,7 +1,7 @@
 import routes from 'routes';
 
+import Layout from 'screens/Layout';
 import Home from 'screens/Home';
-import Pro from 'screens/Pro';
 import { Route, Switch } from 'react-router-dom';
 import ThemeProvider from 'components/dumb/IconButton/DarkMode/Context/ThemeProvider';
 import IconButtonDarkModeContext from 'components/dumb/IconButton/DarkMode/Context';
@@ -13,15 +13,14 @@ function App() {
       <CssBaseline />
       <IconButtonDarkModeContext>
         <ThemeProvider>
-          <Route path={routes._}>
-            <Home>
-              <Switch>
-                <Route path={routes.pro} exact>
-                  <Pro />
-                </Route>
-              </Switch>
-            </Home>
-          </Route>
+          <Layout>
+            <Switch>
+              <Route path={routes.about} exact />
+              <Route path={routes._} exact>
+                <Home />
+              </Route>
+            </Switch>
+          </Layout>
         </ThemeProvider>
       </IconButtonDarkModeContext>
     </>

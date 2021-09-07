@@ -11,16 +11,12 @@ import { useCallback, useMemo } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import FaceIcon from '@material-ui/icons/Face';
-import WorkIcon from '@material-ui/icons/Work';
-import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
 
 // CONSTANTS
-const PRO = 'pro';
 const ABOUT = 'about';
-const SOCIAL = 'social';
 
-const TAB_ROUTES = pick([PRO, ABOUT, SOCIAL], routes);
+const TAB_ROUTES = pick([ABOUT], routes);
 
 // COMPONENTS
 const TabsRoutes = (props) => {
@@ -55,9 +51,7 @@ const TabsRoutes = (props) => {
       aria-label="tabs"
       {...props}
     >
-      <Tab icon={<WorkIcon />} label={PRO} value={PRO} />
-      <Tab icon={<FaceIcon />} label={SOCIAL} value={SOCIAL} />
-      <Tab icon={<FingerprintIcon />} label={ABOUT} value={ABOUT} />
+      <Tab icon={<PersonPinIcon />} label={ABOUT} value={ABOUT} />
     </Tabs>
   );
 };
