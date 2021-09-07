@@ -1,5 +1,2 @@
-// generated with 'scripts/generate-helpers.js' 
-import isArray from 'lodash/isArray';
-
-export default isArray;
-  
+// generated with 'scripts/generate-helpers.js'
+export * as default from 'lodash/isArray';

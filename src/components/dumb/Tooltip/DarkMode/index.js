@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { PropTypes } from 'prop-types';
 
@@ -9,16 +9,16 @@ const DARK_TITLE = 'Toggle light mode';
 const LIGHT_TITLE = 'Toggle dark mode';
 
 // COMPONENTS
-const TooltipDarkMode = forwardRef(({ dark, ...props }, ref) => {
+const TooltipDarkMode = ({ dark, ...props }) => {
   const title = useMemo(
     () => (dark ? DARK_TITLE : LIGHT_TITLE),
     [dark],
   );
 
   return (
-    <Tooltip ref={ref} title={title} {...props} />
+    <Tooltip title={title} {...props} />
   );
-});
+};
 
 TooltipDarkMode.propTypes = {
   dark: PropTypes.bool,
