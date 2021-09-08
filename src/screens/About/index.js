@@ -44,19 +44,19 @@ const useStyles = makeStyles(() => ({
 }));
 
 // COMPONENTS
-const About = () => (
+const About = () => {
   const classes = useStyles();
 
   return (
-  <Container maxWidth="md">
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      mt={1}
-    >
-      <CardMedia />
-    </Box>
+    <Container maxWidth="md">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        mt={1}
+      >
+        <CardMedia />
+      </Box>
       <MapContainer
         className={classes.mapContainer}
         center={[45.9, 4.59]}
@@ -77,8 +77,8 @@ const About = () => (
           </Marker>
         ))}
       </MapContainer>
-  </Container>
-);
+    </Container>
+  );
 };
 
 export default About;
