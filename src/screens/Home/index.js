@@ -8,7 +8,6 @@ import useIsDownSm from 'hooks/useIsDownSm';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
-// import LinkedinBadgeProfile from 'components/dumb/Badge/Profile/Linkedin';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
 import PdfViewer from 'components/dumb/PdfViewer';
@@ -23,7 +22,6 @@ import CardHeadline from 'components/dumb/Card/Headline';
 import Grid from '@material-ui/core/Grid';
 import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
 import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
-// import CardInterestsJob from 'components/dumb/Card/Interests/Job';
 import ImageListInterests from 'components/dumb/ImageList/Interests';
 import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
