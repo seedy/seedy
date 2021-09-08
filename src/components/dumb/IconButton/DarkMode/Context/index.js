@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import usePrefersDarkMode from 'hooks/usePrefersDarkMode';
 
 // CONSTANTS
+// Dark mode by default
+const DEFAULT_DARK_MODE = true;
+
 export const DarkModeContext = createContext({
-  dark: false,
+  dark: DEFAULT_DARK_MODE,
   onSwitchMode: null,
 });
 
@@ -17,7 +20,7 @@ const DarkModeContextProvider = ({ children, ...props }) => {
   const prefersDarkMode = usePrefersDarkMode();
 
   const prefersDarkModeOrDefault = useMemo(
-    () => prefersDarkMode || false,
+    () => prefersDarkMode || DEFAULT_DARK_MODE,
     [prefersDarkMode],
   );
 
