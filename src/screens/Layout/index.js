@@ -2,22 +2,23 @@ import PropTypes from 'prop-types';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import AppBarStatic from 'components/dumb/AppBar/Static';
+// import AppBarStatic from 'components/dumb/AppBar/Static';
 import AppBarOverDrawer from 'components/dumb/AppBar/OverDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
-import ButtonHome from 'components/smart/Button/Home';
+// import ButtonHome from 'components/smart/Button/Home';
 import ButtonHomeLink from 'components/smart/Button/Home/Link';
-import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
+// import DrawerShrinkableWithContext from 'components/smart/Drawer/Shrinkable/WithContext';
 import Box from '@material-ui/core/Box';
-import BoxWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/Box';
+// import BoxWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/Box';
 import DrawerShrinkableContextProvider from 'components/dumb/Drawer/Shrinkable/Context';
-import IconButtonWithDrawerShrinkableContext from 'components/dumb/Drawer/Shrinkable/Context/IconButton';
+// import IconButtonWithDrawerShrinkableContext
+//  from 'components/dumb/Drawer/Shrinkable/Context/IconButton';
 import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
 import IconButtonAbout from 'components/smart/IconButton/About';
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+// import MenuIcon from '@material-ui/icons/Menu';
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 // HOOKS
 const useStyles = makeStyles((theme) => ({
@@ -40,9 +41,9 @@ const Layout = ({ children }) => {
       <DrawerShrinkableContextProvider>
         <AppBarOverDrawer position="fixed">
           <Toolbar>
-            <IconButtonWithDrawerShrinkableContext classes={{ root: classes.buttonCentered }}>
+            {/* <IconButtonWithDrawerShrinkableContext classes={{ root: classes.buttonCentered }}>
               <MenuIcon />
-            </IconButtonWithDrawerShrinkableContext>
+            </IconButtonWithDrawerShrinkableContext> */}
             <ButtonHomeLink />
             <BoxFlexFill />
             <IconButtonAbout />
@@ -50,20 +51,20 @@ const Layout = ({ children }) => {
           </Toolbar>
         </AppBarOverDrawer>
         <Box className={classes.fixedOffset} />
-        <DrawerShrinkableWithContext>
-          <AppBarStatic elevation={0}>
-            <Toolbar>
-              <ButtonHome disabled />
-              <BoxFlexFill />
-              <IconButtonWithDrawerShrinkableContext edge="end">
-                <ArrowBackIosIcon />
-              </IconButtonWithDrawerShrinkableContext>
-            </Toolbar>
-          </AppBarStatic>
-        </DrawerShrinkableWithContext>
-        <BoxWithDrawerShrinkableContext>
-          {children}
-        </BoxWithDrawerShrinkableContext>
+        {/* <DrawerShrinkableWithContext>
+        <AppBarStatic elevation={0}>
+          <Toolbar>
+            <ButtonHome disabled />
+            <BoxFlexFill />
+            <IconButtonWithDrawerShrinkableContext edge="end">
+              <ArrowBackIosIcon />
+            </IconButtonWithDrawerShrinkableContext>
+          </Toolbar>
+        </AppBarStatic>
+        </DrawerShrinkableWithContext> */}
+        {/* <BoxWithDrawerShrinkableContext> */}
+        {children}
+        {/* </BoxWithDrawerShrinkableContext> */}
       </DrawerShrinkableContextProvider>
     </Box>
   );

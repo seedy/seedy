@@ -11,15 +11,15 @@ import CopyrightIcon from '@material-ui/icons/Copyright';
 
 // CONSTANTS
 const ITEMS = [
-  { title: 'Prendre part au design UI/UX', img: 'tiles/1.jpg', info: 'Mont Thabor', date: 2020, copyright: 'Cédric DUPUIS' },
+  { title: 'Prendre part au design UI/UX', img: 'tiles/1.jpg', info: 'Mont Thabor, Massif des Cerces', date: 2020, copyright: 'Cédric DUPUIS' },
   { title: 'Surveiller les dernières tendances graphiques', img: 'tiles/2.jpg', info: 'Aventuriers du rail', date: 2021, copyright: 'Cédric DUPUIS' },
-  { title: 'Discuter accessibilité et design patterns', img: 'tiles/3.jpg', info: 'Viaduc du Châtelard', date: 2021, copyright: 'Cédric DUPUIS' },
-  { title: 'Implémenter du code clair et propre', img: 'tiles/4.jpg', info: 'Sauce tomate', date: 2020, copyright: 'Cédric DUPUIS' },
+  { title: 'Discuter accessibilité et design patterns', img: 'tiles/3.jpg', info: 'Viaduc du Châtelard, Monsols', date: 2021, copyright: 'Cédric DUPUIS' },
+  { title: 'Implémenter du code clair et propre', img: 'tiles/4.jpg', info: 'Sauce tomate maison', date: 2020, copyright: 'Cédric DUPUIS' },
   { title: 'Construire une librairie de composants', img: 'tiles/5.jpg', info: 'Tomates en serre', date: 2021, copyright: 'Cédric DUPUIS' },
   { title: 'Relever des défis techniques', img: 'tiles/6.jpg', info: 'Fôret communale des Echarmeaux', date: 2021, copyright: 'Cédric DUPUIS' },
-  { title: 'Faire du travail un lieu et un moment d\'enthousiasme', img: 'tiles/7.jpg', info: 'Etang de la Bonde', date: 2021, copyright: 'Cédric DUPUIS' },
+  { title: 'Faire du travail un lieu et un moment d\'enthousiasme', img: 'tiles/7.jpg', info: 'Etang de la Bonde, Lubéron', date: 2021, copyright: 'Cédric DUPUIS' },
   { title: 'Maîtriser mon temps et ma productivité', img: 'tiles/8.jpg', info: 'Egrenage de chou kale', date: 2021, copyright: 'Cédric DUPUIS' },
-  { title: 'Travailler pour mes idéaux', img: 'tiles/9.jpg', info: 'Cap Fréhel', date: 2021, copyright: 'Cédric DUPUIS' },
+  { title: 'Travailler pour mes idéaux', img: 'tiles/9.jpg', info: 'Cap Fréhel, Bretagne', date: 2021, copyright: 'Cédric DUPUIS' },
 ];
 
 // HOOKS
