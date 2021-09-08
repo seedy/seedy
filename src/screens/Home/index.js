@@ -167,7 +167,6 @@ const Home = () => {
             </DialogActions>
           </PdfViewerContextProvider>
         </Dialog>
-        {/* <LinkedinBadgeProfile /> */}
       </Box>
     </Container>
   );
