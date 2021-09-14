@@ -13,6 +13,7 @@ const PLACES = [
   { coordinates: [56.379, -5.554], title: 'McCaig\'s tower, Oban', subtitle: 'Un superbe point de vue sur la mer depuis une ancienne tour', img: 'places/mccaig.jpg' },
   { coordinates: [56.379, -5.554], title: 'Gylen Castle, Kerrera', subtitle: 'Mon lieu préféré sur Terre', img: 'places/gylen.jpg' },
   { coordinates: [55.861, -4.250], title: 'George Square, Glasgow', subtitle: 'Haa, Glasgow...' },
+  { coordinates: [57.643, -6.266], title: 'Quiraing, Skye', subtitle: 'Des collines verdoyantes à perte de vue', img: 'places/quiraing.jpg' },
   { coordinates: [55.954, -3.181], title: 'Calton Hill, Edinburgh', subtitle: 'Une magnifique vue sur Edinburgh', img: 'places/calton.jpg' },
   { coordinates: [45.120, 6.556], title: 'Pic du Mont Thabor', subtitle: '1400D+ en 2 jours !', img: 'places/thabor.jpg' },
   { coordinates: [52.672, -8.571], title: 'Stables Club, Limerick', subtitle: 'Les TGIF Erasmus étaient incroyables' },
