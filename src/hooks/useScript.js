@@ -37,7 +37,7 @@ const reducer = (state, { type }) => {
 };
 
 // HOOKS
-export default (src) => {
+export default (src, options) => {
   const idle = useMemo(
     () => !isString(src),
     [src],
@@ -89,7 +89,7 @@ export default (src) => {
       if (idle) {
         return noop;
       }
-      const script = createScript(src);
+      const script = createScript(src, options);
       scriptRef.current = script;
       onInit(script);
 
@@ -100,7 +100,7 @@ export default (src) => {
         script.removeEventListener('error', onUpdate);
       };
     },
-    [idle, onInit, onUpdate, scriptRef, src],
+    [idle, onInit, onUpdate, scriptRef, src, options],
   );
 
   return state;
