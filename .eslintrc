@@ -71,8 +71,8 @@
     ],
     "import/prefer-default-export": 0,
     "object-curly-newline": "off",
-    // Strict, airbnb is using warn
     "no-console": "warn",
+    "no-unused-vars": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-uses-react": "error",
