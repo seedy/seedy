@@ -4,9 +4,10 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
 import Box from '@material-ui/core/Box';
 
-import BuildIcon from '@material-ui/icons/Build';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
 
 // CONSTANTS
 const PLACES = [
@@ -71,7 +72,13 @@ const MapFestivals = (props) => {
                 {title}
                 {volunteer && (
                   <Box display="inline" ml={1}>
-                    <BuildIcon color="primary" />
+                    <Chip
+                      color="primary"
+                      label="Bénévole"
+                      icon={(
+                        <LoyaltyIcon />
+                    )}
+                    />
                   </Box>
                 )}
               </Typography>
