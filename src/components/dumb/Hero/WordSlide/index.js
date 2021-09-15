@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import Typography from '@material-ui/core/Typography';
+import { useMemo } from 'react';
 
 // CONSTANTS
 const HEIGHT = 60;
@@ -58,8 +60,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'hidden',
     position: 'relative',
-    padding: theme.spacing(0, 3),
+    padding: theme.spacing(0, 2),
     height: HEIGHT,
+    lineHeight: `${HEIGHT}px`,
     '&:before': {
       content: '"["',
       left: 0,
@@ -100,12 +103,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // COMPONENTS
-const HeroWordSlide = ({ children, items, ...props }) => {
+const HeroWordSlide = ({ children, items, className, ...props }) => {
   const classes = useStyles();
-  const dynamicKeyFramesClasses = useDynamicKeyFrames({ items });
+
+  const styleProps = useMemo(
+    () => ({ items }),
+    [items],
+  );
+
+  const dynamicKeyFramesClasses = useDynamicKeyFrames(styleProps);
 
   return (
-    <div className={classes.container}>
+    <div className={clsx(classes.container, className)}>
       <Typography variant="h3" className={classes.text} {...props}>{children}</Typography>
       <div className={dynamicKeyFramesClasses.list}>
         {items.map((item) => (
@@ -119,11 +128,13 @@ const HeroWordSlide = ({ children, items, ...props }) => {
 };
 
 HeroWordSlide.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.string),
 };
 
 HeroWordSlide.defaultProps = {
+  className: '',
   children: null,
   items: [],
 };
