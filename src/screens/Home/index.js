@@ -83,7 +83,7 @@ const Home = () => {
         alignItems="center"
         mt={1}
       >
-        <Box>
+        <Box mb={2}>
           <HeroTypewriter color="textPrimary" variant="h3">Salut, moi c&apos;est :</HeroTypewriter>
         </Box>
         <Fade in style={{ transitionDelay: FIRST_DELAY }}>
@@ -101,9 +101,9 @@ const Home = () => {
         </Fade>
         <Box pt={3}>
           <Fade in style={{ transitionDelay: SECOND_DELAY }}>
-            <Grid container spacing={1}>
+            <Grid container>
               <Grid item xs={12}>
-                <Typography color="textPrimary" variant="h3">Je suis un passionné</Typography>
+                <Typography paragraph color="textPrimary" variant="h3">Je suis un passionné</Typography>
                 <Typography color="textSecondary" variant="subtitle1">
                   {subtitleAction}
                   {' '}
