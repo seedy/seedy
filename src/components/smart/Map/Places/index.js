@@ -55,8 +55,8 @@ const PLACES = [
 // COMPONENTS
 const MapPlaces = (props) => (
   <MapContainer
-    center={[45.9, 4.59]}
-    zoom={4}
+    center={[37.9, 18.59]}
+    zoom={2}
     scrollWheelZoom
     {...props}
   >

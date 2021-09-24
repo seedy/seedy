@@ -4,7 +4,7 @@ import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 
 // COMPONENTS
 const MapContainer = styled(LeafletMapContainer)({
-  height: 500,
+  height: 'calc(100vh - 64px - 48px - 48px - 28px)',
   width: '100%',
 });
 
