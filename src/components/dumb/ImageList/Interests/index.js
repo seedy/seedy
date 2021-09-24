@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
-
-import ImageList from '@material-ui/core/ImageList';
+import ImageList from '@mui/material/ImageList';
 import ImageListItemFlippable from 'components/dumb/ImageListItem/Flippable';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-import CopyrightIcon from '@material-ui/icons/Copyright';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 // CONSTANTS
 const ITEMS = [
@@ -22,47 +20,42 @@ const ITEMS = [
   { title: 'Travailler pour mes idéaux', img: 'tiles/9.jpg', info: 'Cap Fréhel, Bretagne', date: 2021, copyright: 'Cédric DUPUIS' },
 ];
 
-// HOOKS
-const useStyles = makeStyles(() => ({
-  imageFlippableBack: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-}));
+const BACK_PROPS = {
+  flexDirection: 'column',
+  justifyContent: 'space-evenly',
+  alignItems: 'center',
+};
+
 
 
 // COMPONENTS
-const ImageListInterests = ({ rowHeight, ...props }) => {
-  const classes = useStyles();
-  return (
-    <ImageList rowHeight={rowHeight} {...props}>
-      {ITEMS.map(({ title, img, info, date, copyright }) => (
-        <ImageListItemFlippable
-          key={img}
-          src={img}
-          alt={title}
-          classes={{ back: classes.imageFlippableBack }}
-          front={(
-            <Typography variant="caption">{title}</Typography>
+const ImageListInterests = ({ rowHeight, ...props }) => (
+  <ImageList rowHeight={rowHeight} {...props}>
+    {ITEMS.map(({ title, img, info, date, copyright }) => (
+      <ImageListItemFlippable
+        key={img}
+        src={img}
+        alt={title}
+        front={(
+          <Typography variant="caption">{title}</Typography>
           )}
-          back={(
-            <>
-              <Typography variant="caption">{info}</Typography>
-              <Typography variant="caption">{date}</Typography>
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <CopyrightIcon />
-                <Typography variant="caption">
-                  {copyright}
-                </Typography>
-              </Box>
-            </>
+        back={(
+          <>
+            <Typography variant="caption">{info}</Typography>
+            <Typography variant="caption">{date}</Typography>
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <CopyrightIcon />
+              <Typography variant="caption">
+                {copyright}
+              </Typography>
+            </Box>
+          </>
         )}
-        />
-      ))}
-    </ImageList>
-  );
-};
+        backProps={BACK_PROPS}
+      />
+    ))}
+  </ImageList>
+);
 
 ImageListInterests.propTypes = {
   rowHeight: PropTypes.number,

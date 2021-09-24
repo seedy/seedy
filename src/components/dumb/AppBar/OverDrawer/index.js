@@ -1,21 +1,11 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import styled from '@mui/material/styles/styled';
 
-import AppBar from '@material-ui/core/AppBar';
-
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  root: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-}));
+import AppBar from '@mui/material/AppBar';
 
 // COMPONENTS
-const AppBarOverDrawer = (props) => {
-  const classes = useStyles();
+const AppBarOverDrawer = styled(AppBar)(({ theme }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+}));
 
-  return (
-    <AppBar classes={{ root: classes.root }} {...props} />
-  );
-};
 
 export default AppBarOverDrawer;

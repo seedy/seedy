@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import isFunction from 'helpers/isFunction';
 
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 import TooltipDarkMode from 'components/dumb/Tooltip/DarkMode';
 
-import DarkIcon from '@material-ui/icons/Brightness3';
-import LightIcon from '@material-ui/icons/Brightness5';
+import DarkIcon from '@mui/icons-material/Brightness3';
+import LightIcon from '@mui/icons-material/Brightness5';
 
 
 // COMPONENTS
@@ -26,7 +26,7 @@ const IconButtonDarkMode = forwardRef(({ dark, onSwitchMode, onClick, ...props }
 
   return (
     <TooltipDarkMode dark={dark}>
-      <IconButton ref={ref} onClick={handleClick} {...props}>
+      <IconButton ref={ref} onClick={handleClick} {...props} size="large">
         {dark ? <LightIcon /> : <DarkIcon />}
       </IconButton>
     </TooltipDarkMode>

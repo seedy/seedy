@@ -8,10 +8,10 @@ import head from 'helpers/head';
 
 import { useCallback, useMemo } from 'react';
 
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
-import PersonPinIcon from '@material-ui/icons/PersonPin';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 // CONSTANTS
 const ABOUT = 'about';

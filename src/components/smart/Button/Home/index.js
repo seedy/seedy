@@ -5,7 +5,7 @@ import useIsDownSm from 'hooks/useIsDownSm';
 
 import AvatarMe from 'components/dumb/Avatar/Me';
 import Logo from 'components/dumb/Logo';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 // COMPONENTS
 const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {

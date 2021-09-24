@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@mui/material/AppBar';
 
 const AppBarStatic = (props) => <AppBar {...props} />;
 
