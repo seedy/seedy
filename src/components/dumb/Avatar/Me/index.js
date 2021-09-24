@@ -1,4 +1,4 @@
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
 
 const AvatarMe = (props) => (
   <Avatar src="ranchal.jpg" {...props} />

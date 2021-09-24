@@ -1,31 +1,30 @@
 import matchMediaHover from 'helpers/matchMediaHover';
 
 import { useCallback, useMemo, useState } from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import useIsXs from 'hooks/useIsXs';
 import useIsDownSm from 'hooks/useIsDownSm';
 
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Fade from '@mui/material/Fade';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
 import PdfViewer from 'components/dumb/PdfViewer';
-import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import ButtonDownload from 'components/dumb/Button/Download';
 import CardHeadline from 'components/dumb/Card/Headline';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
 import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
 import ImageListInterests from 'components/dumb/ImageList/Interests';
 import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 
 import file from './cv/Cedric-Dupuis-cv-fr.pdf';
 
@@ -37,30 +36,8 @@ const CONTENT_PADDING = 32;
 const FIRST_DELAY = '2.8s';
 const SECOND_DELAY = '4.8s';
 
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  viewer: {
-    maxWidth: '100%',
-    maxHeight: `calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`,
-  },
-  dialogTitleRoot: {
-    padding: theme.spacing(0, 3),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  iconRightAligned: {
-    position: 'absolute',
-    right: 0,
-  },
-  toolbarCentered: {
-    margin: 'auto',
-  },
-}));
-
 // COMPONENTS
 const Home = () => {
-  const classes = useStyles();
   const isXs = useIsXs();
   const isDownSm = useIsDownSm();
 
@@ -141,7 +118,14 @@ const Home = () => {
         </Box>
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
-            <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
+            <DialogTitle
+              sx={{
+                px: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <Box
                 minHeight={48}
                 width="100%"
@@ -150,8 +134,19 @@ const Home = () => {
                 position="relative"
               >
                 <Typography variant="h6">CV</Typography>
-                <PdfViewerToolbar className={classes.toolbarCentered} />
-                <IconButton classes={{ root: classes.iconRightAligned }} onClick={onClose}>
+                <PdfViewerToolbar
+                  sx={{
+                    margin: 'auto',
+                  }}
+                />
+                <IconButton
+                  sx={{
+                    position: 'absolute',
+                    right: 0,
+                  }}
+                  onClick={onClose}
+                  size="large"
+                >
                   <CloseIcon />
                 </IconButton>
               </Box>
@@ -159,7 +154,8 @@ const Home = () => {
             <DialogContent dividers>
               <PdfViewer
                 file={file}
-                className={classes.viewer}
+                maxWidth="100%"
+                maxHeight={`calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`}
               />
             </DialogContent>
             <DialogActions>

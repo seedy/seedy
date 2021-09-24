@@ -1,13 +1,11 @@
-import clsx from 'clsx';
+import { TileLayer, Marker, Popup } from 'react-leaflet';
+import Typography from '@mui/material/Typography';
+import TypographyPopupSecondary from 'components/dumb/Typography/PopupSecondary';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
+import MapContainer from 'components/dumb/MapContainer';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
-
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Box from '@material-ui/core/Box';
-
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 // CONSTANTS
 const PLACES = [
@@ -31,71 +29,57 @@ const PLACES = [
   { coordinates: [48.902, 2.367], title: 'Forward - bass culture', subtitle: 'Festival Sound System à Paris, anciennement Telerama Dub', img: 'festivals/forward.jpg' },
   { coordinates: [47.076, 2.397], title: 'Printemps de Bourges', subtitle: 'Musiques électroniques' },
   { coordinates: [47.230, 6.038], title: 'Détonation', subtitle: 'Dub et électro' },
-
 ];
 
-// HOOKS
-const useStyles = makeStyles(() => ({
-  imgSmall: {
-    width: 200,
-    height: 150,
-  },
-  imgReverse: {
-    width: 150,
-    height: 200,
-  },
-  textSecondaryPopup: {
-    color: 'rgba(0, 0, 0, 0.54)',
-  },
-}));
+const IMG_WIDTH = 200;
+const IMG_REVERSE_WIDTH = 150;
+const IMG_HEIGHT = 150;
+const IMG_REVERSE_HEIGHT = 200;
 
 // COMPONENTS
-const MapFestivals = (props) => {
-  const classes = useStyles();
-
-  return (
-    <MapContainer
-      center={[45.9, 4.59]}
-      zoom={4}
-      scrollWheelZoom
-      {...props}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {PLACES.map(({ coordinates, title, subtitle, img, reverse, volunteer }) => (
-        <Marker key={title} position={coordinates}>
-          <Popup>
-            <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h6">
-                {title}
-                {volunteer && (
-                  <Box display="inline" ml={1}>
-                    <Chip
-                      color="primary"
-                      label="Bénévole"
-                      icon={(
-                        <LoyaltyIcon />
+const MapFestivals = (props) => (
+  <MapContainer
+    center={[45.9, 4.59]}
+    zoom={4}
+    scrollWheelZoom
+    {...props}
+  >
+    <TileLayer
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    {PLACES.map(({ coordinates, title, subtitle, img, reverse, volunteer }) => (
+      <Marker key={title} position={coordinates}>
+        <Popup>
+          <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
+            <Typography variant="h6">
+              {title}
+              {volunteer && (
+              <Box display="inline" ml={1}>
+                <Chip
+                  color="primary"
+                  label="Bénévole"
+                  icon={(
+                    <LoyaltyIcon />
                     )}
-                    />
-                  </Box>
-                )}
-              </Typography>
-              <Typography variannt="subtitle1" className={classes.textSecondaryPopup}>{subtitle}</Typography>
-              {img && (
-                <img
-                  className={clsx(classes.imgSmall, { [classes.imgReverse]: reverse })}
-                  src={img}
-                  alt={title}
                 />
+              </Box>
               )}
-            </Box>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
-  );
-};
+            </Typography>
+            <TypographyPopupSecondary variant="subtitle1">{subtitle}</TypographyPopupSecondary>
+            {img && (
+            <img
+              width={reverse ? IMG_REVERSE_WIDTH : IMG_WIDTH}
+              height={reverse ? IMG_REVERSE_HEIGHT : IMG_HEIGHT}
+              src={img}
+              alt={title}
+            />
+            )}
+          </Box>
+        </Popup>
+      </Marker>
+    ))}
+  </MapContainer>
+);
 
 export default MapFestivals;

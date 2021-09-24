@@ -10,13 +10,15 @@ import * as PDFJSViewer from 'pdfjs-dist/web/pdf_viewer';
 
 import { usePdfViewerContext } from 'components/dumb/PdfViewer/Context';
 
+import Box from '@mui/material/Box';
+
 import 'pdfjs-dist/web/pdf_viewer.css';
 
 // CONSTANTS
 const CSS_UNITS = 96 / 72;
 
 // COMPONENTS
-const PdfViewer = forwardRef(({ file, className, ...props }, ref) => {
+const PdfViewer = forwardRef(({ file, ...props }, ref) => {
   const { scale, onInit } = usePdfViewerContext();
 
   const pdfViewerRef = useRef();
@@ -95,20 +97,18 @@ const PdfViewer = forwardRef(({ file, className, ...props }, ref) => {
   );
 
   return (
-    <div ref={rootRef} className={className}>
-      <div ref={ref} className="pdfViewer" {...props} />
-    </div>
+    <Box {...props} ref={rootRef}>
+      <div ref={ref} className="pdfViewer" />
+    </Box>
   );
 });
 
 PdfViewer.propTypes = {
   file: PropTypes.string,
-  className: PropTypes.string,
 };
 
 PdfViewer.defaultProps = {
   file: null,
-  className: '',
 };
 
 export default PdfViewer;

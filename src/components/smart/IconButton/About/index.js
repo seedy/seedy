@@ -5,10 +5,10 @@ import routes from 'routes';
 
 import isNil from 'helpers/isNil';
 
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
-import InfoIcon from '@material-ui/icons/Info';
+import InfoIcon from '@mui/icons-material/Info';
 
 // CONSTANTS
 const ABOUT = 'About';
@@ -34,7 +34,14 @@ const IconButtonAbout = forwardRef((props, ref) => {
 
   return (
     <Tooltip title={ABOUT}>
-      <IconButton ref={ref} component={Link} to={routes.about} color={activeColor} {...props}>
+      <IconButton
+        ref={ref}
+        component={Link}
+        to={routes.about}
+        color={activeColor}
+        {...props}
+        size="large"
+      >
         <InfoIcon />
       </IconButton>
     </Tooltip>

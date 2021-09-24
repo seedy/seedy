@@ -1,24 +1,24 @@
 import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import styled from '@mui/material/styles/styled';
+
 import { matchPath, useLocation } from 'react-router-dom';
 
 import isNil from 'helpers/isNil';
 
 import Logo from 'components/dumb/Logo';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  navLinkActive: {
+// STYLED
+const LogoActive = styled(Logo, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})(({ active, theme }) => ({
+  ...(active && {
     stroke: `${theme.palette.secondary.main} !important`,
-  },
+  }),
 }));
 
 // COMPONENTS
 const LogoNavLink = forwardRef(({ to, exact, strict, ...props }, ref) => {
-  const classes = useStyles();
-
   const { pathname } = useLocation();
 
   const active = useMemo(
@@ -30,8 +30,8 @@ const LogoNavLink = forwardRef(({ to, exact, strict, ...props }, ref) => {
     [to, exact, strict, pathname],
   );
   return (
-    <Logo
-      className={clsx({ [classes.navLinkActive]: active })}
+    <LogoActive
+      active={active}
       ref={ref}
       {...props}
     />

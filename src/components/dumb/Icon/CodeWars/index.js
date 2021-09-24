@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import isNil from 'helpers/isNil';
 
-import useTheme from '@material-ui/core/styles/useTheme';
+import { useTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 
 // CONSTANTS

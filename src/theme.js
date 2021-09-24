@@ -1,17 +1,23 @@
-import { createTheme, responsiveFontSizes } from '@material-ui/core';
-import deepPurple from '@material-ui/core/colors/deepPurple';
-import orange from '@material-ui/core/colors/orange';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import deepPurple from '@mui/material/colors/deepPurple';
+import orange from '@mui/material/colors/orange';
 
 // CONSTANTS
 const DEFAULT_THEME = 'dark';
 
 // HELPERS
-export const getTheme = (type) => responsiveFontSizes(createTheme({
-  palette: {
+export const getPalette = (mode) => ({
+  mode,
+  ...(mode === 'light' ? {
     primary: deepPurple,
     secondary: orange,
-    type,
-  },
+  } : {
+    primary: deepPurple,
+    secondary: orange,
+  }) });
+
+export const getTheme = (mode) => responsiveFontSizes(createTheme({
+  palette: getPalette(mode),
   overrides: {
     MuiTab: {
       root: {
