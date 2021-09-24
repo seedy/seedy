@@ -39,7 +39,8 @@ const CardSkills = ({ avatar, title, subheader, children, ...props }) => {
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <CardHeader
             sx={{
-              padding: 0,
+              p: 0,
+              pl: 2,
             }}
             avatar={avatar}
             title={title}
