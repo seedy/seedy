@@ -6,7 +6,7 @@ import About from 'screens/About';
 import { Route, Switch } from 'react-router-dom';
 import ThemeProvider from 'components/dumb/IconButton/DarkMode/Context/ThemeProvider';
 import IconButtonDarkModeContext from 'components/dumb/IconButton/DarkMode/Context';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   return (

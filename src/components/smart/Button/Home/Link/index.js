@@ -26,6 +26,7 @@ const ButtonHomeLink = forwardRef(({ avatarProps, ...props }, ref) => {
     <ButtonHome
       ref={ref}
       variant="outlined"
+      color="secondary"
       component={Link}
       to={homeTo}
       startIcon={<AvatarMe {...avatarProps} />}

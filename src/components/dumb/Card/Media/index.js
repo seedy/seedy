@@ -1,20 +1,20 @@
 import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import IconButton from '@material-ui/core/IconButton';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 
 import IconSoundcloud from 'components/dumb/Icon/SoundCloud';
 import IconCodeWars from 'components/dumb/Icon/CodeWars';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedinIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedinIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 
 // CONSTANTS
 const SIZING = {

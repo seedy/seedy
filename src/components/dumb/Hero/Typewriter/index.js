@@ -1,56 +1,41 @@
-import PropTypes from 'prop-types';
+import styled from '@mui/material/styles/styled';
+import { keyframes } from '@emotion/react';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Typography from '@mui/material/Typography';
 
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  '@keyframes typing': {
-    from: {
-      width: 0,
-    },
-    to: {
-      width: '100%',
-    },
+// KEYFRAMES
+const typing = keyframes({
+  from: {
+    width: 0,
   },
-  '@keyframes blinkCaret': {
-    from: {
-      borderColor: 'transparent',
-    },
-    to: {
-      borderColor: 'transparent',
-    },
-    '50%': {
-      borderColor: theme.palette.secondary.main,
-    },
+  to: {
+    width: '100%',
   },
-  typewriter: {
-    overflow: 'hidden',
-    borderRight: `0.10em solid ${theme.palette.secondary.main}`,
-    whiteSpace: 'nowrap',
-    margin: theme.spacing(0, 'auto'),
-    // blink for the duration of typing, plus one more cycle
-    animation: `
-      $typing 2.5s steps(25, end),
-      $blinkCaret 0.5s step-end 6 forwards;
+});
+
+const blinkCaret = (theme) => keyframes({
+  from: {
+    borderColor: 'transparent',
+  },
+  to: {
+    borderColor: 'transparent',
+  },
+  '50%': {
+    borderColor: theme.palette.secondary.main,
+  },
+});
+
+// STYLED
+const HeroTypewriter = styled(Typography)(({ theme }) => ({
+  overflow: 'hidden',
+  borderRight: `0.10em solid ${theme.palette.secondary.main}`,
+  whiteSpace: 'nowrap',
+  margin: theme.spacing(0, 'auto'),
+  // blink for the duration of typing, plus one more cycle
+  animation: `
+      ${typing} 2.5s steps(25, end),
+      ${blinkCaret(theme)} 0.5s step-end 6 forwards;
     `,
-  },
 }));
-
-
-const HeroTypewriter = (props) => {
-  const classes = useStyles();
-  return (
-    <Typography className={classes.typewriter} {...props} />
-  );
-};
-
-HeroTypewriter.propTypes = {
-  children: PropTypes.node,
-};
-
-HeroTypewriter.defaultProps = {
-  children: null,
-};
 
 export default HeroTypewriter;

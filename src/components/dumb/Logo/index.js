@@ -1,12 +1,10 @@
 import { forwardRef, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import styled from '@mui/material/styles/styled';
 import Vivus from 'vivus';
 
 import isNil from 'helpers/isNil';
 import isFunction from 'helpers/isFunction';
-
-import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import { ReactComponent as ShortLogo } from './Seedy.svg';
 import { ReactComponent as LongLogo } from './SeedyDupuis.svg';
@@ -14,19 +12,17 @@ import { ReactComponent as LongLogo } from './SeedyDupuis.svg';
 // CONSTANTS
 const VIVUS_ID = 'LOGO_VIVUS';
 
-// HOOKS
-const useStyles = makeStyles(
-  (theme) => ({
-    logoRoot: {
-      stroke: theme.palette.common.black,
-    },
-  }),
-);
+// STYLED
+const ShortLogoStyled = styled(ShortLogo)(({ theme }) => ({
+  stroke: theme.palette.text.primary,
+}));
+
+const LongLogoStyled = styled(LongLogo)(({ theme }) => ({
+  stroke: theme.palette.text.primary,
+}));
 
 // COMPONENTS
-const Logo = forwardRef(({ className, short, onClick, ...props }, ref) => {
-  const innerClasses = useStyles();
-
+const Logo = forwardRef(({ short, onClick, ...props }, ref) => {
   const vivusRef = useRef();
 
   const onMount = useCallback(
@@ -56,8 +52,7 @@ const Logo = forwardRef(({ className, short, onClick, ...props }, ref) => {
 
   if (short) {
     return (
-      <ShortLogo
-        className={clsx(innerClasses.logoRoot, className)}
+      <ShortLogoStyled
         id={VIVUS_ID}
         ref={onMount}
         onClick={handleClick}
@@ -67,8 +62,7 @@ const Logo = forwardRef(({ className, short, onClick, ...props }, ref) => {
   }
 
   return (
-    <LongLogo
-      className={clsx(innerClasses.logoRoot, className)}
+    <LongLogoStyled
       id={VIVUS_ID}
       ref={onMount}
       onClick={handleClick}
@@ -78,13 +72,11 @@ const Logo = forwardRef(({ className, short, onClick, ...props }, ref) => {
 });
 
 Logo.propTypes = {
-  className: PropTypes.string,
   short: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
 Logo.defaultProps = {
-  className: '',
   short: false,
   onClick: null,
 };

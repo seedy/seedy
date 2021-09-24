@@ -1,18 +1,18 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useState, useCallback } from 'react';
+import useIsXs from 'hooks/useIsXs';
 
-import Typography from '@material-ui/core/Typography';
-import Tab from '@material-ui/core/Tab';
-import TabContext from '@material-ui/lab/TabContext';
-import TabList from '@material-ui/lab/TabList';
-import TabPanel from '@material-ui/lab/TabPanel';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import SpanBold from 'components/dumb/Span/Bold';
+import Typography from '@mui/material/Typography';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import CardMedia from 'components/dumb/Card/Media';
 import HeroWordSlide from 'components/dumb/Hero/WordSlide';
 import MapPlaces from 'components/smart/Map/Places';
 import MapFestivals from 'components/smart/Map/Festivals';
-import useIsXs from 'hooks/useIsXs';
 
 // CONSTANTS
 const ITEMS = [
@@ -27,28 +27,9 @@ const ITEMS = [
   'pluriel',
 ];
 
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  mapContainer: {
-    height: 500,
-    width: '100%',
-  },
-  panelFullWidth: {
-    width: '100%',
-  },
-  boldWord: {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-  heroParagraph: {
-    marginBottom: theme.spacing(2),
-  },
-}));
-
 
 // COMPONENTS
 const About = () => {
-  const classes = useStyles();
-
   const isXs = useIsXs();
 
   const [value, setValue] = useState('1');
@@ -68,16 +49,16 @@ const About = () => {
         alignItems="center"
         mt={1}
       >
-        <HeroWordSlide className={classes.heroParagraph} items={ITEMS}>Je suis</HeroWordSlide>
+        <HeroWordSlide mb={2} items={ITEMS}>Je suis</HeroWordSlide>
         <Typography paragraph>
           Je crois que nos
           {' '}
-          <span className={classes.boldWord}>expériences</span>
+          <SpanBold>expériences</SpanBold>
           {' '}
           nous construisent.
           Les plus intenses ont eu lieu lorsque j&apos;ai quitté ma
           {' '}
-          <span className={classes.boldWord}>zone de confort</span>
+          <SpanBold>zone de confort</SpanBold>
           .
           <br />
           <br />
@@ -91,7 +72,7 @@ const About = () => {
           <br />
           J&apos;aimerais en
           {' '}
-          <span className={classes.boldWord}>partager</span>
+          <SpanBold>partager</SpanBold>
           {' '}
           quelques-unes avec toi, si tu le veux bien.
         </Typography>
@@ -104,13 +85,13 @@ const About = () => {
             <Tab label="Voyages" value="1" />
             <Tab label="Festivals" value="2" />
           </TabList>
-          <TabPanel className={classes.panelFullWidth} value="1">
+          <TabPanel sx={{ width: '100%' }} value="1">
             <Typography color="textSecondary" variant="subtitle1">Clique sur les marqueurs pour en savoir plus. Visitons quelques lieux ensemble.</Typography>
-            <MapPlaces className={classes.mapContainer} />
+            <MapPlaces />
           </TabPanel>
-          <TabPanel className={classes.panelFullWidth} value="2">
+          <TabPanel sx={{ width: '100%' }} value="2">
             <Typography color="textSecondary" variant="subtitle1">Clique sur les marqueurs pour en savoir plus. Découvrons quelques festivals ensemble.</Typography>
-            <MapFestivals className={classes.mapContainer} />
+            <MapFestivals />
           </TabPanel>
         </TabContext>
         <CardMedia size={isXs ? 'small' : undefined} />

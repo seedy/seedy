@@ -1,63 +1,69 @@
-import { forwardRef, useState, useCallback } from 'react';
+import { forwardRef, useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 
 import isFunction from 'helpers/isFunction';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import styled from '@mui/material/styles/styled';
 
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Backdrop from '@material-ui/core/Backdrop';
-import Box from '@material-ui/core/Box';
+import ImageListItem from '@mui/material/ImageListItem';
+import ButtonBase from '@mui/material/ButtonBase';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
 
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  image: {
+// HELPERS
+const shouldForwardProp = (prop) => prop !== 'flip';
+
+// STYLED
+const ImageListItemStyled = styled(ImageListItem, {
+  shouldForwardProp,
+})(({ flip }) => ({
+  overflow: 'hidden',
+  '& .MuiImageListItem-img': {
     perspective: '10px',
     transition: 'transform 0.8s',
     transformStyle: 'preserve-3d',
+    ...(flip && {
+      transform: 'rotateY(180deg)',
+    }),
   },
-  flipping: {
-    transform: 'rotateY(180deg)',
-  },
-  backdrop: {
-    position: 'absolute',
-    zIndex: 'auto',
-    color: theme.palette.common.white,
-    transition: `height ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn} !important`,
-  },
-  backdropFull: {
+}));
+
+const BackdropFlippable = styled(Backdrop, {
+  shouldForwardProp,
+})(({ flip, theme }) => ({
+  position: 'absolute',
+  zIndex: 'auto',
+  color: theme.palette.common.white,
+  transition: `height ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn} !important`,
+  ...(flip ? {
     height: '100%',
     top: 'auto',
     bottom: 0,
-  },
-  content: {
-    padding: theme.spacing(1),
-  },
-  contentReverted: {
-    display: 'flex',
-    height: '100%',
-    width: '100%',
-    transform: 'rotateY(180deg)',
-  },
-  backdropBottom: {
+  } : {
     bottom: 0,
     top: 'auto',
     height: 48,
-  },
+  }),
+}));
+
+const BoxContent = styled(Box, {
+  shouldForwardProp,
+})(({ flip }) => ({
+  ...(flip && {
+    display: 'flex',
+    height: '100%',
+    width: '100%',
+  }),
 }));
 
 // COMPONENTS
 const ImageListItemFlippable = forwardRef(({
   onClick, alt, src,
   front, back,
-  classes,
+  frontProps, backProps,
   ...props
 }, ref) => {
   const [flip, setFlip] = useState(false);
-
-  const internalClasses = useStyles();
 
   const handleClick = useCallback(
     (e) => {
@@ -69,49 +75,46 @@ const ImageListItemFlippable = forwardRef(({
     [setFlip, onClick],
   );
 
+  const onMouseLeave = useCallback(
+    () => {
+      setFlip(false);
+    },
+    [setFlip],
+  );
+
+  const contentProps = useMemo(
+    () => (flip ? backProps : frontProps),
+    [flip, backProps, frontProps],
+  );
+
   return (
-    <ImageListItem
+    <ImageListItemStyled
       ref={ref}
       component={ButtonBase}
       onClick={handleClick}
       onMouseEnter={handleClick}
-      onMouseLeave={handleClick}
-      classes={{
-        root: classes.root,
-        item: clsx(
-          classes.item,
-          internalClasses.image, {
-            [internalClasses.flipping]: flip,
-          },
-        ),
-      }}
+      onMouseLeave={onMouseLeave}
+      flip={flip}
       {...props}
     >
       <img
         ref={ref}
-        className={classes.image}
         alt={alt}
         src={src}
       />
-      <Backdrop
+      <BackdropFlippable
         open
-        classes={{
-          root: clsx(internalClasses.backdrop, {
-            [internalClasses.backdropFull]: flip,
-            [internalClasses.backdropBottom]: !flip,
-          }),
-        }}
+        flip={flip}
       >
-        <Box className={clsx(internalClasses.content, {
-          [internalClasses.contentReverted]: flip,
-          [classes.back]: flip,
-          [classes.front]: !flip,
-        })}
+        <BoxContent
+          p={1}
+          flip={flip}
+          {...contentProps}
         >
           {flip ? back : front}
-        </Box>
-      </Backdrop>
-    </ImageListItem>
+        </BoxContent>
+      </BackdropFlippable>
+    </ImageListItemStyled>
   );
 });
 
@@ -119,28 +122,18 @@ ImageListItemFlippable.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-    item: PropTypes.string,
-    image: PropTypes.string,
-    front: PropTypes.string,
-    back: PropTypes.string,
-  }),
   front: PropTypes.node,
   back: PropTypes.node,
+  frontProps: PropTypes.object,
+  backProps: PropTypes.object,
 };
 
 ImageListItemFlippable.defaultProps = {
   onClick: null,
-  classes: {
-    root: '',
-    item: '',
-    image: '',
-    front: '',
-    back: '',
-  },
   front: null,
   back: null,
+  frontProps: {},
+  backProps: {},
 };
 
 export default ImageListItemFlippable;

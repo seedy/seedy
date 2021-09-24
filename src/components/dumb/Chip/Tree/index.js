@@ -3,31 +3,13 @@ import PropTypes from 'prop-types';
 
 import isNil from 'helpers/isNil';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
-
-import Chip from '@material-ui/core/Chip';
-import Divider from '@material-ui/core/Divider';
-import Box from '@material-ui/core/Box';
-import Portal from '@material-ui/core/Portal';
-
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  boxSpaced: {
-    display: 'flex',
-    '&:not(:last-child)': {
-      marginRight: theme.spacing(0.5),
-    },
-    [theme.breakpoints.only('xs')]: {
-      margin: theme.spacing(0.5, 0),
-      flexDirection: 'column',
-    },
-  },
-}));
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Portal from '@mui/material/Portal';
 
 // COMPONENTS
 const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...props }, ref) => {
-  const classes = useStyles();
-
   const activeColor = useMemo(
     () => {
       if (color === 'primary') {
@@ -49,7 +31,26 @@ const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...
   );
 
   return (
-    <Box className={classes.boxSpaced} {...boxProps}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: {
+          xs: 'column',
+          md: 'row',
+        },
+        '&:not(:last-child)': {
+          marginRight: {
+            xs: 0,
+            md: 0.5,
+          },
+          marginBottom: {
+            xs: 0.5,
+            md: 0,
+          },
+        },
+      }}
+      {...boxProps}
+    >
       <Chip
         color={chipColor}
         ref={ref}
