@@ -1,16 +1,16 @@
 import { useCallback, useState } from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import CardSkills, { ContainerContext } from 'components/dumb/Card/Skills';
 import ChipTree from 'components/dumb/Chip/Tree';
-import Chip from '@material-ui/core/Chip';
-import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import Box from '@mui/material/Box';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import AvatarSecondary from 'components/dumb/Avatar/Secondary';
+import BoxXsResponsiveRowCenterColumnStretch from 'components/dumb/Box/XsResponsive/RowCenterColumnStretch';
+import ChipSpaced from 'components/dumb/Chip/Spaced';
 
-import CodeIcon from '@material-ui/icons/Code';
-import DesktopIcon from '@material-ui/icons/DesktopMac';
-import GestureIcon from '@material-ui/icons/Gesture';
+import CodeIcon from '@mui/icons-material/Code';
+import DesktopIcon from '@mui/icons-material/DesktopMac';
+import GestureIcon from '@mui/icons-material/Gesture';
 
 // CONSTANTS
 const JAVASCRIPT = 'JS';
@@ -18,31 +18,8 @@ const REACT = 'React';
 const UX = 'UX';
 const DESIGN = 'Design';
 
-// HOOKS
-const useStyles = makeStyles((theme) => ({
-  chipSpaced: {
-    margin: theme.spacing(0.5, 0.5),
-  },
-  avatarSecondary: {
-    color: theme.palette.getContrastText(theme.palette.secondary.main),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  boxResponsive: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    [theme.breakpoints.only('xs')]: {
-      flexDirection: 'column',
-      alignItems: 'stretch',
-    },
-  },
-}));
-
 // COMPONENTS
 const CardSkillsTech = (props) => {
-  const classes = useStyles();
-
   const [activeSkill, setActiveSkill] = useState();
 
   const onJavascript = useCallback(
@@ -77,15 +54,15 @@ const CardSkillsTech = (props) => {
     <CardSkills
       avatar={(
         <AvatarGroup spacing="small">
-          <Avatar className={classes.avatarSecondary}>
+          <AvatarSecondary>
             <CodeIcon />
-          </Avatar>
-          <Avatar className={classes.avatarSecondary}>
+          </AvatarSecondary>
+          <AvatarSecondary>
             <DesktopIcon />
-          </Avatar>
-          <Avatar className={classes.avatarSecondary}>
+          </AvatarSecondary>
+          <AvatarSecondary>
             <GestureIcon />
-          </Avatar>
+          </AvatarSecondary>
         </AvatarGroup>
       )}
       title="Tech Skills"
@@ -94,7 +71,9 @@ const CardSkillsTech = (props) => {
     >
       <ContainerContext.Consumer>
         {({ container }) => (
-          <Box className={classes.boxResponsive}>
+          <BoxXsResponsiveRowCenterColumnStretch
+            justifyContent="space-between"
+          >
             <ChipTree
               container={container}
               label={JAVASCRIPT}
@@ -102,10 +81,10 @@ const CardSkillsTech = (props) => {
               onClick={onJavascript}
             >
               <Box>
-                <Chip className={classes.chipSpaced} label="ES6" />
-                <Chip className={classes.chipSpaced} label="ES2020" />
-                <Chip className={classes.chipSpaced} label="FP" />
-                <Chip className={classes.chipSpaced} label="Currying" />
+                <ChipSpaced label="ES6" />
+                <ChipSpaced label="ES2020" />
+                <ChipSpaced label="FP" />
+                <ChipSpaced label="Currying" />
               </Box>
             </ChipTree>
             <ChipTree
@@ -115,10 +94,10 @@ const CardSkillsTech = (props) => {
               onClick={onReact}
             >
               <Box>
-                <Chip className={classes.chipSpaced} label="Hooks" />
-                <Chip className={classes.chipSpaced} label="Context API" />
-                <Chip className={classes.chipSpaced} label="State management" />
-                <Chip className={classes.chipSpaced} label="Data fetching" />
+                <ChipSpaced label="Hooks" />
+                <ChipSpaced label="Context API" />
+                <ChipSpaced label="State management" />
+                <ChipSpaced label="Data fetching" />
               </Box>
             </ChipTree>
             <ChipTree
@@ -128,10 +107,10 @@ const CardSkillsTech = (props) => {
               onClick={onUX}
             >
               <Box>
-                <Chip className={classes.chipSpaced} label="Responsive" />
-                <Chip className={classes.chipSpaced} label="Empty state" />
-                <Chip className={classes.chipSpaced} label="Accessibility" />
-                <Chip className={classes.chipSpaced} label="Animations" />
+                <ChipSpaced label="Responsive" />
+                <ChipSpaced label="Empty state" />
+                <ChipSpaced label="Accessibility" />
+                <ChipSpaced label="Animations" />
               </Box>
             </ChipTree>
             <ChipTree
@@ -141,13 +120,13 @@ const CardSkillsTech = (props) => {
               onClick={onDesign}
             >
               <Box>
-                <Chip className={classes.chipSpaced} label="Mockups" />
-                <Chip className={classes.chipSpaced} label="User scenarii" />
-                <Chip className={classes.chipSpaced} label="Component library" />
-                <Chip className={classes.chipSpaced} label="Design systems" />
+                <ChipSpaced label="Mockups" />
+                <ChipSpaced label="User scenarii" />
+                <ChipSpaced label="Component library" />
+                <ChipSpaced label="Design systems" />
               </Box>
             </ChipTree>
-          </Box>
+          </BoxXsResponsiveRowCenterColumnStretch>
         )}
       </ContainerContext.Consumer>
 

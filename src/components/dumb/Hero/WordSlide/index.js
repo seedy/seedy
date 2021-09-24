@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import styled from '@mui/material/styles/styled';
+import { keyframes } from '@emotion/react';
 
-import Typography from '@material-ui/core/Typography';
-import { useMemo } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 // CONSTANTS
 const HEIGHT = 60;
@@ -20,6 +20,10 @@ const writeChangeSteps = (items) => {
 
   const delay = 5;
 
+  styles[`${delay}%`] = {
+    transform: 'translate3d(0,0,0)',
+  };
+
   for (let i = 1; i <= forwardCount; i += 1) {
     styles[`${i * animationPercent}%`] = {
       transform: `translate3d(0,-${i * 100}%,0)`,
@@ -32,111 +36,115 @@ const writeChangeSteps = (items) => {
   return styles;
 };
 
-// HOOKS
-const useDynamicKeyFrames = (props) => {
-  const useStyles = makeStyles((theme) => ({
-    '@keyframes change': {
-      '0%': { transform: 'translate3d(0,0,0)' },
-      '100%': { transform: 'translate3d(0,0,0)' },
-      ...writeChangeSteps(props.items),
-    },
-    list: {
-      marginTop: 0,
-      paddingLeft: theme.spacing(2),
-      textAlign: 'left',
-      animation: '$change 10s 1s infinite backwards',
-    },
-  }));
-  return useStyles(props);
-};
+// KEYFRAMES
+const change = (items) => keyframes({
+  '0%': {
+    transform: 'translate3d(0,0,0)',
+  },
+  '100%': {
+    transform: 'translate3d(0,0,0)',
+  },
+  ...writeChangeSteps(items),
+});
 
-const useStyles = makeStyles((theme) => ({
-  '@keyframes opacity': {
-    '0%': { opacity: 0 },
-    '100%': { opacity: 0 },
-    '50%': { opacity: 1 },
-  },
-  container: {
-    display: 'flex',
-    overflow: 'hidden',
-    position: 'relative',
-    padding: theme.spacing(0, 2),
-    height: HEIGHT,
-    lineHeight: `${HEIGHT}px`,
-    '&:before': {
-      content: '"["',
-      left: 0,
-    },
-    '&:after': {
-      content: '"]"',
-      right: 0,
-    },
-    '&:after, &:before': {
-      position: 'absolute',
-      top: 0,
-      color: theme.palette.divider,
-      fontSize: '42px',
-      lineHeight: `${HEIGHT}px`,
-      animation: '$opacity 2s infinite',
-    },
-  },
-  text: {
-    display: 'inline',
-    float: 'left',
-    margin: 0,
-    lineHeight: 'inherit',
-  },
-  item: {
-    margin: 0,
-    lineHeight: 'inherit',
-    height: HEIGHT,
-    '&:after': {
-      content: '","',
-    },
-    '&:last-child': {
-      color: theme.palette.secondary.main,
-      '&:after': {
-        content: '"."',
-      },
-    },
-  },
-}));
+const opacity = keyframes`
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+`;
 
 // COMPONENTS
-const HeroWordSlide = ({ children, items, className, ...props }) => {
-  const classes = useStyles();
+const SlideBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'items',
+})(({ items, theme }) => ({
+  textAlign: 'left',
+  animation: `${change(items)} ${theme.transitions.easing.sharp} ${1.5 * items.length}s 1s infinite both`,
+}));
 
-  const styleProps = useMemo(
-    () => ({ items }),
-    [items],
-  );
-
-  const dynamicKeyFramesClasses = useDynamicKeyFrames(styleProps);
-
-  return (
-    <div className={clsx(classes.container, className)}>
-      <Typography variant="h3" className={classes.text} {...props}>{children}</Typography>
-      <div className={dynamicKeyFramesClasses.list}>
-        {items.map((item) => (
-          <Typography variant="h3" key={item} className={classes.item}>
-            {item}
-          </Typography>
-        ))}
-      </div>
-    </div>
-  );
-};
+const HeroWordSlide = ({ children, items, typographyProps, ...props }) => (
+  <Box
+    sx={{
+      display: 'flex',
+      overflow: 'hidden',
+      position: 'relative',
+      px: 2,
+      height: HEIGHT,
+      lineHeight: `${HEIGHT}px`,
+      '&:before': {
+        content: '"["',
+        left: 0,
+      },
+      '&:after': {
+        content: '"]"',
+        right: 0,
+      },
+      '&:after, &:before': {
+        position: 'absolute',
+        top: 0,
+        color: 'divider',
+        fontSize: '42px',
+        lineHeight: `${HEIGHT}px`,
+        animation: `${opacity} 2s infinite`,
+      },
+    }}
+    {...props}
+  >
+    <Typography
+      variant="h3"
+      sx={{
+        display: 'inline',
+        float: 'left',
+        margin: 0,
+        lineHeight: 'inherit',
+      }}
+      {...typographyProps}
+    >
+      {children}
+    </Typography>
+    <SlideBox
+      items={items}
+      mt={0}
+      pl={2}
+    >
+      {items.map((item) => (
+        <Typography
+          variant="h3"
+          key={item}
+          sx={{
+            margin: 0,
+            lineHeight: 'inherit',
+            height: HEIGHT,
+            '&:after': {
+              content: '","',
+            },
+            '&:last-child': {
+              color: 'secondary.main',
+              '&:after': {
+                content: '"."',
+              },
+            },
+          }}
+        >
+          {item}
+        </Typography>
+      ))}
+    </SlideBox>
+  </Box>
+);
 
 HeroWordSlide.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node,
   items: PropTypes.arrayOf(PropTypes.string),
+  typographyProps: PropTypes.object,
 };
 
 HeroWordSlide.defaultProps = {
-  className: '',
   children: null,
   items: [],
+  typographyProps: {},
 };
 
 export default HeroWordSlide;

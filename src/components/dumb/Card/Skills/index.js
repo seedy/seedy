@@ -1,15 +1,13 @@
 import { useMemo, useCallback, useState, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // CONTAINER
 export const ContainerContext = createContext({
@@ -19,20 +17,8 @@ export const ContainerContext = createContext({
 // HOOKS
 export const useContainerContext = () => useContext(ContainerContext);
 
-const useStyles = makeStyles((theme) => ({
-  accordionDetailsCard: {
-    flexDirection: 'column',
-    paddingBottom: theme.spacing(1),
-  },
-  cardHeaderDense: {
-    padding: theme.spacing(0),
-  },
-}));
-
 // COMPONENTS
 const CardSkills = ({ avatar, title, subheader, children, ...props }) => {
-  const classes = useStyles();
-
   const [container, setContainer] = useState(null);
 
   const onRef = useCallback(
@@ -52,13 +38,20 @@ const CardSkills = ({ avatar, title, subheader, children, ...props }) => {
       <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <CardHeader
-            className={classes.cardHeaderDense}
+            sx={{
+              padding: 0,
+            }}
             avatar={avatar}
             title={title}
             subheader={subheader}
           />
         </AccordionSummary>
-        <AccordionDetails className={classes.accordionDetailsCard}>
+        <AccordionDetails
+          sx={{
+            flexDirection: 'column',
+            paddingBottom: 1,
+          }}
+        >
           <ContainerContext.Provider value={value}>
             {children}
           </ContainerContext.Provider>

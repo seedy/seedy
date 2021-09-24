@@ -1,8 +1,8 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
-
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { TileLayer, Marker, Popup } from 'react-leaflet';
+import Typography from '@mui/material/Typography';
+import TypographyPopupSecondary from 'components/dumb/Typography/PopupSecondary';
+import Box from '@mui/material/Box';
+import MapContainer from 'components/dumb/MapContainer';
 
 // CONSTANTS
 const PLACES = [
@@ -52,46 +52,37 @@ const PLACES = [
   { coordinates: [50.929, 1.714], title: 'Falaises du Cap Blanc Nez, Sangatte', subtitle: 'Les falaises du nord pas', img: 'places/sangatte.jpg' },
 ];
 
-// HOOKS
-const useStyles = makeStyles(() => ({
-  imgSmall: {
-    width: 200,
-    height: 150,
-  },
-  textSecondaryPopup: {
-    color: 'rgba(0, 0, 0, 0.54)',
-  },
-}));
-
 // COMPONENTS
-const MapPlaces = (props) => {
-  const classes = useStyles();
-  return (
-    <MapContainer
-      center={[45.9, 4.59]}
-      zoom={4}
-      scrollWheelZoom
-      {...props}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {PLACES.map(({ coordinates, title, subtitle, img }) => (
-        <Marker key={title} position={coordinates}>
-          <Popup>
-            <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h6">{title}</Typography>
-              <Typography variannt="subtitle1" className={classes.textSecondaryPopup}>{subtitle}</Typography>
-              {img && (
-                <img className={classes.imgSmall} src={img} alt={title} />
-              )}
-            </Box>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
-  );
-};
+const MapPlaces = (props) => (
+  <MapContainer
+    center={[45.9, 4.59]}
+    zoom={4}
+    scrollWheelZoom
+    {...props}
+  >
+    <TileLayer
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    {PLACES.map(({ coordinates, title, subtitle, img }) => (
+      <Marker key={title} position={coordinates}>
+        <Popup>
+          <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
+            <Typography variant="h6">{title}</Typography>
+            <TypographyPopupSecondary variant="subtitle1">{subtitle}</TypographyPopupSecondary>
+            {img && (
+            <img
+              width={200}
+              height={150}
+              src={img}
+              alt={title}
+            />
+            )}
+          </Box>
+        </Popup>
+      </Marker>
+    ))}
+  </MapContainer>
+);
 
 export default MapPlaces;

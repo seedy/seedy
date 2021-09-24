@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
 
 // CONSTANTS
 const DARK_TITLE = 'Toggle light mode';
