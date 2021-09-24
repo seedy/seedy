@@ -52,7 +52,7 @@ const CardMedia = forwardRef(({ size, ...props }, ref) => {
           </Box>
           <Box mr={1}>
             <Tooltip title="CodeWars">
-              <Button size={size} variant="outlined" href="https://www.codewars.com/users/pro.seedy">
+              <Button size={size} color="secondary" variant="outlined" href="https://www.codewars.com/users/pro.seedy">
                 <IconCodeWars size="micro" />
               </Button>
             </Tooltip>

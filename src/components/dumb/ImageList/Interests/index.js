@@ -30,7 +30,7 @@ const BACK_PROPS = {
 
 // COMPONENTS
 const ImageListInterests = ({ rowHeight, ...props }) => (
-  <ImageList rowHeight={rowHeight} {...props}>
+  <ImageList sx={{ m: 0 }} rowHeight={rowHeight} {...props}>
     {ITEMS.map(({ title, img, info, date, copyright }) => (
       <ImageListItemFlippable
         key={img}
