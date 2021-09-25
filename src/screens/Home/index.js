@@ -2,7 +2,7 @@ import matchMediaHover from 'helpers/matchMediaHover';
 
 import { useCallback, useMemo, useState } from 'react';
 import useIsXs from 'hooks/useIsXs';
-import useIsDownSm from 'hooks/useIsDownSm';
+import useIsDownMd from 'hooks/useIsDownMd';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -39,7 +39,7 @@ const SECOND_DELAY = '4.8s';
 // COMPONENTS
 const Home = () => {
   const isXs = useIsXs();
-  const isDownSm = useIsDownSm();
+  const isDownMd = useIsDownMd();
 
   const subtitleAction = useMemo(
     () => (matchMediaHover() ? 'Survole' : 'Clique sur'),
@@ -51,12 +51,12 @@ const Home = () => {
       if (isXs) {
         return 1;
       }
-      if (isDownSm) {
+      if (isDownMd) {
         return 2;
       }
       return 3;
     },
-    [isXs, isDownSm],
+    [isXs, isDownMd],
   );
 
   const [open, setOpen] = useState(false);
