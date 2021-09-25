@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import useIsDownSm from 'hooks/useIsDownSm';
+import useIsDownMd from 'hooks/useIsDownMd';
 
 import AvatarMe from 'components/dumb/Avatar/Me';
 import Logo from 'components/dumb/Logo';
@@ -9,11 +9,11 @@ import Button from '@mui/material/Button';
 
 // COMPONENTS
 const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {
-  const isXs = useIsDownSm();
+  const isDownMd = useIsDownMd();
 
   const size = useMemo(
-    () => (isXs ? 'small' : 'medium'),
-    [isXs],
+    () => (isDownMd ? 'small' : 'medium'),
+    [isDownMd],
   );
 
   return (
