@@ -1,0 +1,37 @@
+{
+  "title": "Seedy.Dupuis | Portfolio",
+  "about": "About",
+  "toggleDarkMode": "Toggle dark mode",
+  "toggleLightMode": "Toggle light mode",
+  "changeLanguage": "Change language",
+  "heroTypewriter": "Welcome, I am:",
+  "heroPassion": "I'm a passionate person",
+  "hoverTiles": "Hover images to know more",
+  "touchTiles": "Touch images to know more",
+  "clickMarkers": "Click on markers to know more",
+  "cv": "CV",
+  "download": "Download",
+  "close": "Close",
+  "zoomIn": "Zoom in",
+  "zoomOut": "Zoom out",
+  "heroWordSlide": {
+    "title": "I am",
+    "dev": "developper",
+    "travel": "traveler",
+    "music": "audiophile",
+    "festival": "festivalgoer",
+    "volunteer": "volunteer",
+    "cook": "cook",
+    "hike": "hiker",
+    "surf": "surfer",
+    "plural": "plural"
+  },
+  "presentation": "I am convinced we grow with our <bold>experiments</bold>.<br/>Tell me what you like to do, I'll tell you <bold>who you are</bold>.<br/><br/>Travelling, alone, by foot, towards the unknown, helped me grow and find my essence.<br/>Volunteering taught me another way to engage myself. I don't know what I would do without music, festivals, parties. Cooking in festivals is also meeting new people, spending time as a group and help each other during rush hours.<br/>Practicing a weather-dependent activity teaches patience and commitment.<br/>All those outdoor activities are a mean to balance my everyday life and enjoy coming home and my desktop routine.<br/><br/>I'd like to <bold>share</bold> some memories with you, if you wish.",
+  "maps": "Maps",
+  "trips": "Trips",
+  "festivals": "Festivals",
+  "media": {
+    "title": "Media",
+    "subheader": "To follow my updates or contact me"
+  }
+}

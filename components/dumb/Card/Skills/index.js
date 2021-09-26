@@ -9,7 +9,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-// CONTAINER
+// CONTEXT
 export const ContainerContext = createContext({
   container: null,
 });

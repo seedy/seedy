@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import isNil from 'helpers/isNil';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import useIsXs from 'hooks/useIsXs';
+import { useTranslation, Trans } from 'next-i18next';
 
 import Head from 'next/head';
 import SpanBold from 'components/dumb/Span/Bold';
@@ -23,21 +25,34 @@ const MapFestivals = dynamic(() => import('components/smart/Map/Festivals'), { s
 
 // CONSTANTS
 const ITEMS = [
-  'développeur',
-  'voyageur',
-  'mélomane',
-  'festivalier',
-  'bénévole',
-  'cuisinier',
-  'randonneur',
-  'surfeur',
-  'pluriel',
+  'dev',
+  'travel',
+  'music',
+  'festival',
+  'volunteer',
+  'cook',
+  'hike',
+  'surf',
+  'plural',
 ];
 
+// SSG
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common', 'places', 'festivals'])),
+  },
+});
 
 // COMPONENTS
 const About = () => {
   const isXs = useIsXs();
+
+  const { t } = useTranslation(['common', 'places', 'festivals']);
+
+  const items = useMemo(
+    () => ITEMS.map((item) => t(`common:heroWordSlide.${item}`)),
+    [t],
+  );
 
   const [value, setValue] = useState('1');
 
@@ -86,44 +101,18 @@ const About = () => {
           mt={1}
           mb={2}
         >
-          <HeroWordSlide mb={2} items={ITEMS}>Je suis</HeroWordSlide>
+          <HeroWordSlide mb={2} items={items}>{t('common:heroWordSlide.title')}</HeroWordSlide>
           <Typography paragraph>
-            Je suis convaincu que nous nous construisons par nos
-            {' '}
-            <SpanBold>expériences</SpanBold>
-            .
-            <br />
-            Raconte moi ce que tu aimes faire, je te dirai
-            {' '}
-            <SpanBold>qui tu es</SpanBold>
-            .
-            <br />
-            <br />
-            Le voyage, seul, à pied, vers l&apos;inconnu, m&apos;a permis de grandir et
-            trouver ce qui m&apos;est essentiel.
-            <br />
-            Le bénévolat m&apos;a fait découvrir une autre façon de m&apos;impliquer.
-            Je ne sais pas ce que je ferais sans musique, sans festival, sans fête.
-            Cuisiner en festival, c&apos;est aussi faire des rencontres,
-            passer du temps avec un groupe et se soutenir dans les moments de rush.
-            <br />
-            Pratiquer un sport dépendant des éléments enseigne la patience et l&apos;engagement.
-            <br />
-            Toutes ces activités d&apos;extérieur sont pour moi un moyen de m&apos;équilibrer et
-            d&apos;apprécier le retour chez moi, à mon bureau.
-            <br />
-            <br />
-            J&apos;aimerais
-            {' '}
-            <SpanBold>partager</SpanBold>
-            {' '}
-            quelques souvenirs avec toi, si tu le veux bien.
+            <Trans
+              i18nKey="common:presentation"
+              components={{ bold: <SpanBold /> }}
+            />
           </Typography>
           <TabContext value={value}>
             <TabList
               centered
               onChange={handleChange}
-              aria-label="Cartes"
+              aria-label={t('common:maps')}
               onClick={onScrollPanelIntoView}
               ref={tabListRef}
               sx={{
@@ -131,14 +120,14 @@ const About = () => {
                 scrollPaddingTop: 64,
               }}
             >
-              <Tab label="Voyages" value="1" />
-              <Tab label="Festivals" value="2" />
+              <Tab label={t('common:trips')} value="1" />
+              <Tab label={t('common:festivals')} value="2" />
             </TabList>
             <TabPanel
               sx={{ width: '100%' }}
               value="1"
             >
-              <Typography color="textSecondary" variant="subtitle2">Clique sur les marqueurs pour en savoir plus.</Typography>
+              <Typography color="textSecondary" variant="subtitle2">{t('common:clickMarkers')}</Typography>
               <MapPlaces />
             </TabPanel>
             <TabPanel
@@ -149,12 +138,16 @@ const About = () => {
               }}
               value="2"
             >
-              <Typography color="textSecondary" variant="subtitle2">Clique sur les marqueurs pour en savoir plus.</Typography>
+              <Typography color="textSecondary" variant="subtitle2">{t('common:clickMarkers')}</Typography>
               <MapFestivals />
               <CardFestivalsSoon sx={{ mt: 2, alignSelf: 'center' }} />
             </TabPanel>
           </TabContext>
-          <CardMedia size={isXs ? 'small' : undefined} />
+          <CardMedia
+            size={isXs ? 'small' : undefined}
+            title={t('common:media.title')}
+            subheader={t('common:media.subheader')}
+          />
         </Box>
       </Container>
     </>
