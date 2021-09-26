@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import dynamic from 'next/dynamic';
 
 import matchMediaHover from 'helpers/matchMediaHover';
@@ -14,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
-const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: false });
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
@@ -31,6 +28,8 @@ import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
 import CloseIcon from '@mui/icons-material/Close';
 
+const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: false });
+
 // CONSTANTS
 const TOOLBAR_HEIGHT = 48;
 const ACTIONS_FOOTER_HEIGHT = 52;
@@ -39,8 +38,11 @@ const CONTENT_PADDING = 32;
 const FIRST_DELAY = '2.8s';
 const SECOND_DELAY = '4.8s';
 
-const CV_NAME = "Cedric-Dupuis-cv-fr.pdf";
+const CV_NAME = 'Cedric-Dupuis-cv-fr.pdf';
 const CV_PATH = `/cv/${CV_NAME}`;
+
+// HELPERS
+const getMatchMediaHoverAction = () => (matchMediaHover() ? 'Survole' : 'Clique sur');
 
 // COMPONENTS
 const Home = () => {
@@ -49,8 +51,7 @@ const Home = () => {
 
 
   const subtitleAction = useClientSide(
-    () => matchMediaHover() ? 'Survole' : 'Clique sur',
-    [],
+    getMatchMediaHoverAction,
   );
 
   const listCols = useMemo(
@@ -159,7 +160,12 @@ const Home = () => {
                 </IconButton>
               </Box>
             </DialogTitle>
-            <DialogContent dividers>
+            <DialogContent
+              sx={{
+                py: 0,
+              }}
+              dividers
+            >
               <PdfViewer
                 file={CV_PATH}
                 maxWidth="100%"

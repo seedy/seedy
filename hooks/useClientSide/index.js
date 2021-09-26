@@ -1,24 +1,24 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState } from 'react';
 
 // HOOKS
-export default (clientSideFn, deps) => {
+const useClientSide = (clientSideFn) => {
   const [result, setResult] = useState();
 
   const resolveFn = useCallback(
     async (fn) => {
-      const result = await Promise.resolve(fn);
-      setResult(result);
-      return result;
+      const resolved = await Promise.resolve(fn);
+      setResult(resolved);
+      return resolved;
     },
     [setResult],
   );
 
   useEffect(
-    () => {
-      return resolveFn(clientSideFn);
-    },
-    [resolveFn, clientSideFn, ...deps],
+    () => resolveFn(clientSideFn),
+    [resolveFn, clientSideFn],
   );
 
   return result;
-}
+};
+
+export default useClientSide;

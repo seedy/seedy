@@ -1,8 +1,11 @@
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export default () => {
+// HOOKS
+const useIsXs = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only('xs'));
   return isXs;
 };
+
+export default useIsXs;

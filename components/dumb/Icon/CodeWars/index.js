@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 import isNil from 'helpers/isNil';
 
-import { useTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 
 import Image from 'next/image';
@@ -23,13 +22,11 @@ const SIZES = {
   large: {
     width: 400,
     height: 40,
-  }
-}
+  },
+};
 
 // COMPONENTS
 const IconCodeWars = ({ size }) => {
-  const theme = useTheme();
-
   const hasSize = useMemo(
     () => !isNil(size),
     [size],

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import dynamic from 'next/dynamic';
+import createEmotionCache from 'helpers/createEmotionCache';
 
 import Head from 'next/head';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,9 +14,13 @@ import BoxToolbarOffset from 'components/dumb/Box/ToolbarOffset';
 import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
 import IconButtonAbout from 'components/smart/IconButton/About';
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
-
+import { CacheProvider } from '@emotion/react';
 
 import 'styles/globals.css';
+
+// CONSTANTS
+// Client-side cache, shared for the whole session of the user in the browser.
+const CLIENT_SIDE_EMOTION_CACHE = createEmotionCache();
 
 // REPORT WEB VITALS
 export const reportWebVitals = (onPerfEntry) => {
@@ -32,40 +36,40 @@ export const reportWebVitals = (onPerfEntry) => {
 };
 
 // PAGE
-const App = ({ Component, pageProps }) => {
-  return (
-    <>
-      <Head>
-        <title>Seedy.Dupuis | A portfolio app</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <IconButtonDarkModeContext>
-        <ThemeProvider>
-          <CssBaseline />
-          <Box display="flex" flexDirection="column">
-            <AppBar position="fixed">
-              <Toolbar>
-                <ButtonHomeLink />
-                <BoxFlexFill />
-                <IconButtonAbout />
-                <IconButtonDarkModeWithContext />
-              </Toolbar>
-            </AppBar>
-            <BoxToolbarOffset />
-            <Component {...pageProps} />
-          </Box>
-        </ThemeProvider>
-      </IconButtonDarkModeContext>
-    </>
-  );
-}
+const App = ({ Component, pageProps, emotionCache }) => (
+  <CacheProvider value={emotionCache}>
+    <Head>
+      <title>Seedy.Dupuis | A portfolio app</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </Head>
+    <IconButtonDarkModeContext>
+      <ThemeProvider>
+        <CssBaseline />
+        <Box display="flex" flexDirection="column">
+          <AppBar position="fixed">
+            <Toolbar>
+              <ButtonHomeLink />
+              <BoxFlexFill />
+              <IconButtonAbout />
+              <IconButtonDarkModeWithContext />
+            </Toolbar>
+          </AppBar>
+          <BoxToolbarOffset />
+          <Component {...pageProps} />
+        </Box>
+      </ThemeProvider>
+    </IconButtonDarkModeContext>
+  </CacheProvider>
+);
 
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
 
 App.defaultProps = {
+  emotionCache: CLIENT_SIDE_EMOTION_CACHE,
 };
 
 export default App;

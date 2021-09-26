@@ -2,6 +2,7 @@ import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import isNil from 'helpers/isNil';
+import noop from 'helpers/noop';
 
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
@@ -70,7 +71,7 @@ const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...
 
 ChipTree.propTypes = {
   children: PropTypes.node,
-  container: PropTypes.instanceOf(typeof Element === 'undefined' ? function () { } : Element),
+  container: PropTypes.instanceOf(typeof Element === 'undefined' ? noop : Element),
   active: PropTypes.bool,
   clickable: PropTypes.bool,
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),

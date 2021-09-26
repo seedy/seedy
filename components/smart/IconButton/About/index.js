@@ -4,14 +4,13 @@ import routes from 'routes';
 
 import { useRouter } from 'next/router';
 
-import IconButton from '@mui/material/IconButton';
+import IconButtonLink from 'components/dumb/IconButton/Link';
 import Tooltip from '@mui/material/Tooltip';
-import Link from 'next/link';
 
 import InfoIcon from '@mui/icons-material/Info';
 
 // CONSTANTS
-const ABOUT = 'About';
+const ABOUT = 'A propos';
 
 
 // COMPONENTS
@@ -29,19 +28,17 @@ const IconButtonAbout = forwardRef((props, ref) => {
   );
 
   return (
-    <Link href={routes.about}>
-      <Tooltip title={ABOUT}>
-        <IconButton
-          ref={ref}
-          component="a"
-          color={activeColor}
-          {...props}
-          size="large"
-        >
-          <InfoIcon />
-        </IconButton>
-      </Tooltip>
-    </Link>
+    <Tooltip title={ABOUT}>
+      <IconButtonLink
+        ref={ref}
+        href={routes.about}
+        color={activeColor}
+        {...props}
+        size="large"
+      >
+        <InfoIcon />
+      </IconButtonLink>
+    </Tooltip>
   );
 });
 

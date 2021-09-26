@@ -9,11 +9,11 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 
 // CONSTANTS
 const ITEMS = [
-  { title: 'Prendre part au design UI/UX', img: '/tiles/1.jpg', info: 'Mont Thabor, Massif des Cerces', date: 2020, copyright: 'Cédric DUPUIS', width: 325, height: 244 },
+  { title: 'Prendre part au design UI/UX', img: '/tiles/1.jpg', info: 'Mont Thabor, Massif des Cerces', date: 2020, copyright: 'Cédric DUPUIS', width: 350, height: 244 },
   { title: 'Surveiller les dernières tendances graphiques', img: '/tiles/2.jpg', info: 'Aventuriers du rail', date: 2021, copyright: 'Cédric DUPUIS', width: 400, height: 300 },
   { title: 'Discuter accessibilité et design patterns', img: '/tiles/3.jpg', info: 'Viaduc du Châtelard, Monsols', date: 2021, copyright: 'Cédric DUPUIS', width: 400, height: 300 },
-  { title: 'Implémenter du code clair et propre', img: '/tiles/4.jpg', info: 'Sauce tomate maison', date: 2020, copyright: 'Cédric DUPUIS', width: 300, height: 400 },
-  { title: 'Construire une librairie de composants', img: '/tiles/5.jpg', info: 'Tomates en serre', date: 2021, copyright: 'Cédric DUPUIS', width: 300, height: 400 },
+  { title: 'Implémenter du code clair et propre', img: '/tiles/4.jpg', info: 'Sauce tomate maison', date: 2020, copyright: 'Cédric DUPUIS', width: 350, height: 400 },
+  { title: 'Construire une librairie de composants', img: '/tiles/5.jpg', info: 'Tomates en serre', date: 2021, copyright: 'Cédric DUPUIS', width: 350, height: 400 },
   { title: 'Relever des défis techniques', img: '/tiles/6.jpg', info: 'Fôret communale des Echarmeaux', date: 2021, copyright: 'Cédric DUPUIS', width: 400, height: 300 },
   { title: 'Faire du travail un lieu et un moment d\'enthousiasme', img: '/tiles/7.jpg', info: 'Etang de la Bonde, Lubéron', date: 2021, copyright: 'Cédric DUPUIS', width: 400, height: 300 },
   { title: 'Maîtriser mon temps et ma productivité', img: '/tiles/8.jpg', info: 'Egrenage de chou kale', date: 2021, copyright: 'Cédric DUPUIS', width: 400, height: 300 },
