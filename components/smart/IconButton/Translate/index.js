@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 import { useRouter } from 'next/router';
 
@@ -6,7 +7,7 @@ import MenuItemLink from 'components/dumb/MenuItem/Link';
 import DumbIconButtonTranslate from 'components/dumb/IconButton/Translate';
 
 // COMPONENTS
-const IconButtonTranslate = forwardRef((props, ref) => {
+const IconButtonTranslate = forwardRef(({ children, ...props }, ref) => {
   const { locale, pathname } = useRouter();
 
   const frSelected = useMemo(
@@ -35,8 +36,17 @@ const IconButtonTranslate = forwardRef((props, ref) => {
       >
         English
       </MenuItemLink>
+      {children}
     </DumbIconButtonTranslate>
   );
 });
+
+IconButtonTranslate.propTypes = {
+  children: PropTypes.node,
+};
+
+IconButtonTranslate.defaultProps = {
+  children: null,
+};
 
 export default IconButtonTranslate;
