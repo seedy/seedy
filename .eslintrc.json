@@ -1,0 +1,117 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@next/next/recommended",
+    "plugin:json/recommended",
+    "plugin:clean-regex/recommended",
+    "airbnb",
+    "airbnb/hooks"
+  ],
+  "parser": "@babel/eslint-parser",
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jest",
+    "import",
+    "@next/next",
+    "@emotion"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "es2020": true
+  },
+  "parserOptions": {
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "babelOptions": {
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ],
+      "caller": {
+        // Eslint supports top level await when a parser for it is included. We enable the parser by default for Babel.
+        "supportsTopLevelAwait": true
+      }
+    }
+  },
+  "settings": {
+    "import/core-modules": [
+      "prop-types"
+    ],
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "."
+        ],
+        "extensions": [
+          ".js",
+          ".ts"
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    },
+    "import/internal-regex": "^next/"
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".md"
+        ]
+      }
+    ],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": [
+          "any",
+          "array"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": "error",
+    "import/namespace": [
+      "error",
+      {
+        "allowComputed": true
+      }
+    ],
+    "import/prefer-default-export": 0,
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        // React components:
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        // Non-React stuff:
+        "allowArray": true,
+        "allowCallExpression": true,
+        "allowLiteral": true,
+        "allowObject": true
+      }
+    ],
+    "object-curly-newline": "off",
+    "no-console": "warn",
+    "no-unused-vars": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-uses-react": "error",
+    "react/react-in-jsx-scope": "off",
+    "no-multiple-empty-lines": "off",
+    "clean-regex/identity-escape": "off"
+  }
+}
