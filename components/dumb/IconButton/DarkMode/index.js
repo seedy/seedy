@@ -28,8 +28,16 @@ const IconButtonDarkMode = forwardRef(({
   );
 
   return (
-    <TooltipDarkMode dark={dark} titleLight={titleLight} titleDark={titleDark}>
-      <IconButton ref={ref} onClick={handleClick} {...props} size="large">
+    <TooltipDarkMode
+      dark={dark}
+      titleLight={titleLight}
+      titleDark={titleDark}
+    >
+      <IconButton
+        ref={ref}
+        onClick={handleClick}
+        {...props}
+      >
         {dark ? <LightIcon /> : <DarkIcon />}
       </IconButton>
     </TooltipDarkMode>
