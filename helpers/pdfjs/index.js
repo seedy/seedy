@@ -1,6 +1,6 @@
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 
-if (typeof window !== "undefined" && "Worker" in window) {
+if (typeof window !== 'undefined' && 'Worker' in window) {
   const PdfjsWorker = new Worker(new URL('pdfjs-dist/build/pdf.worker', import.meta.url));
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.js';
   pdfjsLib.GlobalWorkerOptions.workerPort = PdfjsWorker;
@@ -23,7 +23,7 @@ export const getPage = async (page, pdfDoc, canvas) => {
   return promise;
 };
 
-export default async (pdfFile, canvas) => {
+export const getDocFirstPage = async (pdfFile, canvas) => {
   const pdfDoc = await getDocument(pdfFile);
   const task = getPage(1, pdfDoc, canvas);
   return {

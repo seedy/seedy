@@ -5,8 +5,8 @@ import { PropTypes } from 'prop-types';
 import Tooltip from '@mui/material/Tooltip';
 
 // CONSTANTS
-const DARK_TITLE = 'Toggle light mode';
-const LIGHT_TITLE = 'Toggle dark mode';
+const DARK_TITLE = 'Activer le light mode';
+const LIGHT_TITLE = 'Activer le dark mode';
 
 // COMPONENTS
 const TooltipDarkMode = ({ dark, ...props }) => {

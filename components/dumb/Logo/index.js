@@ -44,7 +44,7 @@ const Logo = forwardRef(({ short, onClick, ...props }, ref) => {
         duration: 30,
       });
     },
-    [vivusRef]
+    [vivusRef],
   );
 
   if (short) {

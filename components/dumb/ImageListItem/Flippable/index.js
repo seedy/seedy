@@ -5,7 +5,7 @@ import isFunction from 'helpers/isFunction';
 
 import styled from '@mui/material/styles/styled';
 
-import Image from 'next/image'
+import Image from 'next/image';
 import ImageListItem from '@mui/material/ImageListItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import Backdrop from '@mui/material/Backdrop';

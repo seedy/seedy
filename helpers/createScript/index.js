@@ -11,7 +11,7 @@ export const LOAD_EVENT = 'load';
 export const ERROR_EVENT = 'error';
 
 // HELPERS
-export default (src, options = null) => {
+const createScript = (src, options = null) => {
   const existingScript = document.querySelector(`script[src="${src}"]`);
 
   if (isNil(existingScript)) {
@@ -42,3 +42,5 @@ export default (src, options = null) => {
 
   return existingScript;
 };
+
+export default createScript;

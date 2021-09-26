@@ -26,7 +26,7 @@ const LogoNavLink = forwardRef(({ href, match, ...props }, ref) => {
       const exactMatch = href === pathname;
       return isNil(match)
         ? exactMatch
-        : match === pathname
+        : match === pathname;
     },
     [href, match, pathname],
   );

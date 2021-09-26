@@ -17,9 +17,6 @@ const INITIAL_STATE = {
   done: false,
 };
 
-// HELPERS
-
-
 // REDUCER
 const reducer = (state, { type }) => {
   switch (type) {
@@ -37,7 +34,7 @@ const reducer = (state, { type }) => {
 };
 
 // HOOKS
-export default (src, options) => {
+const useScript = (src, options) => {
   const idle = useMemo(
     () => !isString(src),
     [src],
@@ -105,3 +102,5 @@ export default (src, options) => {
 
   return state;
 };
+
+export default useScript;

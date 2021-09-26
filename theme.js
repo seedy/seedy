@@ -13,7 +13,7 @@ export const getPalette = (mode) => ({
   } : {
     primary: deepPurple,
     secondary: orange,
-  })
+  }),
 });
 
 export const getTheme = (mode) => responsiveFontSizes(createTheme({
