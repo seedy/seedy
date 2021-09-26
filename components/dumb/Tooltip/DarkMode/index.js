@@ -4,15 +4,11 @@ import { PropTypes } from 'prop-types';
 
 import Tooltip from '@mui/material/Tooltip';
 
-// CONSTANTS
-const DARK_TITLE = 'Activer le light mode';
-const LIGHT_TITLE = 'Activer le dark mode';
-
 // COMPONENTS
-const TooltipDarkMode = ({ dark, ...props }) => {
+const TooltipDarkMode = ({ dark, titleDark, titleLight, ...props }) => {
   const title = useMemo(
-    () => (dark ? DARK_TITLE : LIGHT_TITLE),
-    [dark],
+    () => (dark ? titleDark : titleLight),
+    [dark, titleDark, titleLight],
   );
 
   return (
@@ -22,6 +18,8 @@ const TooltipDarkMode = ({ dark, ...props }) => {
 
 TooltipDarkMode.propTypes = {
   dark: PropTypes.bool,
+  titleDark: PropTypes.string.isRequired,
+  titleLight: PropTypes.string.isRequired,
 };
 
 TooltipDarkMode.defaultProps = {

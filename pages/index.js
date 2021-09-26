@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import matchMediaHover from 'helpers/matchMediaHover';
 
@@ -6,6 +7,8 @@ import { useCallback, useMemo, useState } from 'react';
 import useIsXs from 'hooks/useIsXs';
 import useIsDownMd from 'hooks/useIsDownMd';
 import useClientSide from 'hooks/useClientSide';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -38,20 +41,42 @@ const CONTENT_PADDING = 32;
 const FIRST_DELAY = '2.8s';
 const SECOND_DELAY = '4.8s';
 
-const CV_NAME = 'Cedric-Dupuis-cv-fr.pdf';
-const CV_PATH = `/cv/${CV_NAME}`;
+const CV_NAME = {
+  en: 'Cedric-Dupuis-cv-en.pdf',
+  fr: 'Cedric-Dupuis-cv-fr.pdf',
+};
+
+const CV_FOLDER = '/cv/';
 
 // HELPERS
-const getMatchMediaHoverAction = () => (matchMediaHover() ? 'Survole' : 'Clique sur');
+const getMatchMediaHoverKeyword = () => (matchMediaHover() ? 'hoverTiles' : 'touchTiles');
+
+// SSG
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common', 'interests'])),
+  },
+});
 
 // COMPONENTS
 const Home = () => {
   const isXs = useIsXs();
   const isDownMd = useIsDownMd();
 
+  const { locale, defaultLocale } = useRouter();
+  const cvName = useMemo(
+    () => CV_NAME[locale || defaultLocale],
+    [locale, defaultLocale],
+  );
+  const cvPath = useMemo(
+    () => `${CV_FOLDER}${cvName}`,
+    [cvName],
+  );
 
-  const subtitleAction = useClientSide(
-    getMatchMediaHoverAction,
+  const { t } = useTranslation(['common', 'interests']);
+
+  const subtitleKeyword = useClientSide(
+    getMatchMediaHoverKeyword,
   );
 
   const listCols = useMemo(
@@ -93,7 +118,7 @@ const Home = () => {
         mb={2}
       >
         <Box mb={2}>
-          <HeroTypewriter color="textPrimary" variant="h3">Salut, moi c&apos;est :</HeroTypewriter>
+          <HeroTypewriter color="textPrimary" variant="h3">{t('common:heroTypewriter')}</HeroTypewriter>
         </Box>
         <Fade in style={{ transitionDelay: FIRST_DELAY }}>
           <Grid container spacing={1}>
@@ -112,11 +137,9 @@ const Home = () => {
           <Fade in style={{ transitionDelay: SECOND_DELAY }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography paragraph color="textPrimary" variant="h3">Je suis un passionné</Typography>
+                <Typography paragraph color="textPrimary" variant="h3">{t('common:heroPassion')}</Typography>
                 <Typography color="textSecondary" variant="subtitle1">
-                  {subtitleAction}
-                  {' '}
-                  les images pour en savoir plus
+                  {t(`common:${subtitleKeyword}`)}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -142,7 +165,7 @@ const Home = () => {
                 alignItems="center"
                 position="relative"
               >
-                <Typography variant="h6">CV</Typography>
+                <Typography variant="h6">{t('common:cv')}</Typography>
                 <PdfViewerToolbar
                   sx={{
                     margin: 'auto',
@@ -155,6 +178,7 @@ const Home = () => {
                   }}
                   onClick={onClose}
                   size="large"
+                  aria-label={t('common:close')}
                 >
                   <CloseIcon />
                 </IconButton>
@@ -167,13 +191,13 @@ const Home = () => {
               dividers
             >
               <PdfViewer
-                file={CV_PATH}
+                file={cvPath}
                 maxWidth="100%"
                 maxHeight={`calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`}
               />
             </DialogContent>
             <DialogActions>
-              <ButtonDownload href={CV_PATH} download={CV_NAME}>Télécharger</ButtonDownload>
+              <ButtonDownload href={cvPath} download={cvName}>{t('common:download')}</ButtonDownload>
             </DialogActions>
           </PdfViewerContextProvider>
         </Dialog>
