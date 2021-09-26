@@ -16,6 +16,7 @@ import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/
 import IconButtonAbout from 'components/smart/IconButton/About';
 import IconButtonTranslate from 'components/smart/IconButton/Translate';
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
+import MenuItem from '@mui/material/MenuItem';
 import { CacheProvider } from '@emotion/react';
 
 import 'styles/globals.css';
@@ -55,7 +56,11 @@ const App = ({ Component, pageProps, emotionCache }) => {
                 <ButtonHomeLink />
                 <BoxFlexFill />
                 <IconButtonAbout title={t('common:about')} />
-                <IconButtonTranslate title={t('common:changeLanguage')} />
+                <IconButtonTranslate title={t('common:changeLanguage')}>
+                  <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
+                    {t('common:askTranslation')}
+                  </MenuItem>
+                </IconButtonTranslate>
                 <IconButtonDarkModeWithContext
                   titleLight={t('common:toggleDarkMode')}
                   titleDark={t('common:toggleLightMode')}
