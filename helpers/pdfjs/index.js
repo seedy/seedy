@@ -1,6 +1,11 @@
-import * as pdfjsLib from 'pdfjs-dist/webpack';
+import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
+if (typeof window !== "undefined" && "Worker" in window) {
+  const PdfjsWorker = new Worker(new URL('pdfjs-dist/build/pdf.worker', import.meta.url));
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.js';
+  pdfjsLib.GlobalWorkerOptions.workerPort = PdfjsWorker;
+}
+
 
 export const getDocument = (pdfFile) => pdfjsLib.getDocument(pdfFile).promise;
 

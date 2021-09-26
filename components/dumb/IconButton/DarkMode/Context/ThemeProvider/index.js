@@ -4,7 +4,7 @@ import isNil from 'helpers/isNil';
 import { useDarkModeContext } from 'components/dumb/IconButton/DarkMode/Context';
 import { useMemo } from 'react';
 
-import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from '@mui/material';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 // COMPONENTS
 const ThemeProvider = (props) => {
@@ -26,9 +26,7 @@ const ThemeProvider = (props) => {
   );
 
   return (
-    <StyledEngineProvider injectFirst>
-      <MuiThemeProvider theme={theme} {...props} />
-    </StyledEngineProvider>
+    <MuiThemeProvider theme={theme} {...props} />
   );
 };
 

@@ -1,3 +1,7 @@
+import PropTypes from 'prop-types';
+
+import dynamic from 'next/dynamic';
+
 import matchMediaHover from 'helpers/matchMediaHover';
 
 import { useCallback, useMemo, useState } from 'react';
@@ -10,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
-import PdfViewer from 'components/dumb/PdfViewer';
+const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: false });
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
@@ -27,9 +31,6 @@ import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import file from 'public/cv/Cedric-Dupuis-cv-fr.pdf';
-import useClientSide from '../hooks/useClientSide';
-
 // CONSTANTS
 const TOOLBAR_HEIGHT = 48;
 const ACTIONS_FOOTER_HEIGHT = 52;
@@ -37,6 +38,9 @@ const CONTENT_PADDING = 32;
 
 const FIRST_DELAY = '2.8s';
 const SECOND_DELAY = '4.8s';
+
+const CV_NAME = "Cedric-Dupuis-cv-fr.pdf";
+const CV_PATH = `/cv/${CV_NAME}`;
 
 // COMPONENTS
 const Home = () => {
@@ -85,6 +89,7 @@ const Home = () => {
         flexDirection="column"
         alignItems="center"
         mt={1}
+        mb={2}
       >
         <Box mb={2}>
           <HeroTypewriter color="textPrimary" variant="h3">Salut, moi c&apos;est :</HeroTypewriter>
@@ -156,13 +161,13 @@ const Home = () => {
             </DialogTitle>
             <DialogContent dividers>
               <PdfViewer
-                file={file}
+                file={CV_PATH}
                 maxWidth="100%"
                 maxHeight={`calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`}
               />
             </DialogContent>
             <DialogActions>
-              <ButtonDownload href={file} download="Cedric-Dupuis-cv-fr.pdf">Télécharger</ButtonDownload>
+              <ButtonDownload href={CV_PATH} download={CV_NAME}>Télécharger</ButtonDownload>
             </DialogActions>
           </PdfViewerContextProvider>
         </Dialog>
@@ -170,4 +175,5 @@ const Home = () => {
     </Container>
   );
 };
+
 export default Home;

@@ -29,18 +29,19 @@ const IconButtonAbout = forwardRef((props, ref) => {
   );
 
   return (
-    <Tooltip title={ABOUT}>
-      <IconButton
-        ref={ref}
-        component={Link}
-        href={routes.about}
-        color={activeColor}
-        {...props}
-        size="large"
-      >
-        <InfoIcon />
-      </IconButton>
-    </Tooltip>
+    <Link href={routes.about}>
+      <Tooltip title={ABOUT}>
+        <IconButton
+          ref={ref}
+          component="a"
+          color={activeColor}
+          {...props}
+          size="large"
+        >
+          <InfoIcon />
+        </IconButton>
+      </Tooltip>
+    </Link>
   );
 });
 

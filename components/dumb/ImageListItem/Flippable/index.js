@@ -62,6 +62,7 @@ const ImageListItemFlippable = forwardRef(({
   onClick, alt, src,
   front, back,
   frontProps, backProps,
+  width, height,
   ...props
 }, ref) => {
   const [flip, setFlip] = useState(false);
@@ -99,9 +100,12 @@ const ImageListItemFlippable = forwardRef(({
       {...props}
     >
       <Image
+        className="MuiImageListItem-img"
         ref={ref}
         alt={alt}
         src={src}
+        width={width}
+        height={height}
       />
       <BackdropFlippable
         open
@@ -127,6 +131,8 @@ ImageListItemFlippable.propTypes = {
   back: PropTypes.node,
   frontProps: PropTypes.object,
   backProps: PropTypes.object,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 ImageListItemFlippable.defaultProps = {

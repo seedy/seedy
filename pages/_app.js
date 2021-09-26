@@ -1,4 +1,8 @@
+import PropTypes from 'prop-types';
 
+import dynamic from 'next/dynamic';
+
+import Head from 'next/head';
 import CssBaseline from '@mui/material/CssBaseline';
 import ThemeProvider from 'components/dumb/IconButton/DarkMode/Context/ThemeProvider';
 import IconButtonDarkModeContext from 'components/dumb/IconButton/DarkMode/Context';
@@ -28,25 +32,33 @@ export const reportWebVitals = (onPerfEntry) => {
 };
 
 // PAGE
-const App = ({ Component, pageProps }) => (
-  <IconButtonDarkModeContext>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box display="flex" flexDirection="column">
-        <AppBar position="fixed">
-          <Toolbar>
-            <ButtonHomeLink />
-            <BoxFlexFill />
-            <IconButtonAbout />
-            <IconButtonDarkModeWithContext />
-          </Toolbar>
-        </AppBar>
-        <BoxToolbarOffset />
-        <Component {...pageProps} />
-      </Box>
-    </ThemeProvider>
-  </IconButtonDarkModeContext>
-);
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <Head>
+        <title>Seedy.Dupuis | A portfolio app</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <IconButtonDarkModeContext>
+        <ThemeProvider>
+          <CssBaseline />
+          <Box display="flex" flexDirection="column">
+            <AppBar position="fixed">
+              <Toolbar>
+                <ButtonHomeLink />
+                <BoxFlexFill />
+                <IconButtonAbout />
+                <IconButtonDarkModeWithContext />
+              </Toolbar>
+            </AppBar>
+            <BoxToolbarOffset />
+            <Component {...pageProps} />
+          </Box>
+        </ThemeProvider>
+      </IconButtonDarkModeContext>
+    </>
+  );
+}
 
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,

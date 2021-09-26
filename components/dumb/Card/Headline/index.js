@@ -15,15 +15,12 @@ const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
   return (
     <Card ref={ref} {...props}>
       <CardActionArea onClick={onMedia}>
-        <CardMedia
-          component={Image}
+        <Image
           alt="Cédric DUPUIS CV"
-          srcSet="CV_Headline-1583w.png 1583w,
-        CV_Headline-408w.png 408w"
-          sizes={`(max-width:${theme.breakpoints.values.sm}px) 408px,
-        1583px`}
-          src="CV_Headline-1583w.png"
+          src="/CV_Headline-1583w.png"
           title="Cédric DUPUIS CV"
+          height={443}
+          width={1583}
         />
       </CardActionArea>
       <CardActions>
