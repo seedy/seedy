@@ -1,4 +1,5 @@
 import { forwardRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 import routes from 'routes';
 
@@ -9,12 +10,8 @@ import Tooltip from '@mui/material/Tooltip';
 
 import InfoIcon from '@mui/icons-material/Info';
 
-// CONSTANTS
-const ABOUT = 'A propos';
-
-
 // COMPONENTS
-const IconButtonAbout = forwardRef((props, ref) => {
+const IconButtonAbout = forwardRef(({ title, ...props }, ref) => {
   const { pathname } = useRouter();
 
   const active = useMemo(
@@ -28,18 +25,21 @@ const IconButtonAbout = forwardRef((props, ref) => {
   );
 
   return (
-    <Tooltip title={ABOUT}>
+    <Tooltip title={title}>
       <IconButtonLink
         ref={ref}
         href={routes.about}
         color={activeColor}
         {...props}
-        size="large"
       >
         <InfoIcon />
       </IconButtonLink>
     </Tooltip>
   );
 });
+
+IconButtonAbout.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default IconButtonAbout;

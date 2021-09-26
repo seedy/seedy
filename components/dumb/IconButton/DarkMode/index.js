@@ -11,7 +11,10 @@ import LightIcon from '@mui/icons-material/Brightness5';
 
 
 // COMPONENTS
-const IconButtonDarkMode = forwardRef(({ dark, onSwitchMode, onClick, ...props }, ref) => {
+const IconButtonDarkMode = forwardRef(({
+  dark, titleLight, titleDark,
+  onSwitchMode, onClick, ...props
+}, ref) => {
   const handleClick = useCallback(
     (e) => {
       if (isFunction(onSwitchMode)) {
@@ -25,8 +28,16 @@ const IconButtonDarkMode = forwardRef(({ dark, onSwitchMode, onClick, ...props }
   );
 
   return (
-    <TooltipDarkMode dark={dark}>
-      <IconButton ref={ref} onClick={handleClick} {...props} size="large">
+    <TooltipDarkMode
+      dark={dark}
+      titleLight={titleLight}
+      titleDark={titleDark}
+    >
+      <IconButton
+        ref={ref}
+        onClick={handleClick}
+        {...props}
+      >
         {dark ? <LightIcon /> : <DarkIcon />}
       </IconButton>
     </TooltipDarkMode>
@@ -35,6 +46,8 @@ const IconButtonDarkMode = forwardRef(({ dark, onSwitchMode, onClick, ...props }
 
 IconButtonDarkMode.propTypes = {
   dark: PropTypes.bool,
+  titleLight: PropTypes.string.isRequired,
+  titleDark: PropTypes.string.isRequired,
   onSwitchMode: PropTypes.func,
   onClick: PropTypes.func,
 };

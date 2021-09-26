@@ -1,0 +1,178 @@
+{
+  "ranchal": {
+    "title": "Ranchal",
+    "subtitle": "Chez moi"
+  },
+  "lyonStreet": {
+    "title": "Rue des pierres plantées, Croix-Rousse, Lyon",
+    "subtitle": "Une rue vivante, une belle vue"
+  },
+  "gurpBeach": {
+    "title": "Plage du Gurp",
+    "subtitle": "Le surf spot de mon coeur"
+  },
+  "sarenne": {
+    "title": "Glacier de la Sarenne, Alpe d'Huez",
+    "subtitle": "La piste la plus longue d'Europe"
+  },
+  "mccaig": {
+    "title": "Tour McCaig, Oban",
+    "subtitle": "Un superbe point de vue sur la mer depuis une ancienne tour"
+  },
+  "gylen": {
+    "title": "Gylen Castle, Kerrera",
+    "subtitle": "Mon lieu préféré sur Terre"
+  },
+  "georgeSq": {
+    "title": "George Square, Glasgow",
+    "subtitle": "Une ville industrielle gorgée de culture"
+  },
+  "quiraing": {
+    "title": "Quiraing, Skye",
+    "subtitle": "Des collines verdoyantes à perte de vue"
+  },
+  "calton": {
+    "title": "Calton Hill, Edinburgh",
+    "subtitle": "Une magnifique vue sur Edinburgh"
+  },
+  "thaborSummit": {
+    "title": "Pic du Mont Thabor",
+    "subtitle": "1400D+ en 2 jours !"
+  },
+  "stables": {
+    "title": "Stables Club, Limerick",
+    "subtitle": "Les TGIF Erasmus étaient incroyables"
+  },
+  "lussPier": {
+    "title": "Port de Luss",
+    "subtitle": "Un lieu calme, d'une belle simplicité, pour se ressourcer"
+  },
+  "grandSom": {
+    "title": "Le Grand Som, Chartreuse",
+    "subtitle": "Une randonnée entre arbres et roches"
+  },
+  "capeFrehel": {
+    "title": "Pointe du Cap Fréhel",
+    "subtitle": "Des falaises et un fort"
+  },
+  "beuzec": {
+    "title": "Beuzec-Cap-Sizun",
+    "subtitle": "La tranquillité, le sentier côtier, les criques, l'océan"
+  },
+  "lacanauBeach": {
+    "title": "Plage de Lacanau Océan",
+    "subtitle": "Une petite ville touristique très animée et appréciée des surfeurs"
+  },
+  "pilatDune": {
+    "title": "Dune du Pilat",
+    "subtitle": "Le sable, la vue, gravir la dune"
+  },
+  "dresdenCastle": {
+    "title": "Château Royal de Dresden",
+    "subtitle": "Un château riche et impressionant"
+  },
+  "bondiBeach": {
+    "title": "Bondi Beach, Sydney",
+    "subtitle": "Une plage inoubliable, à deux pas de Sydney"
+  },
+  "bay": {
+    "title": "Baie des Trépassés, Cap Sizun",
+    "subtitle": "Une très grande baie au milieu des caps"
+  },
+  "krka": {
+    "title": "Parc National de Krka",
+    "subtitle": "De nombreuses cascades et les eaux bleues de la Croatie"
+  },
+  "fortPula": {
+    "title": "Fort Punta Cristo, Pula",
+    "subtitle": "Un ancien fort dans un cadre idyllique au bord de l'eau"
+  },
+  "joue": {
+    "title": "Joué sur Erdre",
+    "subtitle": "Un beau site conservé grâce à Natura2000"
+  },
+  "rovinj": {
+    "title": "Rovinj",
+    "subtitle": "Un village fortifié en hauteur, chats errants amicaux et vue sur la mer"
+  },
+  "triglav": {
+    "title": "Parc National du Triglav",
+    "subtitle": "Des rivières bleutées dans les montagnes"
+  },
+  "kfet": {
+    "title": "K-fet Insa Lyon",
+    "subtitle": "Tant de souvenirs festifs, à refaire le monde"
+  },
+  "montRoyal": {
+    "title": "Mont Royal, Montréal",
+    "subtitle": "Découverte du patin à glace en plein air"
+  },
+  "daVinci": {
+    "title": "Musée de Vinci, Venise",
+    "subtitle": "Les inventions de Léonard, au coeur des canaux vénitiens"
+  },
+  "wall": {
+    "title": "Mur des Lamentations, Jérusalem",
+    "subtitle": "La ferveur y est palpable"
+  },
+  "alcazar": {
+    "title": "Alcazar, Ségovia",
+    "subtitle": "Mon premier château fort, restauré et ouvert aux visites"
+  },
+  "ribeauvilleCastles": {
+    "title": "Châteaux de Ribeauvillé",
+    "subtitle": "Son village médiéval surplombé par des châteaux"
+  },
+  "eileanDonan": {
+    "title": "Château Eilean Donan, Kyle",
+    "subtitle": "Un château restauré au bord de l'eau, ouvrant la voie vers Skye"
+  },
+  "bondePond": {
+    "title": "Etang de la Bonde, Lubéron",
+    "subtitle": "Pause au calme au milieu d'un séjour de randonnée"
+  },
+  "nearGordes": {
+    "title": "Près de Gordes, Lubéron",
+    "subtitle": "Des falaises et des gorges pour se faire les jambes"
+  },
+  "crozetLake": {
+    "title": "Lac du Crozet, Isère",
+    "subtitle": "Un magnifique lac de montagne au milieu de la brume"
+  },
+  "marjanPark": {
+    "title": "Park Marjan, Split",
+    "subtitle": "Parc en haut de colline offrant une très belle vue sur le port de Split"
+  },
+  "applecross": {
+    "title": "Applecross",
+    "subtitle": "Une petite île en face de la plage, accessible à marée basse"
+  },
+  "gairlochBeach": {
+    "title": "Plage de Gairloch, Gairloch",
+    "subtitle": "Une vue sur la baie, à couper le souffle"
+  },
+  "lochNess": {
+    "title": "Loch Ness",
+    "subtitle": "Camping sauvage entre un feu et le loch"
+  },
+  "cairngorns": {
+    "title": "Parc National des Cairngorns",
+    "subtitle": "Calme, moutons, montagnes"
+  },
+  "lakeMontCenis": {
+    "title": "Lac du Mont-Cenis",
+    "subtitle": "Une halte bien méritée avant la frontière franco-italienne"
+  },
+  "jacobiteGlenfinnan": {
+    "title": "Train Jacobite, Viaduc de Glenfinnan",
+    "subtitle": "Le train de Poudlard sur un viaduc !"
+  },
+  "trossachsPark": {
+    "title": "Parc National du Trossachs",
+    "subtitle": "Moutons !"
+  },
+  "blancnezCliffs": {
+    "title": "Falaises du Cap Blanc Nez, Sangatte",
+    "subtitle": "Les falaises du Nord-Pas, on peut voir la côte anglaise les jours de beau temps"
+  }
+}
