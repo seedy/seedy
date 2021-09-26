@@ -23,7 +23,7 @@ const SIZING = {
 };
 
 // COMPONENTS
-const CardMedia = forwardRef(({ size, ...props }, ref) => {
+const CardMedia = forwardRef(({ title, subheader, size, ...props }, ref) => {
   const sizing = useMemo(
     () => SIZING[size],
     [size],
@@ -31,14 +31,14 @@ const CardMedia = forwardRef(({ size, ...props }, ref) => {
   return (
     <Card ref={ref} {...props}>
       <CardHeader
-        title="Media"
-        subheader="Pour me suivre ou me contacter"
+        title={title}
+        subheader={subheader}
       />
       <CardContent>
         <Box display="flex" alignItems="center" justifyContent="center">
           <Box mr={1}>
-            <Tooltip title="Voir le profil Linkedin">
-              <IconButton size={size} href="https://fr.linkedin.com/in/cedric-dupuis-69470?trk=public-profile-badge-profile-badge-view-profile-cta">
+            <Tooltip title="Linkedin">
+              <IconButton size={size} href="https://linkedin.com/in/cedric-dupuis-69470?trk=public-profile-badge-profile-badge-view-profile-cta">
                 <LinkedinIcon />
               </IconButton>
             </Tooltip>
@@ -94,6 +94,8 @@ const CardMedia = forwardRef(({ size, ...props }, ref) => {
 });
 
 CardMedia.propTypes = {
+  title: PropTypes.string.isRequired,
+  subheader: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['small', 'medium']),
 };
 

@@ -1,0 +1,38 @@
+{
+  "title": "Seedy.Dupuis | Portfolio",
+  "about": "A propos",
+  "toggleDarkMode": "Activer le dark mode",
+  "toggleLightMode": "Activer le light mode",
+  "changeLanguage": "Changer de langue",
+  "askTranslation": "Demander une traduction",
+  "heroTypewriter": "Salut, moi c'est :",
+  "heroPassion": "Je suis un passioné",
+  "hoverTiles": "Survole les images pour en savoir plus",
+  "touchTiles": "Touche les images pour en savoir plus",
+  "clickMarkers": "Clique sur les marqueurs pour en savoir plus",
+  "cv": "CV",
+  "download": "Télécharger",
+  "close": "Fermer",
+  "zoomIn": "Zoomer",
+  "zoomOut": "Dézoomer",
+  "heroWordSlide": {
+    "title": "Je suis",
+    "dev": "développeur",
+    "travel": "voyageur",
+    "music": "mélomane",
+    "festival": "festivalier",
+    "volunteer": "bénévole",
+    "cook": "cuisinier",
+    "hike": "randonneur",
+    "surf": "surfeur",
+    "plural": "pluriel"
+  },
+  "presentation": "Je suis convaincu que nous nous construisons par nos <bold>expériences</bold>.<br/>Raconte moi ce que tu aimes faire, je te dirai <bold>qui tu es</bold>.<br/><br/>Le voyage, seul, à pied, vers l'inconnu, m'a permis de grandir et trouver mon essence.<br/>Le bénévolat m'a fait découvrir une autre façon de m'impliquer. Je ne sais pas ce que je ferais sans musique, sans festival, sans fête. Cuisiner en festival, c'est aussi faire des rencontres, passer du temps en tant que groupe et se soutenir dans les moments de rush.<br/>Pratiquer un sport dépendant des éléments enseigne la patience et l'engagement.<br/>Toutes ces activités d'extérieur sont pour moi un moyen de m'équilibrer et d'apprécier le retour chez moi et ma routine au bureau.<br/><br/>J'aimerais <bold>partager</bold> quelques souvenirs avec toi, si tu le veux bien.",
+  "maps": "Cartes",
+  "trips": "Voyages",
+  "festivals": "Festivals",
+  "media": {
+    "title": "Media",
+    "subheader": "Pour suivre mon actualité ou me contacter"
+  }
+}
