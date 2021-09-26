@@ -57,12 +57,12 @@ const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...
         {...props}
       />
       {canRender && (
-      <Portal container={container}>
-        <Box my={1}>
-          <Divider />
-        </Box>
+        <Portal container={container}>
+          <Box my={1}>
+            <Divider />
+          </Box>
           {children}
-      </Portal>
+        </Portal>
       )}
     </Box>
   );
@@ -70,7 +70,7 @@ const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...
 
 ChipTree.propTypes = {
   children: PropTypes.node,
-  container: PropTypes.instanceOf(Element),
+  container: PropTypes.instanceOf(typeof Element === 'undefined' ? function () { } : Element),
   active: PropTypes.bool,
   clickable: PropTypes.bool,
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),

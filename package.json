@@ -22,6 +22,7 @@
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
     "next": "^11.1.2",
+    "next-transpile-modules": "^8.0.0",
     "pdfjs-dist": "2.6.x",
     "ramda": "^0.27.1",
     "react": "^17.0.2",
@@ -30,7 +31,6 @@
     "react-test-renderer": "^17.0.2",
     "vivus": "^0.4.6",
     "web-vitals": "^1.0.1",
-    "worker-loader": "3.0.8",
     "zdog": "^1.1.2"
   },
   "scripts": {
@@ -38,7 +38,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "lint": "eslint ./src"
+    "lint": "next lint --dir constants helpers hooks"
   },
   "browserslist": [
     ">0.5%",

@@ -1,6 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-import deepPurple from '@mui/material/colors/deepPurple';
-import orange from '@mui/material/colors/orange';
+import { deepPurple, orange } from '@mui/material/colors';
 
 // CONSTANTS
 const DEFAULT_THEME = 'dark';
@@ -14,7 +13,8 @@ export const getPalette = (mode) => ({
   } : {
     primary: deepPurple,
     secondary: orange,
-  }) });
+  })
+});
 
 export const getTheme = (mode) => responsiveFontSizes(createTheme({
   palette: getPalette(mode),

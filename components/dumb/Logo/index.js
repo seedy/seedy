@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useRef } from 'react';
+import { forwardRef, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@mui/material/styles/styled';
 import Vivus from 'vivus';
@@ -6,37 +6,24 @@ import Vivus from 'vivus';
 import isNil from 'helpers/isNil';
 import isFunction from 'helpers/isFunction';
 
-import { ReactComponent as ShortLogo } from './Seedy.svg';
-import { ReactComponent as LongLogo } from './SeedyDupuis.svg';
+import LogoShort from 'components/dumb/Logo/Short';
+import LogoLong from 'components/dumb/Logo/Long';
 
 // CONSTANTS
 const VIVUS_ID = 'LOGO_VIVUS';
 
 // STYLED
-const ShortLogoStyled = styled(ShortLogo)(({ theme }) => ({
+const LogoShortStyled = styled(LogoShort)(({ theme }) => ({
   stroke: theme.palette.text.primary,
 }));
 
-const LongLogoStyled = styled(LongLogo)(({ theme }) => ({
+const LogoLongStyled = styled(LogoLong)(({ theme }) => ({
   stroke: theme.palette.text.primary,
 }));
 
 // COMPONENTS
 const Logo = forwardRef(({ short, onClick, ...props }, ref) => {
   const vivusRef = useRef();
-
-  const onMount = useCallback(
-    (node) => {
-      if (!isNil(ref)) {
-        ref.current = node; // eslint-disable-line no-param-reassign
-      }
-      vivusRef.current = new Vivus(VIVUS_ID, {
-        type: 'sync',
-        duration: 30,
-      });
-    },
-    [ref, vivusRef],
-  );
 
   const handleClick = useCallback(
     (e) => {
@@ -50,11 +37,21 @@ const Logo = forwardRef(({ short, onClick, ...props }, ref) => {
     [vivusRef, onClick],
   );
 
+  useEffect(
+    () => {
+      vivusRef.current = new Vivus(VIVUS_ID, {
+        type: 'sync',
+        duration: 30,
+      });
+    },
+    [vivusRef]
+  );
+
   if (short) {
     return (
-      <ShortLogoStyled
+      <LogoShortStyled
         id={VIVUS_ID}
-        ref={onMount}
+        ref={ref}
         onClick={handleClick}
         {...props}
       />
@@ -62,9 +59,9 @@ const Logo = forwardRef(({ short, onClick, ...props }, ref) => {
   }
 
   return (
-    <LongLogoStyled
+    <LogoLongStyled
       id={VIVUS_ID}
-      ref={onMount}
+      ref={ref}
       onClick={handleClick}
       {...props}
     />

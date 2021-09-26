@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 import isNil from 'helpers/isNil';
 
 import { useState, useCallback, useRef } from 'react';
@@ -13,8 +15,8 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CardMedia from 'components/dumb/Card/Media';
 import HeroWordSlide from 'components/dumb/Hero/WordSlide';
-import MapPlaces from 'components/smart/Map/Places';
-import MapFestivals from 'components/smart/Map/Festivals';
+const MapPlaces = dynamic(() => import('components/smart/Map/Places'), { ssr: false });
+const MapFestivals = dynamic(() => import('components/smart/Map/Festivals'), { ssr: false });
 import CardFestivalsSoon from 'components/dumb/Card/Festivals/Soon';
 
 // CONSTANTS
