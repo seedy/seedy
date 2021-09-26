@@ -31,7 +31,6 @@ const IconButtonAbout = forwardRef(({ title, ...props }, ref) => {
         href={routes.about}
         color={activeColor}
         {...props}
-        size="large"
       >
         <InfoIcon />
       </IconButtonLink>
