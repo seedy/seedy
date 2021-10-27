@@ -21,8 +21,12 @@ I live about 1h away from Lyon, France, in a village called Ranchal.
 
 ## I created my own portfolio app
 
-[![Website](https://img.shields.io/website?down_color=lightgrey&down_message=red&label=portfolio&up_color=green&up_message=online&url=https%3A%2F%2Fseedy-portfolio.herokuapp.com%2F)](https://seedy-portfolio.herokuapp.com/)
+[![Heroku](https://img.shields.io/website?down_color=lightgrey&down_message=red&label=portfolio&up_color=green&up_message=online&url=https%3A%2F%2Fseedy-portfolio.herokuapp.com%2F)](https://seedy-portfolio.herokuapp.com/)
 
-It's deployed right there ➡️ [Seedy.Dupuis | Portfolio](https://seedy-portfolio.herokuapp.com/)
+[![Vercel](https://img.shields.io/website?down_color=lightgrey&down_message=red&label=portfolio&up_color=green&up_message=online&url=https%3A%2F%2Fseedy.vercel.app%2F)](https://seedy.vercel.app/)
+
+It's deployed right there:
+- [Seedy.Dupuis | Portfolio](https://seedy-portfolio.herokuapp.com/)
+- [Seedy.Dupuis | Portfolio](https://seedy.vercel.app/)
 
 You'll find out more about me, and find all my **media + contact information** there.
