@@ -1,7 +1,8 @@
-import { forwardRef, useState, useCallback, useMemo } from 'react';
+import { forwardRef, useRef, useState, useCallback, useMemo, useEffect, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 
 import isFunction from 'helpers/isFunction';
+import noop from 'helpers/noop';
 
 import styled from '@mui/material/styles/styled';
 
@@ -65,16 +66,42 @@ const ImageListItemFlippable = forwardRef(({
   width, height,
   ...props
 }, ref) => {
+  const innerRef = useRef(null);
+  useImperativeHandle(ref, () => innerRef.current);
+
   const [flip, setFlip] = useState(false);
+
+  const contentProps = useMemo(
+    () => (flip ? backProps : frontProps),
+    [flip, backProps, frontProps],
+  );
 
   const handleClick = useCallback(
     (e) => {
       if (isFunction(onClick)) {
         onClick(e);
       }
+      e.stopPropagation();
+      e.preventDefault();
       setFlip((prevFlip) => !prevFlip);
     },
     [setFlip, onClick],
+  );
+
+  const onTouchStart = useCallback(
+    (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      setFlip((prevFlip) => !prevFlip);
+    },
+    [setFlip],
+  );
+
+  const onMouseEnter = useCallback(
+    () => {
+      setFlip(true);
+    },
+    [setFlip],
   );
 
   const onMouseLeave = useCallback(
@@ -84,24 +111,33 @@ const ImageListItemFlippable = forwardRef(({
     [setFlip],
   );
 
-  const contentProps = useMemo(
-    () => (flip ? backProps : frontProps),
-    [flip, backProps, frontProps],
+  useEffect(
+    () => {
+      const { current } = innerRef;
+      if (current) {
+        current.addEventListener('touchstart', onTouchStart);
+        current.addEventListener('click', handleClick);
+        return () => {
+          current.removeEventListener('touchstart', onTouchStart);
+          current.removeEventListener('click', handleClick);
+        };
+      }
+      return noop;
+    },
+    [ref, onTouchStart, handleClick],
   );
 
   return (
     <ImageListItemStyled
-      ref={ref}
+      ref={innerRef}
       component={ButtonBase}
-      onClick={handleClick}
-      onMouseEnter={handleClick}
+      onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       flip={flip}
       {...props}
     >
       <Image
         className="MuiImageListItem-img"
-        ref={ref}
         alt={alt}
         src={src}
         width={width}
