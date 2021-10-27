@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import isFunction from 'helpers/isFunction';
 import noop from 'helpers/noop';
+import throttle from 'helpers/throttle';
 
 import styled from '@mui/material/styles/styled';
 
@@ -70,10 +71,21 @@ const ImageListItemFlippable = forwardRef(({
   useImperativeHandle(ref, () => innerRef.current);
 
   const [flip, setFlip] = useState(false);
+  const throttledSetFlip = useMemo(
+    () => throttle(setFlip, 100, { leading: true, trailing: false }),
+    [setFlip],
+  );
 
   const contentProps = useMemo(
     () => (flip ? backProps : frontProps),
     [flip, backProps, frontProps],
+  );
+
+  const onTouchMove = useCallback(
+    (e) => {
+      e.preventDefault();
+    },
+    [],
   );
 
   const handleClick = useCallback(
@@ -81,27 +93,16 @@ const ImageListItemFlippable = forwardRef(({
       if (isFunction(onClick)) {
         onClick(e);
       }
-      e.stopPropagation();
-      e.preventDefault();
-      setFlip((prevFlip) => !prevFlip);
+      throttledSetFlip((prevFlip) => !prevFlip);
     },
-    [setFlip, onClick],
-  );
-
-  const onTouchStart = useCallback(
-    (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      setFlip((prevFlip) => !prevFlip);
-    },
-    [setFlip],
+    [throttledSetFlip, onClick],
   );
 
   const onMouseEnter = useCallback(
     () => {
-      setFlip(true);
+      throttledSetFlip(true);
     },
-    [setFlip],
+    [throttledSetFlip],
   );
 
   const onMouseLeave = useCallback(
@@ -115,22 +116,21 @@ const ImageListItemFlippable = forwardRef(({
     () => {
       const { current } = innerRef;
       if (current) {
-        current.addEventListener('touchstart', onTouchStart);
-        current.addEventListener('click', handleClick);
+        current.addEventListener('touchmove', onTouchMove);
         return () => {
-          current.removeEventListener('touchstart', onTouchStart);
-          current.removeEventListener('click', handleClick);
+          current.removeEventListener('touchmove', onTouchMove);
         };
       }
       return noop;
     },
-    [ref, onTouchStart, handleClick],
+    [ref, onMouseLeave, onMouseEnter, onTouchMove, handleClick],
   );
 
   return (
     <ImageListItemStyled
       ref={innerRef}
       component={ButtonBase}
+      onClick={handleClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       flip={flip}
