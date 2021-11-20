@@ -1,9 +1,5 @@
-import { forwardRef, useRef, useState, useCallback, useMemo, useEffect, useImperativeHandle } from 'react';
+import { forwardRef, useRef, useState, useCallback, useMemo, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
-
-import isFunction from 'helpers/isFunction';
-import noop from 'helpers/noop';
-import throttle from 'helpers/throttle';
 
 import styled from '@mui/material/styles/styled';
 
@@ -61,7 +57,7 @@ const BoxContent = styled(Box, {
 
 // COMPONENTS
 const ImageListItemFlippable = forwardRef(({
-  onClick, alt, src,
+  alt, src,
   front, back,
   frontProps, backProps,
   width, height,
@@ -71,38 +67,17 @@ const ImageListItemFlippable = forwardRef(({
   useImperativeHandle(ref, () => innerRef.current);
 
   const [flip, setFlip] = useState(false);
-  const throttledSetFlip = useMemo(
-    () => throttle(setFlip, 100, { leading: true, trailing: false }),
-    [setFlip],
-  );
 
   const contentProps = useMemo(
     () => (flip ? backProps : frontProps),
     [flip, backProps, frontProps],
   );
 
-  const onTouchMove = useCallback(
-    (e) => {
-      e.preventDefault();
-    },
-    [],
-  );
-
-  const handleClick = useCallback(
-    (e) => {
-      if (isFunction(onClick)) {
-        onClick(e);
-      }
-      throttledSetFlip((prevFlip) => !prevFlip);
-    },
-    [throttledSetFlip, onClick],
-  );
-
   const onMouseEnter = useCallback(
     () => {
-      throttledSetFlip(true);
+      setFlip(true);
     },
-    [throttledSetFlip],
+    [setFlip],
   );
 
   const onMouseLeave = useCallback(
@@ -112,27 +87,20 @@ const ImageListItemFlippable = forwardRef(({
     [setFlip],
   );
 
-  useEffect(
+  const onPointerUp = useCallback(
     () => {
-      const { current } = innerRef;
-      if (current) {
-        current.addEventListener('touchmove', onTouchMove);
-        return () => {
-          current.removeEventListener('touchmove', onTouchMove);
-        };
-      }
-      return noop;
+      setFlip((prevFlip) => !prevFlip);
     },
-    [ref, onMouseLeave, onMouseEnter, onTouchMove, handleClick],
+    [setFlip],
   );
 
   return (
     <ImageListItemStyled
       ref={innerRef}
       component={ButtonBase}
-      onClick={handleClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onPointerUp={onPointerUp}
       flip={flip}
       {...props}
     >
@@ -162,7 +130,6 @@ const ImageListItemFlippable = forwardRef(({
 ImageListItemFlippable.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   front: PropTypes.node,
   back: PropTypes.node,
   frontProps: PropTypes.object,
@@ -172,7 +139,6 @@ ImageListItemFlippable.propTypes = {
 };
 
 ImageListItemFlippable.defaultProps = {
-  onClick: null,
   front: null,
   back: null,
   frontProps: {},
