@@ -11,6 +11,7 @@ import ChipSpaced from 'components/dumb/Chip/Spaced';
 import CodeIcon from '@mui/icons-material/Code';
 import DesktopIcon from '@mui/icons-material/DesktopMac';
 import GestureIcon from '@mui/icons-material/Gesture';
+import { useTranslation } from 'next-i18next';
 
 // CONSTANTS
 const JAVASCRIPT = 'JS';
@@ -50,6 +51,8 @@ const CardSkillsTech = (props) => {
     [setActiveSkill],
   );
 
+  const { t } = useTranslation('skills');
+
   return (
     <CardSkills
       avatar={(
@@ -65,8 +68,8 @@ const CardSkillsTech = (props) => {
           </AvatarSecondary>
         </AvatarGroup>
       )}
-      title="Tech Skills"
-      subheader="Frontend"
+      title={t('skills:techSkills')}
+      subheader={t('skills:frontend')}
       {...props}
     >
       <ContainerContext.Consumer>
@@ -81,10 +84,11 @@ const CardSkillsTech = (props) => {
               onClick={onJavascript}
             >
               <Box>
-                <ChipSpaced label="ES6" />
-                <ChipSpaced label="ES2020" />
-                <ChipSpaced label="FP" />
-                <ChipSpaced label="Currying" />
+                <ChipSpaced label="ES2021" />
+                <ChipSpaced label="JSS" />
+                <ChipSpaced label={t('skills:functionalProgramming')} />
+                <ChipSpaced label={t('skills:currying')} />
+                <ChipSpaced label={t('skills:typescript')} />
               </Box>
             </ChipTree>
             <ChipTree
@@ -94,10 +98,11 @@ const CardSkillsTech = (props) => {
               onClick={onReact}
             >
               <Box>
-                <ChipSpaced label="Hooks" />
-                <ChipSpaced label="Context API" />
-                <ChipSpaced label="State management" />
-                <ChipSpaced label="Data fetching" />
+                <ChipSpaced label={t('skills:hooks')} />
+                <ChipSpaced label={t('skills:contextApi')} />
+                <ChipSpaced label={t('skills:stateManagement')} />
+                <ChipSpaced label={t('skills:dataFetching')} />
+                <ChipSpaced label={t('skills:suspense')} />
               </Box>
             </ChipTree>
             <ChipTree
@@ -107,10 +112,10 @@ const CardSkillsTech = (props) => {
               onClick={onUX}
             >
               <Box>
-                <ChipSpaced label="Responsive" />
-                <ChipSpaced label="Empty state" />
-                <ChipSpaced label="Accessibility" />
-                <ChipSpaced label="Animations" />
+                <ChipSpaced label={t('skills:responsive')} />
+                <ChipSpaced label={t('skills:emptyState')} />
+                <ChipSpaced label={t('skills:accessibility')} />
+                <ChipSpaced label={t('skills:animations')} />
               </Box>
             </ChipTree>
             <ChipTree
@@ -120,10 +125,10 @@ const CardSkillsTech = (props) => {
               onClick={onDesign}
             >
               <Box>
-                <ChipSpaced label="Mockups" />
-                <ChipSpaced label="User scenarii" />
-                <ChipSpaced label="Component library" />
-                <ChipSpaced label="Design systems" />
+                <ChipSpaced label={t('skills:mockups')} />
+                <ChipSpaced label={t('skills:userScenarii')} />
+                <ChipSpaced label={t('skills:componentLibrary')} />
+                <ChipSpaced label={t('skills:designSystems')} />
               </Box>
             </ChipTree>
           </BoxXsResponsiveRowCenterColumnStretch>

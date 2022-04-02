@@ -54,7 +54,7 @@ const getMatchMediaHoverKeyword = () => (matchMediaHover() ? 'hoverTiles' : 'tou
 // SSG
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common', 'interests'])),
+    ...(await serverSideTranslations(locale, ['common', 'interests', 'skills'])),
   },
 });
 
