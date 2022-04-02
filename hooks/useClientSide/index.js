@@ -14,7 +14,9 @@ const useClientSide = (clientSideFn) => {
   );
 
   useEffect(
-    () => resolveFn(clientSideFn),
+    () => {
+      resolveFn(clientSideFn);
+    },
     [resolveFn, clientSideFn],
   );
 
