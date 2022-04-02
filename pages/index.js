@@ -187,6 +187,7 @@ const Home = () => {
             <DialogContent
               sx={{
                 py: 0,
+                overflow: 'hidden',
               }}
               dividers
             >

@@ -50,7 +50,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content="Seedy.Dupuis portfolio application" />

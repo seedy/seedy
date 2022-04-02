@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import isFunction from 'helpers/isFunction';
@@ -13,6 +13,7 @@ import { usePdfViewerContext } from 'components/dumb/PdfViewer/Context';
 import Box from '@mui/material/Box';
 
 import 'pdfjs-dist/web/pdf_viewer.css';
+import { Skeleton } from '@mui/material';
 
 // CONSTANTS
 const CSS_UNITS = 96 / 72;
@@ -20,6 +21,8 @@ const CSS_UNITS = 96 / 72;
 // COMPONENTS
 const PdfViewer = forwardRef(({ file, ...props }, ref) => {
   const { scale, onInit } = usePdfViewerContext();
+
+  const [isLoadingDocument, setLoadingDocument] = useState(false);
 
   const pdfViewerRef = useRef();
   const rootRef = useRef();
@@ -30,7 +33,7 @@ const PdfViewer = forwardRef(({ file, ...props }, ref) => {
       eventBus.on('pagesinit', async () => {
         const { current } = pdfViewerRef;
         if (isNil(current)) {
-          throw new Error('init failed');
+          throw new Error('PdfViewer init failed');
         }
         const { pdfDocument, container } = current;
         const page = await pdfDocument.getPage(1);
@@ -64,10 +67,17 @@ const PdfViewer = forwardRef(({ file, ...props }, ref) => {
 
   const loadDocument = useCallback(
     async (document) => {
-      const pdf = await getDocument(document);
-      pdfViewerRef.current.setDocument(pdf);
+      setLoadingDocument(true);
+      try {
+        const pdf = await getDocument(document);
+        pdfViewerRef.current.setDocument(pdf);
+      } catch (e) {
+        throw new Error('PdfViewer document load failed');
+      } finally {
+        setLoadingDocument(false);
+      }
     },
-    [pdfViewerRef],
+    [pdfViewerRef, setLoadingDocument],
   );
 
   useEffect(
@@ -97,9 +107,14 @@ const PdfViewer = forwardRef(({ file, ...props }, ref) => {
   );
 
   return (
-    <Box {...props} ref={rootRef}>
-      <div ref={ref} className="pdfViewer" />
-    </Box>
+    <>
+      {isLoadingDocument && (
+      <Skeleton variant="rectangular" width="100%" height="100%" {...props} />
+      )}
+      <Box width="100%" height="100%" {...props} ref={rootRef}>
+        <div ref={ref} className="pdfViewer" />
+      </Box>
+    </>
   );
 });
 
