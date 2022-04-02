@@ -13,18 +13,19 @@ import Box from '@mui/material/Box';
 const shouldForwardProp = (prop) => prop !== 'flip';
 
 // STYLED
-const ImageListItemStyled = styled(ImageListItem, {
+const StyledImageListItem = styled(ImageListItem)({
+  overflow: 'hidden',
+});
+
+const StyledImage = styled(Image, {
   shouldForwardProp,
 })(({ flip }) => ({
-  overflow: 'hidden',
-  '& .MuiImageListItem-img': {
-    perspective: '10px',
-    transition: 'transform 0.8s',
-    transformStyle: 'preserve-3d',
-    ...(flip && {
-      transform: 'rotateY(180deg)',
-    }),
-  },
+  perspective: '10px',
+  transition: 'transform 0.8s',
+  transformStyle: 'preserve-3d',
+  ...(flip && {
+    transform: 'rotateY(180deg)',
+  }),
 }));
 
 const BackdropFlippable = styled(Backdrop, {
@@ -95,21 +96,20 @@ const ImageListItemFlippable = forwardRef(({
   );
 
   return (
-    <ImageListItemStyled
+    <StyledImageListItem
       ref={innerRef}
       component={ButtonBase}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onPointerUp={onPointerUp}
-      flip={flip}
       {...props}
     >
-      <Image
-        className="MuiImageListItem-img"
+      <StyledImage
         alt={alt}
         src={src}
         width={width}
         height={height}
+        flip={flip}
       />
       <BackdropFlippable
         open
@@ -123,7 +123,7 @@ const ImageListItemFlippable = forwardRef(({
           {flip ? back : front}
         </BoxContent>
       </BackdropFlippable>
-    </ImageListItemStyled>
+    </StyledImageListItem>
   );
 });
 
