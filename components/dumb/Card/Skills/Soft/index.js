@@ -11,6 +11,7 @@ import ChipSpaced from 'components/dumb/Chip/Spaced';
 import MoodIcon from '@mui/icons-material/Mood';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import { useTranslation } from 'next-i18next';
 
 // CONSTANTS
 const TEAMPLAYER = 'Equipier';
@@ -42,6 +43,8 @@ const CardSkillsSoft = (props) => {
     [setActiveSkill],
   );
 
+  const { t } = useTranslation('skills');
+
   return (
     <CardSkills
       avatar={(
@@ -57,8 +60,8 @@ const CardSkillsSoft = (props) => {
           </AvatarSecondary>
         </AvatarGroup>
       )}
-      title="Soft Skills"
-      subheader="Humain"
+      title={t('skills:softSkills')}
+      subheader={t('skills:remote')}
       {...props}
     >
       <ContainerContext.Consumer>
@@ -73,9 +76,9 @@ const CardSkillsSoft = (props) => {
               onClick={onTeamplayer}
             >
               <Box>
-                <ChipSpaced label="Communication" />
-                <ChipSpaced label="Proaction" />
-                <ChipSpaced label="Ecoute" />
+                <ChipSpaced label={t('skills:communication')} />
+                <ChipSpaced label={t('skills:proaction')} />
+                <ChipSpaced label={t('skills:listening')} />
               </Box>
             </ChipTree>
             <ChipTree
@@ -85,10 +88,10 @@ const CardSkillsSoft = (props) => {
               onClick={onMentor}
             >
               <Box>
-                <ChipSpaced label="Bonnes pratiques" />
-                <ChipSpaced label="Documentation" />
-                <ChipSpaced label="Pair programming" />
-                <ChipSpaced label="Patience" />
+                <ChipSpaced label={t('skills:goodPractices')} />
+                <ChipSpaced label={t('skills:documentation')} />
+                <ChipSpaced label={t('skills:peerProgramming')} />
+                <ChipSpaced label={t('skills:patience')} />
               </Box>
             </ChipTree>
             <ChipTree
@@ -98,10 +101,10 @@ const CardSkillsSoft = (props) => {
               onClick={onIndividual}
             >
               <Box>
-                <ChipSpaced label="Rigueur" />
-                <ChipSpaced label="Organisation" />
-                <ChipSpaced label="Enthousiasme" />
-                <ChipSpaced label="Sensibilité esthétique" />
+                <ChipSpaced label={t('skills:rigor')} />
+                <ChipSpaced label={t('skills:organized')} />
+                <ChipSpaced label={t('skills:enthusiasm')} />
+                <ChipSpaced label={t('skills:dynamism')} />
               </Box>
             </ChipTree>
           </BoxXsResponsiveRowCenterColumnStretch>
