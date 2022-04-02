@@ -14,14 +14,14 @@
     "identity-obj-proxy": "^3.0.0",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
-    "next": "^11.1.2",
+    "next": "^12.1.4",
     "next-i18next": "^8.8.0",
     "next-transpile-modules": "^8.0.0",
     "pdfjs-dist": "2.6.x",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-leaflet": "^3.2.1",
     "react-test-renderer": "^17.0.2",
     "vivus": "^0.4.6",
@@ -63,5 +63,8 @@
     "not dead",
     "not IE 11",
     "maintained node versions"
-  ]
+  ],
+  "engines": {
+    "node": ">12.22.0"
+  }
 }
