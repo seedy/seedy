@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
+import { useTranslation } from 'next-i18next';
 
 // CONSTANTS
 const TITLE = 'Cédric DUPUIS CV';
@@ -19,6 +20,8 @@ const SRC = {
 // COMPONENTS
 const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
   const { locale, defaultLocale } = useRouter();
+
+  const { t } = useTranslation('common');
 
   const src = useMemo(
     () => SRC[locale || defaultLocale],
@@ -41,7 +44,7 @@ const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
           onClick={onMore}
           size="small"
         >
-          En savoir plus
+          {t('common:viewMore')}
 
         </Button>
       </CardActions>
