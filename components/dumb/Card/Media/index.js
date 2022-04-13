@@ -15,7 +15,6 @@ import IconCodeWars from 'components/dumb/Icon/CodeWars';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedinIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import styled from '@mui/material/styles/styled';
 import { useTranslation } from 'next-i18next';
 import IconBandcamp from 'components/dumb/Icon/Bandcamp';
@@ -51,7 +50,6 @@ const CardMedia = forwardRef(({ title, size, ...props }, ref) => {
             <Link
               color="secondary"
               href="mailto:pro.cedric.dupuis@gmail.com"
-              startIcon={<AlternateEmailIcon />}
             >
               pro.cedric.dupuis@gmail.com
             </Link>
