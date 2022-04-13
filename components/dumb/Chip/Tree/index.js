@@ -7,6 +7,7 @@ import noop from 'helpers/noop';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import ChipBox from 'components/dumb/Chip/Box';
 import Portal from '@mui/material/Portal';
 
 // COMPONENTS
@@ -62,7 +63,9 @@ const ChipTree = forwardRef(({ children, active, color, container, boxProps, ...
           <Box my={1}>
             <Divider />
           </Box>
-          {children}
+          <ChipBox>
+            {children}
+          </ChipBox>
         </Portal>
       )}
     </Box>
