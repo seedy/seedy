@@ -1,16 +1,24 @@
-import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import { forwardRef, useCallback } from 'react';
 import { useTranslation } from 'next-i18next';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 
-import GitHubIcon from '@mui/icons-material/GitHub';
+import ButtonUpvote from 'components/dumb/Button/Upvote';
 
 // COMPONENTS
-const CardFestivalsSoon = forwardRef((props, ref) => {
+const CardFestivalsSoon = forwardRef(({ votes, ...props }, ref) => {
   const { t } = useTranslation('common');
+
+  const onVote = useCallback(async () => {
+    await fetch('/api/vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }, []);
+
   return (
     <Card
       ref={ref}
@@ -23,17 +31,23 @@ const CardFestivalsSoon = forwardRef((props, ref) => {
         subheaderTypographyProps={{ align: 'center' }}
       />
       <CardContent>
-        <Button
-          color="secondary"
-          variant="contained"
-          href="https://github.com/seedy/seedy/issues/38#issue-1006857129"
-          startIcon={<GitHubIcon />}
+
+        <ButtonUpvote
+          votes={votes}
+          onClick={onVote}
         >
           {t('common:soon.cta')}
-        </Button>
+        </ButtonUpvote>
       </CardContent>
     </Card>
   );
 });
+
+CardFestivalsSoon.propTypes = {
+  votes: PropTypes.number,
+};
+CardFestivalsSoon.defaultProps = {
+  votes: 0,
+};
 
 export default CardFestivalsSoon;
