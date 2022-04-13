@@ -14,9 +14,9 @@ import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import { useTranslation } from 'next-i18next';
 
 // CONSTANTS
-const TEAMPLAYER = 'Equipier';
-const MENTOR = 'Mentor';
-const INDIVIDUAL = 'Individu';
+const TEAMPLAYER = 'TEAMPLAYER';
+const MENTOR = 'MENTOR';
+const INDIVIDUAL = 'INDIVIDUAL';
 
 // COMPONENTS
 const CardSkillsSoft = (props) => {
@@ -71,7 +71,7 @@ const CardSkillsSoft = (props) => {
           >
             <ChipTree
               container={container}
-              label={TEAMPLAYER}
+              label={t('skills:teamplayer')}
               active={activeSkill === TEAMPLAYER}
               onClick={onTeamplayer}
             >
@@ -83,7 +83,7 @@ const CardSkillsSoft = (props) => {
             </ChipTree>
             <ChipTree
               container={container}
-              label={MENTOR}
+              label={t('skills:mentor')}
               active={activeSkill === MENTOR}
               onClick={onMentor}
             >
@@ -96,7 +96,7 @@ const CardSkillsSoft = (props) => {
             </ChipTree>
             <ChipTree
               container={container}
-              label={INDIVIDUAL}
+              label={t('skills:individual')}
               active={activeSkill === INDIVIDUAL}
               onClick={onIndividual}
             >
