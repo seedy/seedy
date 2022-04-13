@@ -18,6 +18,20 @@ export const getPalette = (mode) => ({
 
 export const getTheme = (mode) => responsiveFontSizes(createTheme({
   palette: getPalette(mode),
+  typography: {
+    h1: {
+      fontSize: '3rem',
+      lineHeight: 1.167,
+    },
+    h2: {
+      fontSize: '2.125rem',
+      lineHeight: 1.235,
+    },
+    h3: {
+      fontSize: '1.25rem',
+      lineHeight: 1.6,
+    },
+  },
   overrides: {
     MuiTab: {
       root: {
