@@ -53,7 +53,7 @@ const CardMedia = forwardRef(({ title, size, ...props }, ref) => {
               href="mailto:pro.cedric.dupuis@gmail.com"
               startIcon={<AlternateEmailIcon />}
             >
-              pro.cedric.dupuis
+              pro.cedric.dupuis@gmail.com
             </Link>
           </Typography>
         </Box>
