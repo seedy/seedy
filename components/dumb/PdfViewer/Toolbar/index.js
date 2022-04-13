@@ -44,6 +44,7 @@ const PdfViewerToolbar = forwardRef((props, ref) => {
       <Typography
         sx={{
           mx: 1,
+          minWidth: '5rem',
         }}
         variant="caption"
         align="center"
