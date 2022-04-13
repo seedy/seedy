@@ -118,7 +118,7 @@ const Home = () => {
         mb={2}
       >
         <Box mb={2}>
-          <HeroTypewriter color="textPrimary" variant="h3">{t('common:heroTypewriter')}</HeroTypewriter>
+          <HeroTypewriter color="textPrimary" variant="h1">{t('common:heroTypewriter')}</HeroTypewriter>
         </Box>
         <Fade in style={{ transitionDelay: FIRST_DELAY }}>
           <Grid container spacing={1}>
@@ -137,8 +137,8 @@ const Home = () => {
           <Fade in style={{ transitionDelay: SECOND_DELAY }}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography paragraph color="textPrimary" variant="h3">{t('common:heroPassion')}</Typography>
-                <Typography color="textSecondary" variant="subtitle1">
+                <Typography paragraph color="textPrimary" variant="h2">{t('common:heroPassion')}</Typography>
+                <Typography color="textSecondary" variant="h3">
                   {t(`common:${subtitleKeyword}`)}
                 </Typography>
               </Grid>
@@ -165,7 +165,7 @@ const Home = () => {
                 alignItems="center"
                 position="relative"
               >
-                <Typography variant="h6">{t('common:cv')}</Typography>
+                <Typography variant="h2">{t('common:cv')}</Typography>
                 <PdfViewerToolbar
                   sx={{
                     margin: 'auto',

@@ -58,7 +58,7 @@ const MapFestivals = (props) => {
         <Marker key={title} position={coordinates}>
           <Popup>
             <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h6">
+              <Typography variant="body1">
                 {title}
                 {volunteer && (
                 <Box display="inline" ml={1}>
