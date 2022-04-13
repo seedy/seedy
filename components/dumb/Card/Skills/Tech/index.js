@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 import CardSkills, { ContainerContext } from 'components/dumb/Card/Skills';
 import ChipTree from 'components/dumb/Chip/Tree';
 import Box from '@mui/material/Box';
-import AvatarGroup from '@mui/material/AvatarGroup';
 import AvatarSecondary from 'components/dumb/Avatar/Secondary';
 import BoxXsResponsiveRowCenterColumnStretch from 'components/dumb/Box/XsResponsive/RowCenterColumnStretch';
 import ChipSpaced from 'components/dumb/Chip/Spaced';
@@ -12,6 +11,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import DesktopIcon from '@mui/icons-material/DesktopMac';
 import GestureIcon from '@mui/icons-material/Gesture';
 import { useTranslation } from 'next-i18next';
+import AvatarGroupAnimationRoll from 'components/dumb/Avatar/GroupAnimation/Roll';
 
 // CONSTANTS
 const JAVASCRIPT = 'JS';
@@ -56,7 +56,7 @@ const CardSkillsTech = (props) => {
   return (
     <CardSkills
       avatar={(
-        <AvatarGroup spacing="small">
+        <AvatarGroupAnimationRoll spacing="small">
           <AvatarSecondary>
             <CodeIcon />
           </AvatarSecondary>
@@ -66,7 +66,7 @@ const CardSkillsTech = (props) => {
           <AvatarSecondary>
             <GestureIcon />
           </AvatarSecondary>
-        </AvatarGroup>
+        </AvatarGroupAnimationRoll>
       )}
       title={t('skills:techSkills')}
       subheader={t('skills:frontend')}

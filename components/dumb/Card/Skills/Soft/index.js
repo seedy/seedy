@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import CardSkills, { ContainerContext } from 'components/dumb/Card/Skills';
 import ChipTree from 'components/dumb/Chip/Tree';
-import AvatarGroup from '@mui/material/AvatarGroup';
+import AvatarGroupAnimationSpring from 'components/dumb/Avatar/GroupAnimation/Spring';
 import AvatarSecondary from 'components/dumb/Avatar/Secondary';
 import BoxXsResponsiveRowCenterColumnStretch from 'components/dumb/Box/XsResponsive/RowCenterColumnStretch';
 import ChipSpaced from 'components/dumb/Chip/Spaced';
@@ -47,7 +47,7 @@ const CardSkillsSoft = (props) => {
   return (
     <CardSkills
       avatar={(
-        <AvatarGroup spacing="small">
+        <AvatarGroupAnimationSpring spacing="small">
           <AvatarSecondary>
             <SupervisedUserCircleIcon />
           </AvatarSecondary>
@@ -57,7 +57,7 @@ const CardSkillsSoft = (props) => {
           <AvatarSecondary>
             <AccessibilityIcon />
           </AvatarSecondary>
-        </AvatarGroup>
+        </AvatarGroupAnimationSpring>
       )}
       title={t('skills:softSkills')}
       subheader={t('skills:remote')}
