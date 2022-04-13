@@ -35,5 +35,10 @@
   "media": {
     "title": "Media",
     "subheader": "Pour suivre mon actualité ou me contacter"
+  },
+  "soon": {
+    "title": "Prochainement",
+    "subtitle": "Des revues de festival",
+    "cta": "Je suis intéressé·e !"
   }
 }
