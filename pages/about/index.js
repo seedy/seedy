@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import isNil from 'helpers/isNil';
+import prisma from 'lib/prisma';
 
 import { useState, useCallback, useRef, useMemo } from 'react';
-import useIsXs from 'hooks/useIsXs';
 import { useTranslation, Trans } from 'next-i18next';
 
 import Head from 'next/head';
@@ -16,7 +17,6 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import CardMedia from 'components/dumb/Card/Media';
 import HeroWordSlide from 'components/dumb/Hero/WordSlide';
 import CardFestivalsSoon from 'components/dumb/Card/Festivals/Soon';
 
@@ -37,16 +37,19 @@ const ITEMS = [
 ];
 
 // SSG
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common', 'places', 'festivals'])),
-  },
-});
+export const getStaticProps = async ({ locale }) => {
+  const votes = await prisma.vote.count() || 0;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'places', 'festivals'])),
+      votes,
+    },
+  };
+};
 
 // COMPONENTS
-const About = () => {
-  const isXs = useIsXs();
-
+const About = ({ votes = 0 }) => {
   const { t } = useTranslation(['common', 'places', 'festivals']);
 
   const items = useMemo(
@@ -140,18 +143,16 @@ const About = () => {
             >
               <Typography color="textSecondary" variant="subtitle2">{t('common:clickMarkers')}</Typography>
               <MapFestivals />
-              <CardFestivalsSoon sx={{ mt: 2, alignSelf: 'center' }} />
+              <CardFestivalsSoon votes={votes} sx={{ mt: 2, alignSelf: 'center' }} />
             </TabPanel>
           </TabContext>
-          <CardMedia
-            size={isXs ? 'small' : undefined}
-            title={t('common:media.title')}
-            subheader={t('common:media.subheader')}
-          />
         </Box>
       </Container>
     </>
   );
+};
+About.propTypes = {
+  votes: PropTypes.number.isRequired,
 };
 
 export default About;
