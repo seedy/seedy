@@ -64,7 +64,7 @@ const MapFestivals = (props) => {
                 <Box display="inline" ml={1}>
                   <Chip
                     color="primary"
-                    label="Bénévole"
+                    label={t('festivals:volunteer')}
                     icon={(
                       <LoyaltyIcon />
                     )}
