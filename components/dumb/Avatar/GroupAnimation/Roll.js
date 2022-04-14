@@ -22,7 +22,9 @@ const roll = keyframes`
   }
 `;
 
-const AvatarGroupAnimated = styled(AvatarGroup)({
+const AvatarGroupAnimated = styled(AvatarGroup, {
+  shouldForwardProp: (prop) => prop !== 'paused',
+})({
   '& .MuiAvatar-root': {
     '&:last-of-type': {
       animation: `${roll} 3s ease infinite`,
