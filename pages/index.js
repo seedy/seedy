@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Fade from '@mui/material/Fade';
 import PdfViewerContextProvider from 'components/dumb/PdfViewer/Context';
 import PdfViewerToolbar from 'components/dumb/PdfViewer/Toolbar';
 import Container from '@mui/material/Container';
@@ -37,9 +36,6 @@ const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: fals
 const TOOLBAR_HEIGHT = 48;
 const ACTIONS_FOOTER_HEIGHT = 52;
 const CONTENT_PADDING = 32;
-
-const FIRST_DELAY = '2.8s';
-const SECOND_DELAY = '4.8s';
 
 const CV_NAME = {
   en: 'Cedric-Dupuis-cv-en.pdf',
@@ -118,35 +114,31 @@ const Home = () => {
         mb={2}
       >
         <Box mb={2}>
-          <HeroTypewriter color="textPrimary" variant="h3">{t('common:heroTypewriter')}</HeroTypewriter>
+          <HeroTypewriter color="textPrimary" variant="h1">{t('common:heroTypewriter')}</HeroTypewriter>
         </Box>
-        <Fade in style={{ transitionDelay: FIRST_DELAY }}>
-          <Grid container spacing={1}>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <CardHeadline onMore={onOpen} onMedia={onOpen} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsTech />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CardSkillsSoft />
+          </Grid>
+        </Grid>
+        <Box pt={3}>
+          <Grid container>
             <Grid item xs={12}>
-              <CardHeadline onMore={onOpen} onMedia={onOpen} />
+              <Typography paragraph color="textPrimary" variant="h2">{t('common:heroPassion')}</Typography>
+              <Typography color="textSecondary" variant="h3">
+                {t(`common:${subtitleKeyword}`)}
+              </Typography>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <CardSkillsTech />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CardSkillsSoft />
+            <Grid item xs={12}>
+              <ImageListInterests cols={listCols} />
             </Grid>
           </Grid>
-        </Fade>
-        <Box pt={3}>
-          <Fade in style={{ transitionDelay: SECOND_DELAY }}>
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography paragraph color="textPrimary" variant="h3">{t('common:heroPassion')}</Typography>
-                <Typography color="textSecondary" variant="subtitle1">
-                  {t(`common:${subtitleKeyword}`)}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <ImageListInterests cols={listCols} />
-              </Grid>
-            </Grid>
-          </Fade>
         </Box>
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
@@ -165,7 +157,7 @@ const Home = () => {
                 alignItems="center"
                 position="relative"
               >
-                <Typography variant="h6">{t('common:cv')}</Typography>
+                <Typography variant="h2">{t('common:cv')}</Typography>
                 <PdfViewerToolbar
                   sx={{
                     margin: 'auto',

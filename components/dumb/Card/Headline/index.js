@@ -44,7 +44,7 @@ const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
           onClick={onMore}
           size="small"
         >
-          {t('common:viewMore')}
+          {t('common:viewCv')}
 
         </Button>
       </CardActions>

@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { CacheProvider } from '@emotion/react';
 
 import 'styles/globals.css';
+import Footer from 'components/dumb/Footer';
 
 // CONSTANTS
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -69,6 +70,7 @@ const App = ({ Component, pageProps, emotionCache }) => {
             </AppBar>
             <BoxToolbarOffset />
             <Component {...pageProps} />
+            <Footer />
           </Box>
         </ThemeProvider>
       </IconButtonDarkModeContext>

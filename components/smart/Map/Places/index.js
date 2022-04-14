@@ -73,7 +73,7 @@ const MapPlaces = (props) => {
         <Marker key={t(title)} position={coordinates}>
           <Popup>
             <Box width="100%" height="100%" display="flex" flexDirection="column" alignItems="center">
-              <Typography variant="h6">{t(`places:${title}`)}</Typography>
+              <Typography variant="body1">{t(`places:${title}`)}</Typography>
               <TypographyPopupSecondary variant="subtitle1">{t(`places:${subtitle}`)}</TypographyPopupSecondary>
               {img && (
               <Image

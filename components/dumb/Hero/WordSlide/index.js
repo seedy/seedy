@@ -93,7 +93,7 @@ const HeroWordSlide = ({ children, items, typographyProps, ...props }) => (
     {...props}
   >
     <Typography
-      variant="h3"
+      variant="h1"
       sx={{
         display: 'inline',
         float: 'left',
@@ -111,7 +111,7 @@ const HeroWordSlide = ({ children, items, typographyProps, ...props }) => (
     >
       {items.map((item) => (
         <Typography
-          variant="h3"
+          variant="h1"
           key={item}
           sx={{
             margin: 0,

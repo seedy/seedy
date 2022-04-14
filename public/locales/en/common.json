@@ -6,7 +6,7 @@
   "changeLanguage": "Change language",
   "askTranslation": "Ask translation",
   "heroTypewriter": "Welcome, I am:",
-  "viewMore": "View more",
+  "viewCv": "View CV",
   "heroPassion": "I'm a passionate person",
   "hoverTiles": "Hover images to know more",
   "touchTiles": "Touch images to know more",
@@ -33,8 +33,8 @@
   "trips": "Trips",
   "festivals": "Festivals",
   "media": {
-    "title": "Media",
-    "subheader": "To follow my updates or contact me"
+    "title": "Follow my updates!",
+    "mail": "Get in touch at"
   },
   "soon": {
     "title": "Soon",

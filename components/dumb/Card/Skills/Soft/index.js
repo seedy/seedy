@@ -2,8 +2,7 @@ import { useCallback, useState } from 'react';
 
 import CardSkills, { ContainerContext } from 'components/dumb/Card/Skills';
 import ChipTree from 'components/dumb/Chip/Tree';
-import Box from '@mui/material/Box';
-import AvatarGroup from '@mui/material/AvatarGroup';
+import AvatarGroupAnimationSpring from 'components/dumb/Avatar/GroupAnimation/Spring';
 import AvatarSecondary from 'components/dumb/Avatar/Secondary';
 import BoxXsResponsiveRowCenterColumnStretch from 'components/dumb/Box/XsResponsive/RowCenterColumnStretch';
 import ChipSpaced from 'components/dumb/Chip/Spaced';
@@ -48,7 +47,7 @@ const CardSkillsSoft = (props) => {
   return (
     <CardSkills
       avatar={(
-        <AvatarGroup spacing="small">
+        <AvatarGroupAnimationSpring spacing="small">
           <AvatarSecondary>
             <SupervisedUserCircleIcon />
           </AvatarSecondary>
@@ -58,7 +57,7 @@ const CardSkillsSoft = (props) => {
           <AvatarSecondary>
             <AccessibilityIcon />
           </AvatarSecondary>
-        </AvatarGroup>
+        </AvatarGroupAnimationSpring>
       )}
       title={t('skills:softSkills')}
       subheader={t('skills:remote')}
@@ -75,11 +74,11 @@ const CardSkillsSoft = (props) => {
               active={activeSkill === TEAMPLAYER}
               onClick={onTeamplayer}
             >
-              <Box>
+              <>
                 <ChipSpaced label={t('skills:communication')} />
                 <ChipSpaced label={t('skills:proaction')} />
                 <ChipSpaced label={t('skills:listening')} />
-              </Box>
+              </>
             </ChipTree>
             <ChipTree
               container={container}
@@ -87,12 +86,12 @@ const CardSkillsSoft = (props) => {
               active={activeSkill === MENTOR}
               onClick={onMentor}
             >
-              <Box>
+              <>
                 <ChipSpaced label={t('skills:goodPractices')} />
                 <ChipSpaced label={t('skills:documentation')} />
                 <ChipSpaced label={t('skills:peerProgramming')} />
                 <ChipSpaced label={t('skills:patience')} />
-              </Box>
+              </>
             </ChipTree>
             <ChipTree
               container={container}
@@ -100,12 +99,12 @@ const CardSkillsSoft = (props) => {
               active={activeSkill === INDIVIDUAL}
               onClick={onIndividual}
             >
-              <Box>
+              <>
                 <ChipSpaced label={t('skills:rigor')} />
                 <ChipSpaced label={t('skills:organized')} />
                 <ChipSpaced label={t('skills:enthusiasm')} />
                 <ChipSpaced label={t('skills:dynamism')} />
-              </Box>
+              </>
             </ChipTree>
           </BoxXsResponsiveRowCenterColumnStretch>
         )}
