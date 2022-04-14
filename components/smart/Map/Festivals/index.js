@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import TypographyPopupSecondary from 'components/dumb/Typography/PopupSecondary';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
-import MapContainer from 'components/dumb/MapContainer';
+import MapContainer from 'components/dumb/MapContainer/Container';
 
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 

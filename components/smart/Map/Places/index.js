@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import TypographyPopupSecondary from 'components/dumb/Typography/PopupSecondary';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
-import MapContainer from 'components/dumb/MapContainer';
+import MapContainer from 'components/dumb/MapContainer/Container';
 
 // CONSTANTS
 const PLACES = [
@@ -58,6 +58,7 @@ const PLACES = [
 // COMPONENTS
 const MapPlaces = (props) => {
   const { t } = useTranslation('places');
+
   return (
     <MapContainer
       center={[37.9, 18.59]}
