@@ -33,7 +33,7 @@ const ButtonBounce = styled(Button)({
 });
 
 // COMPONENTS
-const CardMedia = forwardRef(({ title, size, ...props }, ref) => {
+const CardMedia = forwardRef(({ size, ...props }, ref) => {
   const { t } = useTranslation('common');
 
   return (
@@ -105,8 +105,6 @@ const CardMedia = forwardRef(({ title, size, ...props }, ref) => {
 });
 
 CardMedia.propTypes = {
-  title: PropTypes.string.isRequired,
-  subheader: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['small', 'medium']),
 };
 
