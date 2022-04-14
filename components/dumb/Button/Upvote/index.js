@@ -20,7 +20,9 @@ const bounce = keyframes`
   }
 `;
 
-const ThumbUpIconBounce = styled(ThumbUpIcon)({
+const ThumbUpIconBounce = styled(ThumbUpIcon, {
+  shouldForwardProp: (prop) => prop !== 'voted',
+})({
   '&:hover': {
     transform: 'translateY(-10%)',
   },
