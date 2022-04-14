@@ -26,7 +26,9 @@ const spring = keyframes`
   }
 `;
 
-const AvatarGroupAnimated = styled(AvatarGroup)({
+const AvatarGroupAnimated = styled(AvatarGroup, {
+  shouldForwardProp: (prop) => prop !== 'paused',
+})({
   '& .MuiAvatar-root': {
     '&:last-of-type': {
       animation: `${spring} 3s ease infinite`,
