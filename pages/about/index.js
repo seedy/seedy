@@ -8,7 +8,6 @@ import prisma from 'lib/prisma';
 import { useState, useCallback, useRef, useMemo } from 'react';
 import { useTranslation, Trans } from 'next-i18next';
 
-import Head from 'next/head';
 import SpanBold from 'components/dumb/Span/Bold';
 import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
@@ -19,9 +18,10 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import HeroWordSlide from 'components/dumb/Hero/WordSlide';
 import CardFestivalsSoon from 'components/dumb/Card/Festivals/Soon';
+import MapContainerSkeleton from 'components/dumb/MapContainer/Skeleton';
 
-const MapPlaces = dynamic(() => import('components/smart/Map/Places'), { ssr: false });
-const MapFestivals = dynamic(() => import('components/smart/Map/Festivals'), { ssr: false });
+const MapPlaces = dynamic(() => import('components/smart/Map/Places'), { ssr: false, loading: () => <MapContainerSkeleton /> });
+const MapFestivals = dynamic(() => import('components/smart/Map/Festivals'), { ssr: false, loading: () => <MapContainerSkeleton /> });
 
 // CONSTANTS
 const ITEMS = [
@@ -80,22 +80,6 @@ const About = ({ votes = 0 }) => {
 
   return (
     <>
-      <Head>
-        {/* <!-- LEAFLET's CSS --> */}
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossOrigin=""
-        />
-        {/* <!-- Make sure you put this AFTER Leaflet's CSS --> */}
-        <script
-          defer
-          src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-          crossOrigin=""
-        />
-      </Head>
       <Container maxWidth="md">
         <Box
           display="flex"
