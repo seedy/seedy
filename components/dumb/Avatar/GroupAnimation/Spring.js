@@ -1,8 +1,8 @@
 import AvatarGroup from '@mui/material/AvatarGroup';
 import styled from '@mui/material/styles/styled';
 import { keyframes } from '@emotion/react';
-import { useCallback, useState } from 'react';
-import Button from '@mui/material/Button';
+import { animationPaused, prefersReducedMotionNoAnimation } from 'helpers/styles/animation';
+import AvatarGroupAnimation from 'components/dumb/Avatar/GroupAnimation';
 
 const spring = keyframes`
   0% {
@@ -38,28 +38,14 @@ const AvatarGroupAnimated = styled(AvatarGroup)({
     '&:first-of-type': {
       animation: `${spring} 3s ease infinite 2s`,
     },
-    '@media (prefers-reduce-motion)': {
-      animation: 'none !important',
-    },
+    ...prefersReducedMotionNoAnimation(),
   },
-}, (props) => props.paused && ({
-  '& .MuiAvatar-root': {
-    animationPlayState: 'paused !important',
-  },
+}, (props) => ({
+  '& .MuiAvatar-root': animationPaused(props),
 }));
 
-const AvatarGroupAnimation = (props) => {
-  const [paused, setPaused] = useState(false);
+const AvatarGroupAnimationSpring = (props) => (
+  <AvatarGroupAnimation component={AvatarGroupAnimated} {...props} />
+);
 
-  const onToggle = useCallback((e) => {
-    e.stopPropagation();
-    setPaused((prev) => !prev);
-  }, [setPaused]);
-  return (
-    <Button variant="text" color="inherit" onClick={onToggle}>
-      <AvatarGroupAnimated paused={paused} {...props} />
-    </Button>
-  );
-};
-
-export default AvatarGroupAnimation;
+export default AvatarGroupAnimationSpring;
