@@ -5,7 +5,7 @@ module.exports = withTM({
   reactStrictMode: true,
   i18n,
   images: {
-    domains: ['www.codewars.com'],
+    domains: ['codewars.com'],
   },
   eslint: {
     dirs: ['pages', 'components', 'constants', 'helpers', 'hooks', 'styles'],
