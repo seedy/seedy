@@ -18,6 +18,7 @@ import IconButtonTranslate from 'components/smart/IconButton/Translate';
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
 import MenuItem from '@mui/material/MenuItem';
 import { CacheProvider } from '@emotion/react';
+import GlobalSWRConfig from 'components/contexts/SWRConfig';
 
 import 'styles/globals.css';
 import Footer from 'components/dumb/Footer';
@@ -50,28 +51,30 @@ const App = ({ Component, pageProps, emotionCache }) => {
       </Head>
       <IconButtonDarkModeContext>
         <ThemeProvider>
-          <CssBaseline />
-          <Box display="flex" flexDirection="column">
-            <AppBar position="fixed">
-              <Toolbar>
-                <ButtonHomeLink />
-                <BoxFlexFill />
-                <IconButtonAbout title={t('common:about')} />
-                <IconButtonTranslate title={t('common:changeLanguage')}>
-                  <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
-                    {t('common:askTranslation')}
-                  </MenuItem>
-                </IconButtonTranslate>
-                <IconButtonDarkModeWithContext
-                  titleLight={t('common:toggleDarkMode')}
-                  titleDark={t('common:toggleLightMode')}
-                />
-              </Toolbar>
-            </AppBar>
-            <BoxToolbarOffset />
-            <Component {...pageProps} />
-            <Footer />
-          </Box>
+          <GlobalSWRConfig>
+            <CssBaseline />
+            <Box display="flex" flexDirection="column">
+              <AppBar position="fixed">
+                <Toolbar>
+                  <ButtonHomeLink />
+                  <BoxFlexFill />
+                  <IconButtonAbout title={t('common:about')} />
+                  <IconButtonTranslate title={t('common:changeLanguage')}>
+                    <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
+                      {t('common:askTranslation')}
+                    </MenuItem>
+                  </IconButtonTranslate>
+                  <IconButtonDarkModeWithContext
+                    titleLight={t('common:toggleDarkMode')}
+                    titleDark={t('common:toggleLightMode')}
+                  />
+                </Toolbar>
+              </AppBar>
+              <BoxToolbarOffset />
+              <Component {...pageProps} />
+              <Footer />
+            </Box>
+          </GlobalSWRConfig>
         </ThemeProvider>
       </IconButtonDarkModeContext>
     </CacheProvider>
