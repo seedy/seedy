@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 
 // CONSTANTS
-const BASE_URL = 'https://www.codewars.com/users/pro.seedy/badges';
+const BASE_URL = 'https://codewars.com/users/pro.seedy/badges';
 const ALT = 'CodeWars';
 
 const SIZES = {
@@ -44,12 +44,13 @@ const IconCodeWars = ({ size }) => {
 
   if (hasSize) {
     return (
-      <Image src={src} alt={ALT} {...sizeProps} />
+      <Image unoptimized src={src} alt={ALT} {...sizeProps} />
     );
   }
 
   return (
     <Image
+      unoptimized
       src={`${BASE_URL}/large`}
       alt={ALT}
       width={400}
