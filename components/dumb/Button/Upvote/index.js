@@ -34,8 +34,6 @@ const ThumbUpIconBounce = styled(ThumbUpIcon, {
 const ButtonUpvote = ({ votes, onClick, children }) => {
   const [voted, setVoted] = useState(false);
 
-  const rtVotes = useMemo(() => (voted ? votes + 1 : votes), [voted, votes]);
-
   const disabled = useMemo(() => voted, [voted]);
 
   const handleClick = useCallback(
@@ -50,7 +48,7 @@ const ButtonUpvote = ({ votes, onClick, children }) => {
     <Button sx={{ display: 'flex' }} color="secondary" variant="contained" startIcon={<ThumbUpIconBounce voted={voted} />} onClick={handleClick} disabled={disabled}>
       {children}
       <Divider sx={{ borderColor: 'currentColor', mx: 1 }} orientation="vertical" flexItem />
-      {rtVotes}
+      {votes}
     </Button>
   );
 };

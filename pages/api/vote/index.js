@@ -1,9 +1,15 @@
-import prisma from 'lib/prisma';
+import { countVotes, createVote } from 'lib/prisma/votes';
 
-// POST /api/vote
+// HANDLER /api/vote
 export default async function handle(req, res) {
+  // POST /api/vote
   if (req.method === 'POST') {
-    const result = await prisma.vote.create();
+    const result = await createVote();
+    return res.json(result);
+  }
+  // GET /api/vote
+  if (req.method === 'GET') {
+    const result = await countVotes();
     return res.json(result);
   }
   return res.status(405).json({ error: 'Method not allowed' });

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import isNil from 'helpers/isNil';
-import prisma from 'lib/prisma';
+import { countVotes } from 'lib/prisma/votes';
 
 import { useState, useCallback, useRef, useMemo } from 'react';
 import { useTranslation, Trans } from 'next-i18next';
@@ -19,6 +19,7 @@ import Box from '@mui/material/Box';
 import HeroWordSlide from 'components/dumb/Hero/WordSlide';
 import CardFestivalsSoon from 'components/dumb/Card/Festivals/Soon';
 import MapContainerSkeleton from 'components/dumb/MapContainer/Skeleton';
+import GlobalSWRConfig from 'components/contexts/SWRConfig';
 
 const MapPlaces = dynamic(() => import('components/smart/Map/Places'), { ssr: false, loading: () => <MapContainerSkeleton /> });
 const MapFestivals = dynamic(() => import('components/smart/Map/Festivals'), { ssr: false, loading: () => <MapContainerSkeleton /> });
@@ -38,7 +39,7 @@ const ITEMS = [
 
 // SSG
 export const getStaticProps = async ({ locale }) => {
-  const votes = await prisma.vote.count() || 0;
+  const votes = await countVotes() || 0;
 
   return {
     props: {
@@ -51,6 +52,10 @@ export const getStaticProps = async ({ locale }) => {
 // COMPONENTS
 const About = ({ votes = 0 }) => {
   const { t } = useTranslation(['common', 'places', 'festivals']);
+
+  const swrConfigValue = useMemo(() => ({ fallback: {
+    '/api/vote': votes,
+  } }), [votes]);
 
   const items = useMemo(
     () => ITEMS.map((item) => t(`common:heroWordSlide.${item}`)),
@@ -127,7 +132,9 @@ const About = ({ votes = 0 }) => {
             >
               <Typography color="textSecondary" variant="subtitle2">{t('common:clickMarkers')}</Typography>
               <MapFestivals />
-              <CardFestivalsSoon votes={votes} sx={{ mt: 2, alignSelf: 'center' }} />
+              <GlobalSWRConfig value={swrConfigValue}>
+                <CardFestivalsSoon sx={{ mt: 2, alignSelf: 'center' }} />
+              </GlobalSWRConfig>
             </TabPanel>
           </TabContext>
         </Box>
