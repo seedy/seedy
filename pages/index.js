@@ -38,8 +38,8 @@ const ACTIONS_FOOTER_HEIGHT = 52;
 const CONTENT_PADDING = 32;
 
 const CV_NAME = {
-  en: 'Cedric-Dupuis-cv-en.pdf',
-  fr: 'Cedric-Dupuis-cv-fr.pdf',
+  en: 'cv-en.pdf',
+  fr: 'cv-fr.pdf',
 };
 
 const CV_FOLDER = '/cv/';
@@ -105,7 +105,7 @@ const Home = () => {
   );
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth={false}>
       <Box
         display="flex"
         flexDirection="column"
