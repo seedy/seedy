@@ -23,12 +23,15 @@ import DialogActions from '@mui/material/DialogActions';
 import ButtonDownload from 'components/dumb/Button/Download';
 import CardHeadline from 'components/dumb/Card/Headline';
 import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
 import CardSkillsTech from 'components/dumb/Card/Skills/Tech';
 import CardSkillsSoft from 'components/dumb/Card/Skills/Soft';
 import ImageListInterests from 'components/dumb/ImageList/Interests';
 import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 
 import CloseIcon from '@mui/icons-material/Close';
+import CardMe from 'components/dumb/Card/Me';
+import TypographyBold from 'components/dumb/Typography/Bold';
 
 const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: false });
 
@@ -43,6 +46,8 @@ const CV_NAME = {
 };
 
 const CV_FOLDER = '/cv/';
+
+const HEADLINES_HEIGHT = 'calc(100vh - 2 * 64px - 3 * 8px - 64px)';
 
 // HELPERS
 const getMatchMediaHoverKeyword = () => (matchMediaHover() ? 'hoverTiles' : 'touchTiles');
@@ -109,7 +114,7 @@ const Home = () => {
       <Box
         display="flex"
         flexDirection="column"
-        alignItems="center"
+        alignItems="flex-start"
         mt={1}
         mb={2}
       >
@@ -117,8 +122,24 @@ const Home = () => {
           <HeroTypewriter color="textPrimary" variant="h1">{t('common:heroTypewriter')}</HeroTypewriter>
         </Box>
         <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <CardHeadline onMore={onOpen} onMedia={onOpen} />
+          <Grid item xs={6}>
+            <Box gap={8} flexDirection="column" display="flex" flexGrow="1" height="100%">
+              <Fade in timeout={{ enter: 10000 }}>
+                <CardMe sx={{ height: HEADLINES_HEIGHT }}>
+                  <Box gap={2} mx={2} justifyContent="flex-end" flexDirection="column" display="flex" flexGrow="1" height="100%">
+                    <TypographyBold color="textPrimary" variant="h2">
+                      Cédric DUPUIS
+                    </TypographyBold>
+                    <Typography color="textPrimary" variant="h2">
+                      Frontend Developer
+                    </Typography>
+                  </Box>
+                </CardMe>
+              </Fade>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <CardHeadline onClick={onOpen} sx={{ width: '100%%', height: HEADLINES_HEIGHT }} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <CardSkillsTech />
@@ -185,8 +206,8 @@ const Home = () => {
             >
               <PdfViewer
                 file={cvPath}
-                maxWidth="100%"
-                maxHeight={`calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`}
+                width="100%"
+                height={`calc(100vh - ${ACTIONS_FOOTER_HEIGHT}px - ${TOOLBAR_HEIGHT}px - ${CONTENT_PADDING}px)`}
               />
             </DialogContent>
             <DialogActions>

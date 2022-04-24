@@ -7,7 +7,7 @@ import styled from '@mui/material/styles/styled';
 import Image from 'next/image';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useTranslation } from 'next-i18next';
-import CardNoElevation from 'components/dumb/Card/NoElevation';
+import isFunction from 'helpers/isFunction';
 
 // CONSTANTS
 const TITLE = 'Cédric DUPUIS CV';
@@ -19,6 +19,7 @@ const SRC = {
 // COMPONENTS
 const Backdrop = styled('div')({
   position: 'relative',
+  display: 'flex',
   '&::before': {
     position: 'absolute',
     content: "''",
@@ -47,7 +48,7 @@ const CardActionAreaFlex = styled(CardActionArea)(({ theme }) => ({
   },
 }));
 
-const CardActionCaption = styled('span')(({ theme }) => ({
+const CardActionCaption = styled('span', { shouldForwardProp: (prop) => prop !== 'imageLoaded' })(({ theme }) => ({
   textTransform: 'uppercase',
   textAlign: 'center',
   padding: theme.spacing(2, 4),
@@ -73,11 +74,16 @@ const CaptionUnderline = styled('span')({
   height: '3px',
 });
 
-const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
+const CardHeadline = forwardRef(({ onClick, onLoadingComplete, ...props }, ref) => {
   const { locale, defaultLocale } = useRouter();
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const onLoadingComplete = useCallback(() => { setImageLoaded(true); }, [setImageLoaded]);
+  const handleLoadingComplete = useCallback(() => {
+    setImageLoaded(true);
+    if (isFunction(onLoadingComplete)) {
+      onLoadingComplete();
+    }
+  }, [setImageLoaded, onLoadingComplete]);
 
   const { t } = useTranslation('common');
 
@@ -87,30 +93,32 @@ const CardHeadline = forwardRef(({ onMore, onMedia, ...props }, ref) => {
   );
 
   return (
-    <CardNoElevation ref={ref} {...props}>
-      <CardActionAreaFlex onClick={onMedia}>
-        <Backdrop className="backdrop">
-          <Image
-            alt={TITLE}
-            src={src}
-            title={TITLE}
-            height={512}
-            width={362}
-            onLoadingComplete={onLoadingComplete}
-          />
-        </Backdrop>
-        <CardActionCaption className="caption" imageLoaded={imageLoaded}>
-          {t('common:viewCv')}
-          <CaptionUnderline aria-hidden className="underline" />
-        </CardActionCaption>
-      </CardActionAreaFlex>
-    </CardNoElevation>
+    <CardActionAreaFlex ref={ref} onClick={onClick} {...props}>
+      <Backdrop className="backdrop">
+        <Image
+          alt={TITLE}
+          src={src}
+          title={TITLE}
+          height={512}
+          width={362}
+          onLoadingComplete={handleLoadingComplete}
+        />
+      </Backdrop>
+      <CardActionCaption className="caption" imageLoaded={imageLoaded}>
+        {t('common:viewCv')}
+        <CaptionUnderline aria-hidden className="underline" />
+      </CardActionCaption>
+    </CardActionAreaFlex>
   );
 });
 
 CardHeadline.propTypes = {
-  onMore: PropTypes.func.isRequired,
-  onMedia: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onLoadingComplete: PropTypes.func,
+};
+
+CardHeadline.defaultProps = {
+  onLoadingComplete: null,
 };
 
 export default CardHeadline;

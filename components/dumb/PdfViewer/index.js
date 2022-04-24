@@ -13,7 +13,7 @@ import { usePdfViewerContext } from 'components/dumb/PdfViewer/Context';
 import Box from '@mui/material/Box';
 
 import 'pdfjs-dist/web/pdf_viewer.css';
-import { Skeleton } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 // CONSTANTS
 const CSS_UNITS = 96 / 72;
