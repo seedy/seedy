@@ -35,7 +35,7 @@ const CardActionAreaFlex = styled(CardActionArea)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(1),
-  '&:hover': {
+  '&:hover,&:focus': {
     '& > .backdrop': {
       boxShadow: theme.shadows[10],
     },
