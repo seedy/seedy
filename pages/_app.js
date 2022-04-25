@@ -22,6 +22,7 @@ import GlobalSWRConfig from 'components/contexts/SWRConfig';
 
 import 'styles/globals.css';
 import Footer from 'components/dumb/Footer';
+import SlideHideOnScroll from 'components/dumb/Slide/HideOnScroll';
 
 // CONSTANTS
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -54,22 +55,24 @@ const App = ({ Component, pageProps, emotionCache }) => {
           <GlobalSWRConfig>
             <CssBaseline />
             <Box display="flex" flexDirection="column">
-              <AppBar position="fixed">
-                <Toolbar>
-                  <ButtonHomeLink />
-                  <BoxFlexFill />
-                  <IconButtonAbout title={t('common:about')} />
-                  <IconButtonTranslate title={t('common:changeLanguage')}>
-                    <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
-                      {t('common:askTranslation')}
-                    </MenuItem>
-                  </IconButtonTranslate>
-                  <IconButtonDarkModeWithContext
-                    titleLight={t('common:toggleDarkMode')}
-                    titleDark={t('common:toggleLightMode')}
-                  />
-                </Toolbar>
-              </AppBar>
+              <SlideHideOnScroll>
+                <AppBar color="transparent" enableColorOnDark position="fixed">
+                  <Toolbar>
+                    <ButtonHomeLink />
+                    <BoxFlexFill />
+                    <IconButtonAbout title={t('common:about')} />
+                    <IconButtonTranslate title={t('common:changeLanguage')}>
+                      <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
+                        {t('common:askTranslation')}
+                      </MenuItem>
+                    </IconButtonTranslate>
+                    <IconButtonDarkModeWithContext
+                      titleLight={t('common:toggleDarkMode')}
+                      titleDark={t('common:toggleLightMode')}
+                    />
+                  </Toolbar>
+                </AppBar>
+              </SlideHideOnScroll>
               <BoxToolbarOffset />
               <Component {...pageProps} />
               <Footer />

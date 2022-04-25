@@ -36,6 +36,7 @@ const HeroTypewriter = styled(Typography)(({ theme }) => ({
       ${typing} 2.5s steps(25, end),
       ${blinkCaret(theme)} 0.5s step-end 6 forwards;
     `,
+  fontWeight: theme.typography.fontWeightBold,
 }));
 
 export default HeroTypewriter;
