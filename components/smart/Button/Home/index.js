@@ -19,7 +19,6 @@ const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {
   return (
     <Button
       ref={ref}
-      variant="outlined"
       startIcon={<AvatarMe {...avatarProps} />}
       size={size}
       {...props}
