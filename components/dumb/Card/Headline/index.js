@@ -8,12 +8,14 @@ import Image from 'next/image';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useTranslation } from 'next-i18next';
 import isFunction from 'helpers/isFunction';
+import cvEn from 'public/cv/cv-en.jpg';
+import cvFr from 'public/cv/cv-fr.jpg';
 
 // CONSTANTS
 const TITLE = 'Cédric DUPUIS CV';
 const SRC = {
-  en: '/cv/cv-en.jpg',
-  fr: '/cv/cv-fr.jpg',
+  en: cvEn,
+  fr: cvFr,
 };
 
 // COMPONENTS
@@ -102,6 +104,7 @@ const CardHeadline = forwardRef(({ onClick, onLoadingComplete, ...props }, ref) 
           height={512}
           width={362}
           onLoadingComplete={handleLoadingComplete}
+          placeholder="blur"
         />
       </Backdrop>
       <CardActionCaption className="caption" imageLoaded={imageLoaded}>

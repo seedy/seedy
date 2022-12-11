@@ -4,6 +4,7 @@ import styled from '@mui/material/styles/styled';
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import { forwardRef } from 'react';
+import meJpg from 'public/me.jpg';
 
 const ImageBg = styled(Image)({
   zIndex: -1,
@@ -15,12 +16,13 @@ const CardMe = forwardRef(({ children, ...props }, ref) => (
     {children}
     <ImageBg
       alt="Cédric DUPUIS"
-      src="/me.jpg"
+      src={meJpg}
       title="Cédric DUPUIS"
       layout="fill"
       objectFit="cover"
       objectPosition="center"
       priority
+      placeholder="blur"
     />
   </Box>
 ));
