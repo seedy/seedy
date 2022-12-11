@@ -110,6 +110,7 @@ const ImageListItemFlippable = forwardRef(({
         width={width}
         height={height}
         flip={flip}
+        placeholder="blur"
       />
       <BackdropFlippable
         open
@@ -128,7 +129,7 @@ const ImageListItemFlippable = forwardRef(({
 });
 
 ImageListItemFlippable.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   alt: PropTypes.string.isRequired,
   front: PropTypes.node,
   back: PropTypes.node,
