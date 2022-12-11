@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 
 import useIsDownMd from 'hooks/useIsDownMd';
 
-import AvatarMe from 'components/dumb/Avatar/Me';
 import Logo from 'components/dumb/Logo';
 import Button from '@mui/material/Button';
+import Image from 'next/image';
+import styled from '@mui/material/styles/styled';
+import ranchal from 'public/ranchal.jpg';
+import Box from '@mui/material/Box';
 
 // COMPONENTS
+const AvatarImage = styled(Image)({
+  userSelect: 'none',
+  objectFit: 'cover',
+});
+
 const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {
   const isDownMd = useIsDownMd();
 
@@ -19,7 +27,11 @@ const ButtonHome = forwardRef(({ avatarProps, logo, ...props }, ref) => {
   return (
     <Button
       ref={ref}
-      startIcon={<AvatarMe {...avatarProps} />}
+      startIcon={(
+        <Box sx={{ borderRadius: '50%', width: 40, height: 40, overflow: 'hidden' }}>
+          <AvatarImage priority placeholder="blur" src={ranchal} width={40} height={40} {...avatarProps} />
+        </Box>
+)}
       size={size}
       {...props}
     >
