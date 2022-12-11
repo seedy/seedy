@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import matchMediaHover from 'helpers/matchMediaHover';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import useIsXs from 'hooks/useIsXs';
 import useIsDownMd from 'hooks/useIsDownMd';
 import useClientSide from 'hooks/useClientSide';
@@ -32,6 +32,7 @@ import HeroTypewriter from 'components/dumb/Hero/Typewriter';
 import CloseIcon from '@mui/icons-material/Close';
 import CardMe from 'components/dumb/Card/Me';
 import TypographyBold from 'components/dumb/Typography/Bold';
+import ButtonTranslate from 'components/smart/Button/Translate';
 
 const PdfViewer = dynamic(() => import('components/dumb/PdfViewer'), { ssr: false });
 
@@ -52,6 +53,8 @@ const HEADLINES_HEIGHT = 'calc(100vh - 2 * 64px - 3 * 8px - 64px)';
 // HELPERS
 const getMatchMediaHoverKeyword = () => (matchMediaHover() ? 'hoverTiles' : 'touchTiles');
 
+const getIsCVOpen = (query) => query?.cv === 'true';
+
 // SSG
 export const getStaticProps = async ({ locale }) => ({
   props: {
@@ -64,7 +67,7 @@ const Home = () => {
   const isXs = useIsXs();
   const isDownMd = useIsDownMd();
 
-  const { locale, defaultLocale } = useRouter();
+  const { locale, defaultLocale, pathname, replace, query } = useRouter();
   const cvName = useMemo(
     () => CV_NAME[locale || defaultLocale],
     [locale, defaultLocale],
@@ -97,17 +100,25 @@ const Home = () => {
 
   const onOpen = useCallback(
     () => {
+      replace({ pathname, query: { cv: true } }, { pathname, query: { cv: true } });
       setOpen(true);
     },
-    [setOpen],
+    [setOpen, replace, pathname],
   );
 
   const onClose = useCallback(
     () => {
+      replace({ pathname });
       setOpen(false);
     },
-    [setOpen],
+    [setOpen, replace, pathname],
   );
+
+  useEffect(() => {
+    if (getIsCVOpen(query)) {
+      setOpen(true);
+    }
+  }, [query, setOpen]);
 
   return (
     <Container maxWidth={false}>
@@ -163,7 +174,7 @@ const Home = () => {
         </Box>
         <Dialog maxWidth={false} fullScreen onClose={onClose} open={open}>
           <PdfViewerContextProvider>
-            <DialogTitle
+            <Box
               sx={{
                 px: 3,
                 display: 'flex',
@@ -178,25 +189,31 @@ const Home = () => {
                 alignItems="center"
                 position="relative"
               >
-                <Typography variant="h2">{t('common:cv')}</Typography>
+                <DialogTitle variant="h2">{t('common:cv')}</DialogTitle>
                 <PdfViewerToolbar
                   sx={{
                     margin: 'auto',
                   }}
                 />
-                <IconButton
+                <Box
                   sx={{
+                    display: 'flex',
+                    gap: 2,
                     position: 'absolute',
                     right: 0,
                   }}
-                  onClick={onClose}
-                  size="large"
-                  aria-label={t('common:close')}
                 >
-                  <CloseIcon />
-                </IconButton>
+                  <ButtonTranslate />
+                  <IconButton
+                    onClick={onClose}
+                    size="large"
+                    aria-label={t('common:close')}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
               </Box>
-            </DialogTitle>
+            </Box>
             <DialogContent
               sx={{
                 py: 0,
