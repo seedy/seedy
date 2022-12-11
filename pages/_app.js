@@ -13,7 +13,7 @@ import ButtonHomeLink from 'components/smart/Button/Home/Link';
 import Box from '@mui/material/Box';
 import BoxToolbarOffset from 'components/dumb/Box/ToolbarOffset';
 import IconButtonDarkModeWithContext from 'components/smart/IconButton/DarkMode/WithContext';
-import IconButtonAbout from 'components/smart/IconButton/About';
+import ButtonAbout from 'components/smart/Button/About';
 import IconButtonTranslate from 'components/smart/IconButton/Translate';
 import BoxFlexFill from 'components/dumb/Box/FlexFill';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,6 +23,7 @@ import GlobalSWRConfig from 'components/contexts/SWRConfig';
 import 'styles/globals.css';
 import Footer from 'components/dumb/Footer';
 import SlideHideOnScroll from 'components/dumb/Slide/HideOnScroll';
+import BoxFlexGap from 'components/dumb/Box/FlexGap';
 
 // CONSTANTS
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -60,16 +61,18 @@ const App = ({ Component, pageProps, emotionCache }) => {
                   <Toolbar>
                     <ButtonHomeLink />
                     <BoxFlexFill />
-                    <IconButtonAbout title={t('common:about')} />
-                    <IconButtonTranslate title={t('common:changeLanguage')}>
-                      <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
-                        {t('common:askTranslation')}
-                      </MenuItem>
-                    </IconButtonTranslate>
-                    <IconButtonDarkModeWithContext
-                      titleLight={t('common:toggleDarkMode')}
-                      titleDark={t('common:toggleLightMode')}
-                    />
+                    <BoxFlexGap gap={2}>
+                      <ButtonAbout variant="outlined" title={t('common:about')} />
+                      <IconButtonTranslate title={t('common:changeLanguage')}>
+                        <MenuItem component="a" href="https://github.com/seedy/seedy/issues/43#issue-1007457233">
+                          {t('common:askTranslation')}
+                        </MenuItem>
+                      </IconButtonTranslate>
+                      <IconButtonDarkModeWithContext
+                        titleLight={t('common:toggleDarkMode')}
+                        titleDark={t('common:toggleLightMode')}
+                      />
+                    </BoxFlexGap>
                   </Toolbar>
                 </AppBar>
               </SlideHideOnScroll>

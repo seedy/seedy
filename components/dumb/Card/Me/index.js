@@ -20,6 +20,7 @@ const CardMe = forwardRef(({ children, ...props }, ref) => (
       layout="fill"
       objectFit="cover"
       objectPosition="center"
+      priority
     />
   </Box>
 ));

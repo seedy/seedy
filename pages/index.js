@@ -148,7 +148,7 @@ const Home = () => {
             <CardSkillsSoft />
           </Grid>
         </Grid>
-        <Box pt={3}>
+        <Box pt={3} width="100%">
           <Grid container>
             <Grid item xs={12}>
               <Typography paragraph color="textPrimary" variant="h2">{t('common:heroPassion')}</Typography>
@@ -156,7 +156,7 @@ const Home = () => {
                 {t(`common:${subtitleKeyword}`)}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid sx={{ alignItems: 'center' }} item xs={12}>
               <ImageListInterests cols={listCols} />
             </Grid>
           </Grid>
